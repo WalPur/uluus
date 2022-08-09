@@ -18,6 +18,7 @@ class RentSerializer(serializers.ModelSerializer):
         many=True,
         required=False
     )
+    image = serializers.SerializerMethodField()
 
     class Meta:
         model = AdvertRent
@@ -35,3 +36,10 @@ class RentSerializer(serializers.ModelSerializer):
         if 'images' not in validated_data:
             advert = AdvertRent.objects.create(**validated_data)
             return advert
+    
+    @staticmethod
+    def get_image(obj):
+        return RentImageSerializer(
+            RentImages.objects.filter(post=obj),
+            many=True
+        ).data

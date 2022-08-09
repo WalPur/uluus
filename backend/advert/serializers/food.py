@@ -18,6 +18,7 @@ class FoodSerializer(serializers.ModelSerializer):
         many=True,
         required=False
     )
+    image = serializers.SerializerMethodField()
 
     class Meta:
         model = AdvertFood
@@ -35,3 +36,10 @@ class FoodSerializer(serializers.ModelSerializer):
         if 'images' not in validated_data:
             advert = AdvertFood.objects.create(**validated_data)
             return advert
+
+    @staticmethod
+    def get_image(obj):
+        return FoodImageSerializer(
+            FoodImages.objects.filter(post=obj),
+            many=True
+        ).data

@@ -18,6 +18,7 @@ class CarSerializer(serializers.ModelSerializer):
         many=True,
         required=False
     )
+    image = serializers.SerializerMethodField()
 
     class Meta:
         model = AdvertCar
@@ -35,3 +36,10 @@ class CarSerializer(serializers.ModelSerializer):
         if 'images' not in validated_data:
             advert = AdvertCar.objects.create(**validated_data)
             return advert
+    
+    @staticmethod
+    def get_image(obj):
+        return CarImageSerializer(
+            CarImages.objects.filter(post=obj),
+            many=True
+        ).data

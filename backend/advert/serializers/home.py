@@ -18,6 +18,7 @@ class HomeSerializer(serializers.ModelSerializer):
         many=True,
         required=False
     )
+    image = serializers.SerializerMethodField()
 
     class Meta:
         model = AdvertHome
@@ -35,3 +36,10 @@ class HomeSerializer(serializers.ModelSerializer):
         if 'images' not in validated_data:
             advert = AdvertHome.objects.create(**validated_data)
             return advert
+
+    @staticmethod
+    def get_image(obj):
+        return HomeImageSerializer(
+            HomeImages.objects.filter(post=obj),
+            many=True
+        ).data
