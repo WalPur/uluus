@@ -1,7 +1,6 @@
 from django.db import models
 
-from . import subcategories
-from . import actions
+from . import subcategories, actions
 
 
 class Uluss(models.Model):
@@ -18,16 +17,21 @@ class Uluss(models.Model):
 
 
 class AdvertRent(models.Model):
-    """Модель объявлений"""
+    """Модель объявлений недвижимости"""
 
     name = models.CharField(max_length=255, verbose_name="Заголовок объявления")
     description = models.TextField(verbose_name="Описание")
     phone = models.CharField(max_length=255, verbose_name='Номер телефона')
-    whatsapp = models.BooleanField(verbose_name='Есть Whatsapp')
+    is_whatsapp = models.BooleanField(verbose_name='Есть Whatsapp')
     user_name = models.CharField(verbose_name='Имя', max_length=255)
     settlement = models.CharField(
         verbose_name='Населенный пункт',
         max_length=255
+    )
+    uluus = models.ForeignKey(
+        Uluss,
+        verbose_name="Улус объявления",
+        on_delete=models.CASCADE,
     )
     category = models.CharField(
         choices=subcategories.RentCategory.choices,
@@ -44,16 +48,21 @@ class AdvertRent(models.Model):
 
 
 class AdvertCar(models.Model):
-    """Модель объявлений"""
+    """Модель объявлений автомобилей"""
 
     name = models.CharField(max_length=255, verbose_name="Заголовок объявления")
     description = models.TextField(verbose_name="Описание")
     phone = models.CharField(max_length=255, verbose_name='Номер телефона')
-    whatsapp = models.BooleanField(verbose_name='Есть Whatsapp')
+    is_whatsapp = models.BooleanField(verbose_name='Есть Whatsapp')
     user_name = models.CharField(verbose_name='Имя', max_length=255)
     settlement = models.CharField(
         verbose_name='Населенный пункт',
         max_length=255
+    )
+    uluus = models.ForeignKey(
+        Uluss,
+        verbose_name="Улус объявления",
+        on_delete=models.CASCADE,
     )
     category = models.CharField(
         choices=subcategories.AutoCategory.choices,
@@ -70,16 +79,21 @@ class AdvertCar(models.Model):
 
 
 class AdvertService(models.Model):
-    """Модель объявлений"""
+    """Модель объявлений услуг"""
 
     name = models.CharField(max_length=255, verbose_name="Заголовок объявления")
     description = models.TextField(verbose_name="Описание")
     phone = models.CharField(max_length=255, verbose_name='Номер телефона')
-    whatsapp = models.BooleanField(verbose_name='Есть Whatsapp')
+    is_whatsapp = models.BooleanField(verbose_name='Есть Whatsapp')
     user_name = models.CharField(verbose_name='Имя', max_length=255)
     settlement = models.CharField(
         verbose_name='Населенный пункт',
         max_length=255
+    )
+    uluus = models.ForeignKey(
+        Uluss,
+        verbose_name="Улус объявления",
+        on_delete=models.CASCADE,
     )
     category = models.CharField(
         choices=subcategories.ServicesCategory.choices,
@@ -96,16 +110,21 @@ class AdvertService(models.Model):
 
 
 class AdvertHome(models.Model):
-    """Модель объявлений"""
+    """Модель объявлений для дома"""
 
     name = models.CharField(max_length=255, verbose_name="Заголовок объявления")
     description = models.TextField(verbose_name="Описание")
     phone = models.CharField(max_length=255, verbose_name='Номер телефона')
-    whatsapp = models.BooleanField(verbose_name='Есть Whatsapp')
+    is_whatsapp = models.BooleanField(verbose_name='Есть Whatsapp')
     user_name = models.CharField(verbose_name='Имя', max_length=255)
     settlement = models.CharField(
         verbose_name='Населенный пункт',
         max_length=255
+    )
+    uluus = models.ForeignKey(
+        Uluss,
+        verbose_name="Улус объявления",
+        on_delete=models.CASCADE,
     )
     category = models.CharField(
         choices=subcategories.HomeCategory.choices,
@@ -122,16 +141,21 @@ class AdvertHome(models.Model):
 
 
 class AdvertFood(models.Model):
-    """Модель объявлений"""
+    """Модель объявлений еды"""
 
     name = models.CharField(max_length=255, verbose_name="Заголовок объявления")
     description = models.TextField(verbose_name="Описание")
     phone = models.CharField(max_length=255, verbose_name='Номер телефона')
-    whatsapp = models.BooleanField(verbose_name='Есть Whatsapp')
+    is_whatsapp = models.BooleanField(verbose_name='Есть Whatsapp')
     user_name = models.CharField(verbose_name='Имя', max_length=255)
     settlement = models.CharField(
         verbose_name='Населенный пункт',
         max_length=255
+    )
+    uluus = models.ForeignKey(
+        Uluss,
+        verbose_name="Улус объявления",
+        on_delete=models.CASCADE,
     )
     category = models.CharField(
         choices=subcategories.FoodCategory.choices,
@@ -148,16 +172,21 @@ class AdvertFood(models.Model):
 
 
 class AdvertJobs(models.Model):
-    """Модель объявлений"""
+    """Модель объявлений вакансий"""
 
     name = models.CharField(max_length=255, verbose_name="Заголовок объявления")
     description = models.TextField(verbose_name="Описание")
     phone = models.CharField(max_length=255, verbose_name='Номер телефона')
-    whatsapp = models.BooleanField(verbose_name='Есть Whatsapp')
+    is_whatsapp = models.BooleanField(verbose_name='Есть Whatsapp')
     user_name = models.CharField(verbose_name='Имя', max_length=255)
     settlement = models.CharField(
         verbose_name='Населенный пункт',
         max_length=255
+    )
+    uluus = models.ForeignKey(
+        Uluss,
+        verbose_name="Улус объявления",
+        on_delete=models.CASCADE,
     )
     category = models.CharField(
         choices=subcategories.JobsCategory.choices,
@@ -170,4 +199,88 @@ class AdvertJobs(models.Model):
         max_length=128,
         default=actions.JobsActions.PERMANENTLY,
         verbose_name="Действие еды"
+    )
+
+
+class RentImages(models.Model):
+    """Модель картинок недвижимости"""
+
+    post = models.ForeignKey(
+        AdvertRent,
+        verbose_name="Объявление",
+        on_delete=models.CASCADE,
+    )
+    image = models.ImageField(
+        upload_to='RentImages/',
+        verbose_name="Изображение",
+    )
+
+
+class CarImages(models.Model):
+    """Модель картинок автомобилей"""
+
+    post = models.ForeignKey(
+        AdvertCar,
+        verbose_name="Объявление",
+        on_delete=models.CASCADE,
+    )
+    image = models.ImageField(
+        upload_to='CarImages/',
+        verbose_name="Изображение",
+    )
+
+
+class ServiceImages(models.Model):
+    """Модель картинок недвижимости"""
+
+    post = models.ForeignKey(
+        AdvertService,
+        verbose_name="Объявление",
+        on_delete=models.CASCADE,
+    )
+    image = models.ImageField(
+        upload_to='ServiceImages/',
+        verbose_name="Изображение",
+    )
+
+
+class HomeImages(models.Model):
+    """Модель картинок недвижимости"""
+
+    post = models.ForeignKey(
+        AdvertHome,
+        verbose_name="Объявление",
+        on_delete=models.CASCADE,
+    )
+    image = models.ImageField(
+        upload_to='HomeImages/',
+        verbose_name="Изображение",
+    )
+
+
+class FoodImages(models.Model):
+    """Модель картинок недвижимости"""
+
+    post = models.ForeignKey(
+        AdvertFood,
+        verbose_name="Объявление",
+        on_delete=models.CASCADE,
+    )
+    image = models.ImageField(
+        upload_to='FoodImages/',
+        verbose_name="Изображение",
+    )
+
+
+class JobsImages(models.Model):
+    """Модель картинок недвижимости"""
+
+    post = models.ForeignKey(
+        AdvertJobs,
+        verbose_name="Объявление",
+        on_delete=models.CASCADE,
+    )
+    image = models.ImageField(
+        upload_to='JobsImages/',
+        verbose_name="Изображение",
     )
