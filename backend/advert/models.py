@@ -6,7 +6,33 @@ from . import subcategories, actions
 class Uluss(models.Model):
     """Модель улуса"""
 
-    name = models.CharField(max_length=255, verbose_name="Название улуса")
+    name = models.CharField(
+        max_length=255,
+        verbose_name="Название улуса"
+    )
+    text = models.TextField(
+        verbose_name="Описание улуса"
+    )
+    square = models.CharField(
+        max_length=255,
+        verbose_name="Площадь улуса"
+    )
+    population = models.CharField(
+        max_length=255,
+        verbose_name="Население улуса"
+    )
+    estab = models.CharField(
+        max_length=255,
+        verbose_name="Дата образования улуса"
+    )
+    capital = models.CharField(
+        max_length=255,
+        verbose_name="Центр улуса"
+    )
+    image = models.ImageField(
+        upload_to='uluusImages/',
+        verbose_name="Картинка улуса"
+    )
 
     def __str__(self):
         return self.name
@@ -33,6 +59,10 @@ class AdvertRent(models.Model):
         verbose_name="Улус объявления",
         on_delete=models.CASCADE,
     )
+    price = models.PositiveIntegerField(
+        verbose_name="Цена",
+        default=0,
+    )
     category = models.CharField(
         choices=subcategories.RentCategory.choices,
         max_length=128,
@@ -46,12 +76,20 @@ class AdvertRent(models.Model):
         verbose_name="Действие недвижимости"
     )
 
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Объявление недвижимости'
+        verbose_name_plural = 'Объявления недвижимости'
+
 
 class AdvertCar(models.Model):
     """Модель объявлений автомобилей"""
 
     name = models.CharField(max_length=255, verbose_name="Заголовок объявления")
     description = models.TextField(verbose_name="Описание")
+    price = models.IntegerField(verbose_name="Цена")
     phone = models.CharField(max_length=255, verbose_name='Номер телефона')
     is_whatsapp = models.BooleanField(verbose_name='Есть Whatsapp')
     user_name = models.CharField(verbose_name='Имя', max_length=255)
@@ -63,6 +101,10 @@ class AdvertCar(models.Model):
         Uluss,
         verbose_name="Улус объявления",
         on_delete=models.CASCADE,
+    )
+    price = models.PositiveIntegerField(
+        verbose_name="Цена",
+        default=0,
     )
     category = models.CharField(
         choices=subcategories.AutoCategory.choices,
@@ -76,6 +118,13 @@ class AdvertCar(models.Model):
         default=actions.RentCarActions.SELL,
         verbose_name="Действие авто"
     )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Объявление автомобилей'
+        verbose_name_plural = 'Объявления автомобилей'
 
 
 class AdvertService(models.Model):
@@ -95,6 +144,10 @@ class AdvertService(models.Model):
         verbose_name="Улус объявления",
         on_delete=models.CASCADE,
     )
+    price = models.PositiveIntegerField(
+        verbose_name="Цена",
+        default=0,
+    )
     category = models.CharField(
         choices=subcategories.ServicesCategory.choices,
         max_length=128,
@@ -107,6 +160,13 @@ class AdvertService(models.Model):
         default=actions.ServicesActions.PROVIDE,
         verbose_name="Действие услуги"
     )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Объявление услуг'
+        verbose_name_plural = 'Объявления услуг'
 
 
 class AdvertHome(models.Model):
@@ -126,6 +186,10 @@ class AdvertHome(models.Model):
         verbose_name="Улус объявления",
         on_delete=models.CASCADE,
     )
+    price = models.PositiveIntegerField(
+        verbose_name="Цена",
+        default=0,
+    )
     category = models.CharField(
         choices=subcategories.HomeCategory.choices,
         max_length=128,
@@ -138,6 +202,13 @@ class AdvertHome(models.Model):
         default=actions.HomeFoodActions.SELL,
         verbose_name="Действие для дома"
     )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Объявление для дома'
+        verbose_name_plural = 'Объявления для дома'
 
 
 class AdvertFood(models.Model):
@@ -157,6 +228,10 @@ class AdvertFood(models.Model):
         verbose_name="Улус объявления",
         on_delete=models.CASCADE,
     )
+    price = models.PositiveIntegerField(
+        verbose_name="Цена",
+        default=0,
+    )
     category = models.CharField(
         choices=subcategories.FoodCategory.choices,
         max_length=128,
@@ -169,6 +244,13 @@ class AdvertFood(models.Model):
         default=actions.HomeFoodActions.SELL,
         verbose_name="Действие еды"
     )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Объявление еды'
+        verbose_name_plural = 'Объявления еды'
 
 
 class AdvertJobs(models.Model):
@@ -188,6 +270,10 @@ class AdvertJobs(models.Model):
         verbose_name="Улус объявления",
         on_delete=models.CASCADE,
     )
+    price = models.PositiveIntegerField(
+        verbose_name="Цена",
+        default=0,
+    )
     category = models.CharField(
         choices=subcategories.JobsCategory.choices,
         max_length=128,
@@ -200,6 +286,13 @@ class AdvertJobs(models.Model):
         default=actions.JobsActions.PERMANENTLY,
         verbose_name="Действие еды"
     )
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Объявление вакансий'
+        verbose_name_plural = 'Объявления вакансий'
 
 
 class RentImages(models.Model):
@@ -215,6 +308,13 @@ class RentImages(models.Model):
         verbose_name="Изображение",
     )
 
+    def __str__(self):
+        return f'{self.post} изображение'
+
+    class Meta:
+        verbose_name = 'Изображение недвижимости'
+        verbose_name_plural = 'Изображения недвижимости'
+
 
 class CarImages(models.Model):
     """Модель картинок автомобилей"""
@@ -229,9 +329,16 @@ class CarImages(models.Model):
         verbose_name="Изображение",
     )
 
+    def __str__(self):
+        return f'{self.post} изображение'
+
+    class Meta:
+        verbose_name = 'Изображение автомобилей'
+        verbose_name_plural = 'Изображения автомобилей'
+
 
 class ServiceImages(models.Model):
-    """Модель картинок недвижимости"""
+    """Модель картинок услуг"""
 
     post = models.ForeignKey(
         AdvertService,
@@ -243,9 +350,16 @@ class ServiceImages(models.Model):
         verbose_name="Изображение",
     )
 
+    def __str__(self):
+        return f'{self.post} изображение'
+
+    class Meta:
+        verbose_name = 'Изображение услуг'
+        verbose_name_plural = 'Изображения услуг'
+
 
 class HomeImages(models.Model):
-    """Модель картинок недвижимости"""
+    """Модель картинок для дома"""
 
     post = models.ForeignKey(
         AdvertHome,
@@ -257,9 +371,16 @@ class HomeImages(models.Model):
         verbose_name="Изображение",
     )
 
+    def __str__(self):
+        return f'{self.post} изображение'
+
+    class Meta:
+        verbose_name = 'Изображение для дома'
+        verbose_name_plural = 'Изображения для дома'
+
 
 class FoodImages(models.Model):
-    """Модель картинок недвижимости"""
+    """Модель картинок еды"""
 
     post = models.ForeignKey(
         AdvertFood,
@@ -271,9 +392,16 @@ class FoodImages(models.Model):
         verbose_name="Изображение",
     )
 
+    def __str__(self):
+        return f'{self.post} изображение'
+
+    class Meta:
+        verbose_name = 'Изображение еды'
+        verbose_name_plural = 'Изображения еды'
+
 
 class JobsImages(models.Model):
-    """Модель картинок недвижимости"""
+    """Модель картинок вакансий"""
 
     post = models.ForeignKey(
         AdvertJobs,
@@ -284,3 +412,10 @@ class JobsImages(models.Model):
         upload_to='JobsImages/',
         verbose_name="Изображение",
     )
+
+    def __str__(self):
+        return f'{self.post} изображение'
+
+    class Meta:
+        verbose_name = 'Изображение вакансий'
+        verbose_name_plural = 'Изображения вакансий'
