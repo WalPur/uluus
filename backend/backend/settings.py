@@ -23,8 +23,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'rest_framework', 
+
     'advert',
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_PERMISSION_CLASSES": [
+        "rest_framework.permissions.AllowAny",
+    ],
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -91,6 +100,9 @@ USE_TZ = True
 
 
 STATIC_URL = 'static/'
+
+MEDIA_URL = '/django_media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
