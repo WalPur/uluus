@@ -54,10 +54,9 @@ class AdvertRent(models.Model):
         verbose_name='Населенный пункт',
         max_length=255
     )
-    uluus = models.ForeignKey(
+    uluus = models.ManyToManyField(
         Uluss,
         verbose_name="Улус объявления",
-        on_delete=models.CASCADE,
     )
     price = models.PositiveIntegerField(
         verbose_name="Цена",
@@ -97,10 +96,9 @@ class AdvertCar(models.Model):
         verbose_name='Населенный пункт',
         max_length=255
     )
-    uluus = models.ForeignKey(
+    uluus = models.ManyToManyField(
         Uluss,
         verbose_name="Улус объявления",
-        on_delete=models.CASCADE,
     )
     price = models.PositiveIntegerField(
         verbose_name="Цена",
@@ -139,10 +137,9 @@ class AdvertService(models.Model):
         verbose_name='Населенный пункт',
         max_length=255
     )
-    uluus = models.ForeignKey(
+    uluus = models.ManyToManyField(
         Uluss,
         verbose_name="Улус объявления",
-        on_delete=models.CASCADE,
     )
     price = models.PositiveIntegerField(
         verbose_name="Цена",
@@ -181,10 +178,9 @@ class AdvertHome(models.Model):
         verbose_name='Населенный пункт',
         max_length=255
     )
-    uluus = models.ForeignKey(
+    uluus = models.ManyToManyField(
         Uluss,
         verbose_name="Улус объявления",
-        on_delete=models.CASCADE,
     )
     price = models.PositiveIntegerField(
         verbose_name="Цена",
@@ -223,10 +219,9 @@ class AdvertFood(models.Model):
         verbose_name='Населенный пункт',
         max_length=255
     )
-    uluus = models.ForeignKey(
+    uluus = models.ManyToManyField(
         Uluss,
         verbose_name="Улус объявления",
-        on_delete=models.CASCADE,
     )
     price = models.PositiveIntegerField(
         verbose_name="Цена",
@@ -265,10 +260,9 @@ class AdvertJobs(models.Model):
         verbose_name='Населенный пункт',
         max_length=255
     )
-    uluus = models.ForeignKey(
+    uluus = models.ManyToManyField(
         Uluss,
         verbose_name="Улус объявления",
-        on_delete=models.CASCADE,
     )
     price = models.PositiveIntegerField(
         verbose_name="Цена",
@@ -278,13 +272,13 @@ class AdvertJobs(models.Model):
         choices=subcategories.JobsCategory.choices,
         max_length=128,
         default=subcategories.JobsCategory.NEED,
-        verbose_name="Подкатегория еды"
+        verbose_name="Подкатегория вакансии"
     )
     action = models.CharField(
         choices=actions.JobsActions.choices,
         max_length=128,
         default=actions.JobsActions.PERMANENTLY,
-        verbose_name="Действие еды"
+        verbose_name="Действие вакансии"
     )
 
     def __str__(self):

@@ -28,13 +28,17 @@ class JobsSerializer(serializers.ModelSerializer):
 
         if 'images' in validated_data:
             images = validated_data.pop('images')
+            uluuses = validated_data.pop('uluus')
             advert = AdvertJobs.objects.create(**validated_data)
+            advert.uluus.set(uluuses)
             for img in images:
                 JobsImages.objects.create(**img, post=advert)
             return advert
         
         if 'images' not in validated_data:
+            uluuses = validated_data.pop('uluus')
             advert = AdvertJobs.objects.create(**validated_data)
+            advert.uluus.set(uluuses)
             return advert
 
     @staticmethod
