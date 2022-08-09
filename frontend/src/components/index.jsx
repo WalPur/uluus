@@ -1,3 +1,9 @@
-import Header from "./header";
+import Header from './header';
+import Drawer from './drawer';
+import Footer from './footer';
 
-export { Header };
+export {
+	Header,
+	Drawer,
+	Footer,
+};
