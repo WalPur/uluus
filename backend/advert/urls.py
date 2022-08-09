@@ -5,8 +5,10 @@ from .views import (
     formHome,
     formFood,
     formJobs,
+    formAll,
 )
 
+from django.urls import path
 from rest_framework.routers import DefaultRouter
 
 
@@ -19,4 +21,6 @@ router.register('home', formHome, basename='home')
 router.register('food', formFood, basename='food')
 router.register('jobs', formJobs, basename='jobs')
 
-urlpatterns = router.urls
+urlpatterns = [
+    path('adverts/', formAll.as_view(), name='card-form'),
+] + router.urls

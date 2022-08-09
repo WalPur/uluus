@@ -74,6 +74,14 @@ class AdvertRent(models.Model):
         default=actions.RentCarActions.SELL,
         verbose_name="Действие недвижимости"
     )
+    is_premium = models.BooleanField(
+        verbose_name='Премиум',
+        default=False
+    )
+    date = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Время отправки объявления"
+    )
 
     def __str__(self):
         return self.name
@@ -116,6 +124,14 @@ class AdvertCar(models.Model):
         default=actions.RentCarActions.SELL,
         verbose_name="Действие авто"
     )
+    is_premium = models.BooleanField(
+        verbose_name='Премиум',
+        default=False
+    )
+    date = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Время отправки объявления"
+    )
 
     def __str__(self):
         return self.name
@@ -156,6 +172,14 @@ class AdvertService(models.Model):
         max_length=128,
         default=actions.ServicesActions.PROVIDE,
         verbose_name="Действие услуги"
+    )
+    is_premium = models.BooleanField(
+        verbose_name='Премиум',
+        default=False
+    )
+    date = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Время отправки объявления"
     )
 
     def __str__(self):
@@ -198,6 +222,14 @@ class AdvertHome(models.Model):
         default=actions.HomeFoodActions.SELL,
         verbose_name="Действие для дома"
     )
+    is_premium = models.BooleanField(
+        verbose_name='Премиум',
+        default=False
+    )
+    date = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Время отправки объявления"
+    )
 
     def __str__(self):
         return self.name
@@ -239,6 +271,14 @@ class AdvertFood(models.Model):
         default=actions.HomeFoodActions.SELL,
         verbose_name="Действие еды"
     )
+    is_premium = models.BooleanField(
+        verbose_name='Премиум',
+        default=False
+    )
+    date = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Время отправки объявления"
+    )
 
     def __str__(self):
         return self.name
@@ -279,6 +319,14 @@ class AdvertJobs(models.Model):
         max_length=128,
         default=actions.JobsActions.PERMANENTLY,
         verbose_name="Действие вакансии"
+    )
+    is_premium = models.BooleanField(
+        verbose_name='Премиум',
+        default=False
+    )
+    date = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Время отправки объявления"
     )
 
     def __str__(self):
