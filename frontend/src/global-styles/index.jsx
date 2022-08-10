@@ -7,6 +7,9 @@ const Title = styled(Typography)(({ theme }) => ({
 	fontSize: 32,
 	lineHeight: '137.5%',
 	color: '#000000',
+	[theme.breakpoints.down('md')]: {
+		fontSize: '24px',
+	}
 }));
 const Subtitle = styled(Typography)(({ theme }) => ({
 	fontFamily: 'Open Sans, sans-serif',
@@ -14,6 +17,9 @@ const Subtitle = styled(Typography)(({ theme }) => ({
 	fontSize: 24,
 	lineHeight: '137.5%',
 	color: '#000000',
+	[theme.breakpoints.down('md')]: {
+		fontSize: '20px',
+	}
 }));
 const Text20 = styled(Typography)(({ theme }) => ({
 	fontFamily: 'Open Sans, sans-serif',
@@ -21,6 +27,9 @@ const Text20 = styled(Typography)(({ theme }) => ({
 	fontSize: 20,
 	lineHeight: '135%',
 	color: '#000000',
+	[theme.breakpoints.down('sm')]: {
+		fontSize: '16px',
+	}
 }));
 const Text16 = styled(Typography)(({ theme }) => ({
 	fontFamily: 'Open Sans, sans-serif',

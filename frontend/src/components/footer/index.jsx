@@ -34,11 +34,11 @@ const RoutesBox = styled(Box)(({ theme }) => ({
 	width: '100%',
 	display: 'flex',
 	justifyContent: 'end',
-	gap: 30,
+	gap: 29,
 	[theme.breakpoints.down('sm')]: {
 		flexDirection: 'column',
 		alignItems: 'end',
-		gap: 13,
+		gap: 12,
 	}
 }));
 

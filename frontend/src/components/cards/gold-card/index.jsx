@@ -1,23 +1,24 @@
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
-import { Box } from '@mui/materail';
+import { Box } from '@mui/material';
 
 import { Text16, Text12 } from '../../../global-styles';
 
 const GoldCard = (props) => {
+	const navigate = useNavigate();
 	const data = props.data
 	return (
-		<Box>
-			<img src={data.img} />
+		<Box sx={{ background: '#FFFFFF', overflow: 'hidden' }}>
+			<img style={{ width: '100%', height: 'auto' }} src={data.img} />
 			<Box sx={{
 				display: 'flex',
 				flexDirection: 'column',
 				padding: '10px',
 			}}>
-				<Text16>
+				<Text16 sx={{ mb: 1 }}>
 					{data.title}
 				</Text16>
-				<Text12>
+				<Text12 sx={{ mb: 1 }}>
 					{data.desc}
 				</Text12>
 				<Box sx={{
@@ -27,14 +28,15 @@ const GoldCard = (props) => {
 					<Text12>
 						{data.date}
 					</Text12>
-					<Link style={{
-						textDecoration: 'none',
-						color: '#0D6EFD',
-					}}>
-						<Text12>
-							подробнее
-						</Text12>
-					</Link>
+					<Text12
+						onClick={() => navigate('/ad-detail/' + data.id)}
+						sx={{
+							cursor: 'pointer',
+							color: '#0D6EFD',
+						}}
+					>
+						подробнее
+					</Text12>
 				</Box>
 			</Box>
 		</Box>

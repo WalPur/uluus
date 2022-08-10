@@ -1,5 +1,7 @@
 import {
-	HomeSlider
+	HomeSlider,
+	HomeGold,
+	HomeAd,
 } from '../components';
 
 function Home() {
@@ -11,6 +13,8 @@ function Home() {
 			gap: '33px',
 		}}>
 			<HomeSlider />
+			<HomeGold />
+			<HomeAd />
 		</div>
 	)
 }
