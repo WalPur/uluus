@@ -5,6 +5,9 @@ import HomeSlider from './home/home-slider';
 import HomeGold from './home/home-gold';
 import HomeAd from './home/home-ad';
 
+import AdDetail from './ad-detail';
+import AdDetailSlider from './ad-detail/ad-detail-slider';
+
 import Footer from './footer';
 
 import GoldCard from './cards/gold-card';
@@ -16,6 +19,8 @@ export {
 	HomeSlider,
 	HomeGold,
 	HomeAd,
+	AdDetail,
+	AdDetailSlider,
 	Footer,
 	GoldCard,
 	AdCard,

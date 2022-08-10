@@ -31,7 +31,7 @@ const TopHeader = () => {
 	return (
 		<CustomBox>
 			<Box sx={{ display: 'flex', gap: 0.8 }}>
-				<img src='images/uluusru_logo.svg' />
+				<img src='/images/uluusru_logo.svg' />
 				<Typography sx={{ fontFamily: 'ArciformSansRegular', fontSize: 32, color: '#2C318F', }}>
 					Uluus.ru
 				</Typography>
@@ -50,7 +50,7 @@ const TopHeader = () => {
 						color: '#000',
 					}}
 				>
-					<img src='images/placemark.svg' />
+					<img src='/images/placemark.svg' />
 					<Text16>
 						Выберите ваш улус
 					</Text16>

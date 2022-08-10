@@ -147,7 +147,7 @@ const Drawer = (props) => {
 							color: '#000',
 						}}
 					>
-						<img src='images/placemark.svg' />
+						<img src='/images/placemark.svg' />
 						<Text16>
 							Выберите ваш улус
 						</Text16>

@@ -1,7 +1,10 @@
 import "./App.css";
 import './fonts/arciformsans.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { Home } from "./pages";
+import {
+	Home,
+	Detail,
+} from "./pages";
 import {
 	Header,
 	Footer,
@@ -13,9 +16,10 @@ function App() {
 			<Header />
 			<Routes>
 				<Route path="" element={<Home />}></Route>
+				<Route path="/ad-detail/:id" element={<Detail/>}></Route>
 			</Routes>
 			<Footer />
-		</BrowserRouter>
+		</BrowserRouter >
 	);
 }
 

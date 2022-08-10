@@ -57,7 +57,7 @@ const AdCard = (props) => {
 	const navigate = useNavigate();
 	const data = props.data;
 	return (
-		<CardBox onClick={() => navigate('/product-detail/' + data.id)}>
+		<CardBox onClick={() => navigate('/ad-detail/' + data.id)}>
 			<img src={data.img} />
 			<TextBox sx={{
 				gap: 1.5,
