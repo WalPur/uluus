@@ -5,6 +5,7 @@ from .views import (
     formHome,
     formFood,
     formJobs,
+    formPremium,
     formAll,
 )
 
@@ -22,5 +23,6 @@ router.register('food', formFood, basename='food')
 router.register('jobs', formJobs, basename='jobs')
 
 urlpatterns = [
+    path('premium/', formPremium.as_view(), name='card-form'),
     path('adverts/', formAll.as_view(), name='card-form'),
 ] + router.urls
