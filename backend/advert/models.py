@@ -54,10 +54,9 @@ class AdvertRent(models.Model):
         verbose_name='Населенный пункт',
         max_length=255
     )
-    uluus = models.ForeignKey(
+    uluus = models.ManyToManyField(
         Uluss,
         verbose_name="Улус объявления",
-        on_delete=models.CASCADE,
     )
     price = models.PositiveIntegerField(
         verbose_name="Цена",
@@ -74,6 +73,14 @@ class AdvertRent(models.Model):
         max_length=128,
         default=actions.RentCarActions.SELL,
         verbose_name="Действие недвижимости"
+    )
+    is_premium = models.BooleanField(
+        verbose_name='Премиум',
+        default=False
+    )
+    date = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Время отправки объявления"
     )
 
     def __str__(self):
@@ -97,10 +104,9 @@ class AdvertCar(models.Model):
         verbose_name='Населенный пункт',
         max_length=255
     )
-    uluus = models.ForeignKey(
+    uluus = models.ManyToManyField(
         Uluss,
         verbose_name="Улус объявления",
-        on_delete=models.CASCADE,
     )
     price = models.PositiveIntegerField(
         verbose_name="Цена",
@@ -117,6 +123,14 @@ class AdvertCar(models.Model):
         max_length=128,
         default=actions.RentCarActions.SELL,
         verbose_name="Действие авто"
+    )
+    is_premium = models.BooleanField(
+        verbose_name='Премиум',
+        default=False
+    )
+    date = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Время отправки объявления"
     )
 
     def __str__(self):
@@ -139,10 +153,9 @@ class AdvertService(models.Model):
         verbose_name='Населенный пункт',
         max_length=255
     )
-    uluus = models.ForeignKey(
+    uluus = models.ManyToManyField(
         Uluss,
         verbose_name="Улус объявления",
-        on_delete=models.CASCADE,
     )
     price = models.PositiveIntegerField(
         verbose_name="Цена",
@@ -159,6 +172,14 @@ class AdvertService(models.Model):
         max_length=128,
         default=actions.ServicesActions.PROVIDE,
         verbose_name="Действие услуги"
+    )
+    is_premium = models.BooleanField(
+        verbose_name='Премиум',
+        default=False
+    )
+    date = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Время отправки объявления"
     )
 
     def __str__(self):
@@ -181,10 +202,9 @@ class AdvertHome(models.Model):
         verbose_name='Населенный пункт',
         max_length=255
     )
-    uluus = models.ForeignKey(
+    uluus = models.ManyToManyField(
         Uluss,
         verbose_name="Улус объявления",
-        on_delete=models.CASCADE,
     )
     price = models.PositiveIntegerField(
         verbose_name="Цена",
@@ -201,6 +221,14 @@ class AdvertHome(models.Model):
         max_length=128,
         default=actions.HomeFoodActions.SELL,
         verbose_name="Действие для дома"
+    )
+    is_premium = models.BooleanField(
+        verbose_name='Премиум',
+        default=False
+    )
+    date = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Время отправки объявления"
     )
 
     def __str__(self):
@@ -223,10 +251,9 @@ class AdvertFood(models.Model):
         verbose_name='Населенный пункт',
         max_length=255
     )
-    uluus = models.ForeignKey(
+    uluus = models.ManyToManyField(
         Uluss,
         verbose_name="Улус объявления",
-        on_delete=models.CASCADE,
     )
     price = models.PositiveIntegerField(
         verbose_name="Цена",
@@ -243,6 +270,14 @@ class AdvertFood(models.Model):
         max_length=128,
         default=actions.HomeFoodActions.SELL,
         verbose_name="Действие еды"
+    )
+    is_premium = models.BooleanField(
+        verbose_name='Премиум',
+        default=False
+    )
+    date = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Время отправки объявления"
     )
 
     def __str__(self):
@@ -265,10 +300,9 @@ class AdvertJobs(models.Model):
         verbose_name='Населенный пункт',
         max_length=255
     )
-    uluus = models.ForeignKey(
+    uluus = models.ManyToManyField(
         Uluss,
         verbose_name="Улус объявления",
-        on_delete=models.CASCADE,
     )
     price = models.PositiveIntegerField(
         verbose_name="Цена",
@@ -278,13 +312,21 @@ class AdvertJobs(models.Model):
         choices=subcategories.JobsCategory.choices,
         max_length=128,
         default=subcategories.JobsCategory.NEED,
-        verbose_name="Подкатегория еды"
+        verbose_name="Подкатегория вакансии"
     )
     action = models.CharField(
         choices=actions.JobsActions.choices,
         max_length=128,
         default=actions.JobsActions.PERMANENTLY,
-        verbose_name="Действие еды"
+        verbose_name="Действие вакансии"
+    )
+    is_premium = models.BooleanField(
+        verbose_name='Премиум',
+        default=False
+    )
+    date = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Время отправки объявления"
     )
 
     def __str__(self):
