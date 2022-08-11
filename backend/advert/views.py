@@ -37,20 +37,41 @@ class formUluus(viewsets.ModelViewSet):
 
 class formRent(viewsets.ModelViewSet):
     http_method_names = ['post', 'get']
-    queryset = AdvertRent.objects.all().order_by('date')
     serializer_class = rent.RentSerializer
+
+    def get_queryset(self):
+        user_uluus = self.request.GET.get("uluus", "")
+        if user_uluus != "":
+            response = AdvertRent.objects.filter(uluus=user_uluus).order_by('date')
+        else:
+            response = AdvertRent.objects.all().order_by('date')
+        return response
 
 
 class formCar(viewsets.ModelViewSet):
     http_method_names = ['post', 'get']
-    queryset = AdvertCar.objects.all().order_by('date')
     serializer_class = car.CarSerializer
+
+    def get_queryset(self):
+        user_uluus = self.request.GET.get("uluus", "")
+        if user_uluus != "":
+            response = AdvertCar.objects.filter(uluus=user_uluus).order_by('date')
+        else:
+            response = AdvertCar.objects.all().order_by('date')
+        return response
 
 
 class formService(viewsets.ModelViewSet):
     http_method_names = ['post', 'get']
-    queryset = AdvertService.objects.all().order_by('date')
     serializer_class = service.ServiceSerializer
+
+    def get_queryset(self):
+        user_uluus = self.request.GET.get("uluus", "")
+        if user_uluus != "":
+            response = AdvertService.objects.filter(uluus=user_uluus).order_by('date')
+        else:
+            response = AdvertService.objects.all().order_by('date')
+        return response
 
 
 class formHome(viewsets.ModelViewSet):
@@ -58,17 +79,40 @@ class formHome(viewsets.ModelViewSet):
     queryset = AdvertHome.objects.all().order_by('date')
     serializer_class = home.HomeSerializer
 
+    def get_queryset(self):
+        user_uluus = self.request.GET.get("uluus", "")
+        if user_uluus != "":
+            response = AdvertHome.objects.filter(uluus=user_uluus).order_by('date')
+        else:
+            response = AdvertHome.objects.all().order_by('date')
+        return response
+
 
 class formFood(viewsets.ModelViewSet):
     http_method_names = ['post', 'get']
-    queryset = AdvertFood.objects.all().order_by('date')
     serializer_class = food.FoodSerializer
+
+    def get_queryset(self):
+        user_uluus = self.request.GET.get("uluus", "")
+        if user_uluus != "":
+            response = AdvertFood.objects.filter(uluus=user_uluus).order_by('date')
+        else:
+            response = AdvertFood.objects.all().order_by('date')
+        return response
 
 
 class formJobs(viewsets.ModelViewSet):
     http_method_names = ['post', 'get']
     queryset = AdvertJobs.objects.all().order_by('date')
     serializer_class = jobs.JobsSerializer
+
+    def get_queryset(self):
+        user_uluus = self.request.GET.get("uluus", "")
+        if user_uluus != "":
+            response = AdvertJobs.objects.filter(uluus=user_uluus).order_by('date')
+        else:
+            response = AdvertJobs.objects.all().order_by('date')
+        return response
 
 
 class formPremium(generics.GenericAPIView):
