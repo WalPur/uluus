@@ -1,0 +1,11 @@
+FROM node
+
+WORKDIR /app/frontend
+COPY package.json /app/frontend
+
+RUN npm config set unsafe-perm true
+RUN npm install --unsafe-perm=true
+
+COPY . /app/frontend
+
+EXPOSE 3000
