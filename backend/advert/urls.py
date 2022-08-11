@@ -7,6 +7,7 @@ from .views import (
     formJobs,
     formPremium,
     formAll,
+    formUluus,
 )
 
 from django.urls import path
@@ -15,6 +16,7 @@ from rest_framework.routers import DefaultRouter
 
 router = DefaultRouter()
 
+router.register('uluus', formUluus, basename='uluus')
 router.register('rent', formRent, basename='rent')
 router.register('car', formCar, basename='car')
 router.register('service', formService, basename='service')

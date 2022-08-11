@@ -8,7 +8,8 @@ class RentCategory(models.TextChoices):
     APARTMENT = 'APARTMENT'
     COTTAGE = 'COTTAGE'
     AREA = 'AREA'
-    FARMLANT = 'FARMLAND'
+    FARMLAND = 'FARMLAND'
+    OTHER = 'OTHER'
 
 
 class AutoCategory(models.TextChoices):
@@ -19,6 +20,7 @@ class AutoCategory(models.TextChoices):
     PARTS = 'PARTS'
     MOTO_TECHNICS = 'MOTO_TECHNICS'
     BOATS = 'BOATS'
+    OTHER = 'OTHER'
 
 
 class ServicesCategory(models.TextChoices):
@@ -45,6 +47,7 @@ class HomeCategory(models.TextChoices):
     CHERNOZEM = 'CHERNOZEM'
     MANURE = 'MANURE'
     SEEDLING = 'SEEDLING'
+    OTHER = 'OTHER'
 
 
 class FoodCategory(models.TextChoices):

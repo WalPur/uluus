@@ -78,6 +78,7 @@ class AdvertRent(models.Model):
         verbose_name='Премиум',
         default=False
     )
+    slug = models.SlugField(max_length=200, blank=True)
     date = models.DateTimeField(
         auto_now=True,
         verbose_name="Время отправки объявления"
@@ -132,6 +133,7 @@ class AdvertCar(models.Model):
         auto_now=True,
         verbose_name="Время отправки объявления"
     )
+    slug = models.SlugField(max_length=200, blank=True)
 
     def __str__(self):
         return self.name
@@ -181,6 +183,7 @@ class AdvertService(models.Model):
         auto_now=True,
         verbose_name="Время отправки объявления"
     )
+    slug = models.SlugField(max_length=200, blank=True)
 
     def __str__(self):
         return self.name
@@ -230,6 +233,7 @@ class AdvertHome(models.Model):
         auto_now=True,
         verbose_name="Время отправки объявления"
     )
+    slug = models.SlugField(max_length=200, blank=True)
 
     def __str__(self):
         return self.name
@@ -279,6 +283,7 @@ class AdvertFood(models.Model):
         auto_now=True,
         verbose_name="Время отправки объявления"
     )
+    slug = models.SlugField(max_length=200, blank=True)
 
     def __str__(self):
         return self.name
@@ -328,6 +333,7 @@ class AdvertJobs(models.Model):
         auto_now=True,
         verbose_name="Время отправки объявления"
     )
+    slug = models.SlugField(max_length=200, blank=True)
 
     def __str__(self):
         return self.name

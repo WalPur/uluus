@@ -24,8 +24,15 @@ from .serializers import (
     home,
     jobs,
     rent,
-    service
+    service,
+    uluus
 )
+
+
+class formUluus(viewsets.ModelViewSet):
+    http_method_names = ['get']
+    queryset = Uluss.objects.all()
+    serializer_class = uluus.UluusSerializer
 
 
 class formRent(viewsets.ModelViewSet):
@@ -65,6 +72,9 @@ class formJobs(viewsets.ModelViewSet):
 
 
 class formPremium(generics.GenericAPIView):
+
+    queryset = ''
+
     def get(self, request, *args, **kwargs):
 
         context = {
@@ -116,6 +126,9 @@ class formPremium(generics.GenericAPIView):
 
 
 class formAll(generics.GenericAPIView):
+
+    queryset = ''
+    
     def get(self, request, *args, **kwargs):
 
         context = {
