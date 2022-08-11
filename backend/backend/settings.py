@@ -13,7 +13,7 @@ SECRET_KEY = env('SECRET_KEY')
 
 DEBUG = env('DEBUG')
 
-ALLOWED_HOSTS = env('URLS')
+ALLOWED_HOSTS = env('URLS').split(', ')
 
 
 INSTALLED_APPS = [
@@ -106,8 +106,8 @@ STATIC_ROOT = "/static"
 MEDIA_URL = '/django_media/'
 MEDIA_ROOT = '/media'
 
-CORS_ALLOWED_ORIGINS = env('URLS')
+CORS_ALLOWED_ORIGINS = env('URLS').split(', ')
 
-CSRF_TRUSTED_ORIGINS = env('URLS')
+CSRF_TRUSTED_ORIGINS = env('URLS').split(', ')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
