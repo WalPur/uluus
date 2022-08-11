@@ -43,15 +43,16 @@ class ServiceSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
 
         uluuses = validated_data.pop('uluus')
-        advert = AdvertService.objects.create(**validated_data)
-        advert.slug = f'service/{advert.id}/'
-        advert.uluus.set(uluuses)
-
         if 'images' in validated_data:
+            advert = AdvertService.objects.create(**validated_data)
             images = validated_data.pop('images')
             for img in images:
                 ServiceImages.objects.create(**img, post=advert)
-        
+        else:
+            advert = AdvertService.objects.create(**validated_data)
+        advert.slug = f'service/{advert.id}/'
+        advert.uluus.set(uluuses)
+
         return advert
     
     @staticmethod

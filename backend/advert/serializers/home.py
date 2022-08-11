@@ -43,13 +43,14 @@ class HomeSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
 
         uluuses = validated_data.pop('uluus')
-        advert = AdvertHome.objects.create(**validated_data)
-        advert.uluus.set(uluuses)
-
         if 'images' in validated_data:
             images = validated_data.pop('images')
+            advert = AdvertHome.objects.create(**validated_data)
             for img in images:
                 HomeImages.objects.create(**img, post=advert)
+        else:
+            advert = AdvertHome.objects.create(**validated_data)
+        advert.uluus.set(uluuses)
         
         return advert
 

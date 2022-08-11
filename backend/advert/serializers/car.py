@@ -43,14 +43,15 @@ class CarSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
 
         uluuses = validated_data.pop('uluus')
-        advert = AdvertCar.objects.create(**validated_data)
-        advert.slug = f'car/{advert.id}/'
-        advert.uluus.set(uluuses)
-
         if 'images' in validated_data:
             images = validated_data.pop('images')
+            advert = AdvertCar.objects.create(**validated_data)
             for img in images:
                 CarImages.objects.create(**img, post=advert)
+        else:
+            advert = AdvertCar.objects.create(**validated_data)
+        advert.slug = f'car/{advert.id}/'
+        advert.uluus.set(uluuses)
         
         return advert
     

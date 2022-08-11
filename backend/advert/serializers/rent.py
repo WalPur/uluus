@@ -43,15 +43,15 @@ class RentSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
 
         uluuses = validated_data.pop('uluus')
-        advert = AdvertRent.objects.create(**validated_data)
-        advert.slug = f'rent/{advert.id}/'
-        advert.uluus.set(uluuses)
-
         if 'images' in validated_data:
             images = validated_data.pop('images')
             for img in images:
                 RentImages.objects.create(**img, post=advert)
-        
+        else:
+            advert = AdvertRent.objects.create(**validated_data)
+        advert.slug = f'rent/{advert.id}/'
+        advert.uluus.set(uluuses)
+
         return advert
     
     @staticmethod
