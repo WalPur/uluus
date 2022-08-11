@@ -45,6 +45,7 @@ class RentSerializer(serializers.ModelSerializer):
         uluuses = validated_data.pop('uluus')
         if 'images' in validated_data:
             images = validated_data.pop('images')
+            advert = AdvertRent.objects.create(**validated_data)
             for img in images:
                 RentImages.objects.create(**img, post=advert)
         else:

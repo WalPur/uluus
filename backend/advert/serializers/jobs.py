@@ -45,6 +45,7 @@ class JobsSerializer(serializers.ModelSerializer):
         uluuses = validated_data.pop('uluus')
         if 'images' in validated_data:
             images = validated_data.pop('images')
+            advert = AdvertJobs.objects.create(**validated_data)
             for img in images:
                 JobsImages.objects.create(**img, post=advert)
         else:
