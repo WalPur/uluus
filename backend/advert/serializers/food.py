@@ -51,7 +51,7 @@ class FoodSerializer(serializers.ModelSerializer):
                 FoodImages.objects.create(**img, post=advert)
         else:
             advert = AdvertFood.objects.create(**validated_data)
-        advert.slug = f'rent/{advert.id}/'
+        advert.slug = f'food/{advert.id}/'
         advert.uluus.set(uluuses)
         
         return advert

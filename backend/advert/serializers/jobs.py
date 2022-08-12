@@ -51,10 +51,9 @@ class JobsSerializer(serializers.ModelSerializer):
                 JobsImages.objects.create(**img, post=advert)
         else:
             advert = AdvertJobs.objects.create(**validated_data)
+        advert.slug = f'jobs/{advert.id}/'
         advert.uluus.set(uluuses)
 
-        
-        
         return advert
 
     @staticmethod
