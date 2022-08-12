@@ -53,6 +53,7 @@ class JobsSerializer(serializers.ModelSerializer):
             advert = AdvertJobs.objects.create(**validated_data)
         advert.slug = f'jobs/{advert.id}/'
         advert.uluus.set(uluuses)
+        advert.save(update_fields=["slug"])
 
         return advert
 

@@ -54,6 +54,7 @@ class RentSerializer(serializers.ModelSerializer):
             advert = AdvertRent.objects.create(**validated_data)
         advert.slug = f'rent/{advert.id}/'
         advert.uluus.set(uluuses)
+        advert.save(update_fields=["slug"])
 
         return advert
     

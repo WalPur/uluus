@@ -53,6 +53,7 @@ class HomeSerializer(serializers.ModelSerializer):
             advert = AdvertHome.objects.create(**validated_data)
         advert.slug = f'home/{advert.id}/'
         advert.uluus.set(uluuses)
+        advert.save(update_fields=["slug"])
         
         return advert
 

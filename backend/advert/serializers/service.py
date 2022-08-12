@@ -53,6 +53,7 @@ class ServiceSerializer(serializers.ModelSerializer):
             advert = AdvertService.objects.create(**validated_data)
         advert.slug = f'service/{advert.id}/'
         advert.uluus.set(uluuses)
+        advert.save(update_fields=["slug"])
 
         return advert
     
