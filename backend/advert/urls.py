@@ -8,6 +8,12 @@ from .views import (
     formPremium,
     formAll,
     formUluus,
+    formRentId,
+    formCarId,
+    formServiceId,
+    formHomeId,
+    formFoodId,
+    formJobsId,
 )
 
 from django.urls import path
@@ -27,4 +33,10 @@ router.register('jobs', formJobs, basename='jobs')
 urlpatterns = [
     path('premium/', formPremium.as_view(), name='card-form'),
     path('adverts/', formAll.as_view(), name='card-form'),
+    path('rent/<int:id>/', formRentId.as_view(), name='rent advert page'),
+    path('car/<int:id>/', formCarId.as_view(), name='car advert page'),
+    path('service/<int:id>/', formServiceId.as_view(), name='service advert page'),
+    path('home/<int:id>/', formHomeId.as_view(), name='home advert page'),
+    path('food/<int:id>/', formFoodId.as_view(), name='food advert page'),
+    path('jobs/<int:id>/', formJobsId.as_view(), name='jobs advert page'),
 ] + router.urls

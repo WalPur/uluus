@@ -33,10 +33,13 @@ class CarSerializer(serializers.ModelSerializer):
             "settlement",
             "uluus",
             "price",
+            "transmission",
+            "drive_unit",
             "category",
             "action",
             "is_premium",
             "slug",
+            "views",
             "date",
         )
     

@@ -37,6 +37,7 @@ class FoodSerializer(serializers.ModelSerializer):
             "action",
             "is_premium",
             "slug",
+            "views",
             "date",
         )
     

@@ -1,4 +1,4 @@
-import re
+from django.db.models import F
 from rest_framework import viewsets, generics
 from rest_framework.response import Response
 
@@ -76,7 +76,6 @@ class formService(viewsets.ModelViewSet):
 
 class formHome(viewsets.ModelViewSet):
     http_method_names = ['post', 'get']
-    queryset = AdvertHome.objects.all().order_by('date')
     serializer_class = home.HomeSerializer
 
     def get_queryset(self):
@@ -103,7 +102,6 @@ class formFood(viewsets.ModelViewSet):
 
 class formJobs(viewsets.ModelViewSet):
     http_method_names = ['post', 'get']
-    queryset = AdvertJobs.objects.all().order_by('date')
     serializer_class = jobs.JobsSerializer
 
     def get_queryset(self):
@@ -221,3 +219,135 @@ class formAll(generics.GenericAPIView):
         )
 
         return Response(response)
+
+
+class formRentId(generics.GenericAPIView):
+
+    queryset = ''
+    
+    def get(self, request, id, *args, **kwargs):
+
+        context = {
+            'request': request,
+        }
+
+        query = AdvertRent.objects.filter(id=id)
+        query.update(views = F("views") + 1)
+        
+        rent_serializer = rent.RentSerializer(
+            query,
+            many=True, 
+            context=context
+        ).data
+
+        return Response(rent_serializer)
+
+
+class formCarId(generics.GenericAPIView):
+
+    queryset = ''
+    
+    def get(self, request, id, *args, **kwargs):
+
+        context = {
+            'request': request,
+        }
+
+        query = AdvertCar.objects.filter(id=id)
+        query.update(views = F("views") + 1)
+        
+        car_serializer = car.CarSerializer(
+            query,
+            many=True, 
+            context=context
+        ).data
+
+        return Response(car_serializer)
+
+
+class formServiceId(generics.GenericAPIView):
+
+    queryset = ''
+    
+    def get(self, request, id, *args, **kwargs):
+
+        context = {
+            'request': request,
+        }
+
+        query = AdvertService.objects.filter(id=id)
+        query.update(views = F("views") + 1)
+        
+        service_serializer = service.ServiceSerializer(
+            query,
+            many=True, 
+            context=context
+        ).data
+
+        return Response(service_serializer)
+
+
+class formHomeId(generics.GenericAPIView):
+
+    queryset = ''
+    
+    def get(self, request, id, *args, **kwargs):
+
+        context = {
+            'request': request,
+        }
+
+        query = AdvertHome.objects.filter(id=id)
+        query.update(views = F("views") + 1)
+        
+        home_serializer = home.HomeSerializer(
+            query,
+            many=True, 
+            context=context
+        ).data
+
+        return Response(home_serializer)
+
+
+class formFoodId(generics.GenericAPIView):
+
+    queryset = ''
+    
+    def get(self, request, id, *args, **kwargs):
+
+        context = {
+            'request': request,
+        }
+
+        query = AdvertFood.objects.filter(id=id)
+        query.update(views = F("views") + 1)
+        
+        home_serializer = food.FoodSerializer(
+            query,
+            many=True, 
+            context=context
+        ).data
+
+        return Response(home_serializer)
+
+
+class formJobsId(generics.GenericAPIView):
+
+    queryset = ''
+    
+    def get(self, request, id, *args, **kwargs):
+
+        context = {
+            'request': request,
+        }
+
+        query = AdvertJobs.objects.filter(id=id)
+        query.update(views = F("views") + 1)
+        
+        jobs_serializer = jobs.JobsSerializer(
+            query,
+            many=True, 
+            context=context
+        ).data
+
+        return Response(jobs_serializer)

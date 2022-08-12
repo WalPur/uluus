@@ -37,6 +37,7 @@ class JobsSerializer(serializers.ModelSerializer):
             "action",
             "is_premium",
             "slug",
+            "views",
             "date",
         )
     

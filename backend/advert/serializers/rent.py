@@ -33,10 +33,12 @@ class RentSerializer(serializers.ModelSerializer):
             "settlement",
             "uluus",
             "price",
+            "improvement",
             "category",
             "action",
             "is_premium",
             "slug",
+            "views",
             "date",
         )
     

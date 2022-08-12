@@ -37,6 +37,7 @@ class HomeSerializer(serializers.ModelSerializer):
             "action",
             "is_premium",
             "slug",
+            "views",
             "date",
         )
     

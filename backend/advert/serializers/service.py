@@ -37,6 +37,7 @@ class ServiceSerializer(serializers.ModelSerializer):
             "action",
             "is_premium",
             "slug",
+            "views",
             "date",
         )
     

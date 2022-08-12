@@ -1,6 +1,6 @@
 from django.db import models
 
-from . import subcategories, actions
+from . import subcategories, actions, oddFields
 
 
 class Uluss(models.Model):
@@ -62,6 +62,12 @@ class AdvertRent(models.Model):
         verbose_name="Цена",
         default=0,
     )
+    improvement = models.CharField(
+        choices=oddFields.RentImprovement.choices,
+        max_length=128,
+        default=oddFields.RentImprovement.BLACK,
+        verbose_name="Благоустройство"
+    )
     category = models.CharField(
         choices=subcategories.RentCategory.choices,
         max_length=128,
@@ -79,6 +85,7 @@ class AdvertRent(models.Model):
         default=False
     )
     slug = models.SlugField(max_length=200, blank=True)
+    views = models.IntegerField(default=0, blank=True)
     date = models.DateTimeField(
         auto_now=True,
         verbose_name="Время отправки объявления"
@@ -113,6 +120,18 @@ class AdvertCar(models.Model):
         verbose_name="Цена",
         default=0,
     )
+    transmission = models.CharField(
+        choices=oddFields.CarTransmisson.choices,
+        max_length=128,
+        default=oddFields.CarTransmisson.AUTOMATIC,
+        verbose_name='Коробка авто'
+    )
+    drive_unit = models.CharField(
+        choices=oddFields.CarDriveUnit.choices,
+        max_length=128,
+        default=oddFields.CarDriveUnit.BACK,
+        verbose_name="Привод авто"
+    )
     category = models.CharField(
         choices=subcategories.AutoCategory.choices,
         max_length=128,
@@ -133,6 +152,7 @@ class AdvertCar(models.Model):
         auto_now=True,
         verbose_name="Время отправки объявления"
     )
+    views = models.IntegerField(default=0, blank=True)
     slug = models.SlugField(max_length=200, blank=True)
 
     def __str__(self):
@@ -183,6 +203,7 @@ class AdvertService(models.Model):
         auto_now=True,
         verbose_name="Время отправки объявления"
     )
+    views = models.IntegerField(default=0, blank=True)
     slug = models.SlugField(max_length=200, blank=True)
 
     def __str__(self):
@@ -233,6 +254,7 @@ class AdvertHome(models.Model):
         auto_now=True,
         verbose_name="Время отправки объявления"
     )
+    views = models.IntegerField(default=0, blank=True)
     slug = models.SlugField(max_length=200, blank=True)
 
     def __str__(self):
@@ -283,6 +305,7 @@ class AdvertFood(models.Model):
         auto_now=True,
         verbose_name="Время отправки объявления"
     )
+    views = models.IntegerField(default=0, blank=True)
     slug = models.SlugField(max_length=200, blank=True)
 
     def __str__(self):
@@ -333,6 +356,7 @@ class AdvertJobs(models.Model):
         auto_now=True,
         verbose_name="Время отправки объявления"
     )
+    views = models.IntegerField(default=0, blank=True)
     slug = models.SlugField(max_length=200, blank=True)
 
     def __str__(self):
