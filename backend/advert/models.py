@@ -57,6 +57,7 @@ class AdvertRent(models.Model):
     uluus = models.ManyToManyField(
         Uluss,
         verbose_name="Улус объявления",
+        blank=True,
     )
     price = models.PositiveIntegerField(
         verbose_name="Цена",
@@ -115,6 +116,7 @@ class AdvertCar(models.Model):
     uluus = models.ManyToManyField(
         Uluss,
         verbose_name="Улус объявления",
+        blank=True,
     )
     price = models.PositiveIntegerField(
         verbose_name="Цена",
@@ -178,6 +180,7 @@ class AdvertService(models.Model):
     uluus = models.ManyToManyField(
         Uluss,
         verbose_name="Улус объявления",
+        blank=True,
     )
     price = models.PositiveIntegerField(
         verbose_name="Цена",
@@ -229,6 +232,7 @@ class AdvertHome(models.Model):
     uluus = models.ManyToManyField(
         Uluss,
         verbose_name="Улус объявления",
+        blank=True,
     )
     price = models.PositiveIntegerField(
         verbose_name="Цена",
@@ -280,6 +284,7 @@ class AdvertFood(models.Model):
     uluus = models.ManyToManyField(
         Uluss,
         verbose_name="Улус объявления",
+        blank=True,
     )
     price = models.PositiveIntegerField(
         verbose_name="Цена",
@@ -331,6 +336,7 @@ class AdvertJobs(models.Model):
     uluus = models.ManyToManyField(
         Uluss,
         verbose_name="Улус объявления",
+        blank=True,
     )
     price = models.PositiveIntegerField(
         verbose_name="Цена",
