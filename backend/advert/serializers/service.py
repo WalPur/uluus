@@ -45,8 +45,8 @@ class ServiceSerializer(serializers.ModelSerializer):
 
         uluuses = validated_data.pop('uluus')
         if 'images' in validated_data:
-            advert = AdvertService.objects.create(**validated_data)
             images = validated_data.pop('images')
+            advert = AdvertService.objects.create(**validated_data)
             for img in images:
                 ServiceImages.objects.create(**img, post=advert)
         else:
