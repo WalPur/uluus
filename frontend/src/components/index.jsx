@@ -8,6 +8,10 @@ import HomeAd from './home/home-ad';
 import AdDetail from './ad-detail';
 import AdDetailSlider from './ad-detail/ad-detail-slider';
 
+import AdForm from './ad-post/ad-form';
+
+import SetUluusComponent from './set-uluus';
+
 import Footer from './footer';
 
 import GoldCard from './cards/gold-card';
@@ -21,6 +25,8 @@ export {
 	HomeAd,
 	AdDetail,
 	AdDetailSlider,
+	AdForm,
+	SetUluusComponent,
 	Footer,
 	GoldCard,
 	AdCard,

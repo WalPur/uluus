@@ -118,7 +118,8 @@ const Drawer = (props) => {
 				))}
 			</Box >
 			<CustomButton
-				to='/'
+				to='/ad-post'
+				onClick={toggleDrawer(false)}
 			>
 				<Text16 sx={{
 					color: '#FFF',
@@ -139,7 +140,7 @@ const Drawer = (props) => {
 				<MenuIcon fontSize='large' sx={{ cursor: 'pointer', color: '#0D6EFD' }} onClick={toggleDrawer(true)} />
 				<Box>
 					<Link
-						to='/'
+						to='/set-uluus'
 						style={{
 							display: 'flex',
 							gap: 6,

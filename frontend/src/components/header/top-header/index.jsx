@@ -42,7 +42,7 @@ const TopHeader = () => {
 				}}
 			>
 				<Link
-					to='/'
+					to='/set-uluus'
 					style={{
 						display: 'flex',
 						gap: 6,
@@ -57,7 +57,7 @@ const TopHeader = () => {
 				</Link>
 			</Box>
 			<CustomLink
-				to='/'
+				to='/ad-post'
 			>
 				<Text20 sx={{
 					color: '#FFF'

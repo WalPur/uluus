@@ -1,0 +1,336 @@
+[
+	{
+		"category": {
+			"label": "Недвижимость",
+			"value": "RENT"
+		},
+		"subcategory": [
+			{
+				"label": "Дом",
+				"value": "HOUSE"
+			},
+			{
+				"label": "Квартира",
+				"value": "APRTMENT"
+			},
+			{
+				"label": "Дача",
+				"value": "COTTAGE"
+			},
+			{
+				"label": "Участок",
+				"value": "AREA"
+			},
+			{
+				"label": "Сельхозугодье",
+				"value": "FARMLAND"
+			},
+			{
+				"label": "Другое",
+				"value": "OTHER"
+			}
+		],
+		"action": [
+			{
+				"label": "Продаю",
+				"value": "SELL"
+			},
+			{
+				"label": "Куплю",
+				"value": "BUY"
+			},
+			{
+				"label": "Обмен",
+				"value": "TRADE"
+			},
+			{
+				"label": "Сдаю в аренду",
+				"value": "RENT_OUT"
+			},
+			{
+				"label": "Возьму в аренду",
+				"value": "TO_RENT"
+			}
+		],
+		"add": [
+			{
+				"label": "Благоустройство",
+				"register": "improvement",
+				"values": [
+					{
+						"label": "Бывшего употребления",
+						"value": "WAS_USED"
+					},
+					{
+						"label": "Черно-белые",
+						"value": "BLACK"
+					},
+					{
+						"label": "Газ",
+						"value": "GAS"
+					}
+				]
+			}
+		]
+	},
+	{
+		"category": {
+			"label": "Авто",
+			"value": "CAR"
+		},
+		"subcategory": [
+			{
+				"label": "Легковой",
+				"value": "CAR"
+			},
+			{
+				"label": "Спецтехника",
+				"value": "SPECIAL_CAR"
+			},
+			{
+				"label": "Запчасти",
+				"value": "PARTS"
+			},
+			{
+				"label": "Мототехника",
+				"value": "MOTO_TECHNICS"
+			},
+			{
+				"label": "Катера, лодки",
+				"value": "BOATS"
+			},
+			{
+				"label": "Другое",
+				"value": "OTHER"
+			}
+		],
+		"action": [
+			{
+				"label": "Продаю",
+				"value": "SELL"
+			},
+			{
+				"label": "Куплю",
+				"value": "BUY"
+			},
+			{
+				"label": "Обмен",
+				"value": "TRADE"
+			},
+			{
+				"label": "Сдаю в аренду",
+				"value": "RENT_OUT"
+			},
+			{
+				"label": "Возьму в аренду",
+				"value": "TO_RENT"
+			}
+		],
+		"add": [
+			{
+				"label": "Коробка",
+				"register": "transmission",
+				"values": [
+					{
+						"label": "Автомат",
+						"value": "AUTOMATIC"
+					},
+					{
+						"label": "Механика",
+						"value": "VARIABLE"
+					},
+					{
+						"label": "Вариатор",
+						"value": "MANUAL"
+					}
+				]
+			},
+			{
+				"label": "Привод",
+				"register": "drive_unit",
+				"values": [
+					{
+						"label": "Передний",
+						"value": "FORWARD"
+					},
+					{
+						"label": "Задний",
+						"value": "BACK"
+					},
+					{
+						"label": "Полный привод",
+						"value": "FULL"
+					}
+				]
+			}
+		]
+	},
+	{
+		"category": {
+			"label": "Услуги",
+			"value": "SERVICE"
+		},
+		"subcategory": [
+			{
+				"label": "Строительство, ремонт",
+				"value": "BUILDING_REPAIR"
+			},
+			{
+				"label": "Грузоперевозки",
+				"value": "TRANSPORT"
+			},
+			{
+				"label": "Спецтехника",
+				"value": "SPEC"
+			},
+			{
+				"label": "Сантехника",
+				"value": "PLUMBING"
+			},
+			{
+				"label": "Электрика",
+				"value": "ELECTRICY"
+			},
+			{
+				"label": "Автосервис",
+				"value": "AUTOSERVICE"
+			},
+			{
+				"label": "Грузчики, разнорабочие",
+				"value": "HANDYMAN"
+			},
+			{
+				"label": "Другое",
+				"value": "OTHER"
+			}
+		],
+		"action": [
+			{
+				"label": "Оказываю услугу",
+				"value": "PROVIDE"
+			},
+			{
+				"label": "Воспользуюсь услугой",
+				"value": "USE"
+			}
+		],
+		"add": []
+	},
+	{
+		"category": {
+			"label": "Для дома",
+			"value": "HOME"
+		},
+		"subcategory": [
+			{
+				"label": "Вода",
+				"value": "WATER"
+			},
+			{
+				"label": "Лед",
+				"value": "ICE"
+			},
+			{
+				"label": "Дрова",
+				"value": "FIREWOOD"
+			},
+			{
+				"label": "Уголь",
+				"value": "COAL"
+			},
+			{
+				"label": "Земля",
+				"value": "EARTH"
+			},
+			{
+				"label": "Чернозем",
+				"value": "CHERNOZEM"
+			},
+			{
+				"label": "Навоз",
+				"value": "MANURE"
+			},
+			{
+				"label": "Саженцы",
+				"value": "SEEDLING"
+			},
+			{
+				"label": "Другое",
+				"value": "OTHER"
+			}
+		],
+		"action": [
+			{
+				"label": "Продаю",
+				"value": "SELL"
+			},
+			{
+				"label": "Куплю",
+				"value": "BUY"
+			}
+		],
+		"add": []
+	},
+	{
+		"category": {
+			"label": "Продукты питания",
+			"value": "FOOD"
+		},
+		"subcategory": [
+			{
+				"label": "Оптом",
+				"value": "OPTOM"
+			},
+			{
+				"label": "В розницу",
+				"value": "ROZNITSA"
+			},
+			{
+				"label": "Другое",
+				"value": "OTHER"
+			}
+		],
+		"action": [
+			{
+				"label": "Продаю",
+				"value": "SELL"
+			},
+			{
+				"label": "Куплю",
+				"value": "BUY"
+			}
+		],
+		"add": []
+	},
+	{
+		"category": {
+			"label": "Вакансии",
+			"value": "JOBS"
+		},
+		"subcategory": [
+			{
+				"label": "Требуется",
+				"value": "NEED"
+			},
+			{
+				"label": "Ищу работу",
+				"value": "SEARCH"
+			},
+			{
+				"label": "Другое",
+				"value": "OTHER"
+			}
+		],
+		"action": [
+			{
+				"label": "Постоянно",
+				"value": "PERMANENTLY"
+			},
+			{
+				"label": "Временно",
+				"value": "TEMPORALLY"
+			}
+		],
+		"add": []
+	}
+]

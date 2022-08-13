@@ -27,6 +27,7 @@ const Text20 = styled(Typography)(({ theme }) => ({
 	fontSize: 20,
 	lineHeight: '135%',
 	color: '#000000',
+	overflow: 'hidden',
 	[theme.breakpoints.down('sm')]: {
 		fontSize: '16px',
 	}
