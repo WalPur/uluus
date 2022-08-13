@@ -27,7 +27,10 @@ const CustomBox = styled(Box)(({ theme }) => ({
 	gap: '60px',
 }));
 
-const TopHeader = () => {
+const TopHeader = (props) => {
+	const uluus = props.uluus;
+	console.log(uluus);
+
 	return (
 		<CustomBox>
 			<Box sx={{ display: 'flex', gap: 0.8 }}>
@@ -52,7 +55,7 @@ const TopHeader = () => {
 				>
 					<img src='/images/placemark.svg' />
 					<Text16>
-						Выберите ваш улус
+						{uluus === '' ? 'Выберите ваш улус' : uluus}
 					</Text16>
 				</Link>
 			</Box>

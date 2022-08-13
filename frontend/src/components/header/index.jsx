@@ -19,7 +19,8 @@ const HeaderMobileBox = styled(Box)(({ theme }) => ({
 	}
 }));
 
-function Header() {
+function Header(props) {
+	const uluus = props.uluus;
 	const data = [
 		{
 			img: '/images/nedvizhimost.svg',
@@ -65,7 +66,7 @@ function Header() {
 		}}>
 			<Container maxWidth='lg'>
 				<HeaderBox>
-					<TopHeader />
+					<TopHeader uluus={uluus} />
 					<BottomHeader data={data} />
 				</HeaderBox>
 				<HeaderMobileBox>

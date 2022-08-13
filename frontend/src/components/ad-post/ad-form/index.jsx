@@ -168,9 +168,6 @@ const AdForm = () => {
 	const navigate = useNavigate();
 	const { register, handleSubmit, setValue } = useForm({
 		shouldUseNativeValidation: true,
-		// defaultValues: {
-		// 	uluus: [],
-		// },
 	});
 
 	useEffect(() => {

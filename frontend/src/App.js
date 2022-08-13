@@ -1,6 +1,8 @@
 import "./App.css";
 import './fonts/arciformsans.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useSelector } from 'react-redux';
+
 import {
 	Home,
 	Detail,
@@ -13,9 +15,10 @@ import {
 } from "./components";
 
 function App() {
+	const uluus = useSelector(state => state.uluus.value);
 	return (
 		<BrowserRouter>
-			<Header />
+			<Header uluus={uluus} />
 			<Routes>
 				<Route path="" element={<Home />}></Route>
 				<Route path="/ad-detail/:id" element={<Detail />}></Route>
