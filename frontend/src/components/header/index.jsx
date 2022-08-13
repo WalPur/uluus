@@ -26,37 +26,37 @@ function Header(props) {
 			img: '/images/nedvizhimost.svg',
 			img_hovered: '/images/nedvizhimost_hovered.svg',
 			label: 'Недвижимость',
-			path: '/',
+			value: 'rent',
 		},
 		{
 			img: '/images/auto.svg',
 			img_hovered: '/images/auto_hovered.svg',
 			label: 'Авто',
-			path: '/',
+			value: 'car',
 		},
 		{
 			img: '/images/uslugi.svg',
 			img_hovered: '/images/uslugi_hovered.svg',
 			label: 'Услуги',
-			path: '/',
+			value: 'service',
 		},
 		{
 			img: '/images/for_home.svg',
 			img_hovered: '/images/for_home_hovered.svg',
 			label: 'Для дома',
-			path: '/',
+			value: 'home',
 		},
 		{
 			img: '/images/food.svg',
 			img_hovered: '/images/food_hovered.svg',
 			label: 'Продукты питания',
-			path: '/',
+			value: 'food',
 		},
 		{
 			img: '/images/vacancy.svg',
 			img_hovered: '/images/vacancy_hovered.svg',
 			label: 'Вакансии',
-			path: '/',
+			value: 'jobs',
 		},
 	];
 	return (

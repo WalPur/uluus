@@ -1,46 +1,23 @@
+import { useState, useEffect } from 'react';
+
+import axios from 'axios';
+
 import { Box, Container, Grid } from '@mui/material';
 
 import { GoldCard } from '../../';
 import { Title } from '../../../global-styles';
 
 const HomeGold = () => {
-	const data = [
-		{
-			img: '/images/default_img.svg',
-			title: 'Заголовок',
-			desc: 'Описание Описание Описание Описание Описание Описание Описание Описание',
-			date: '30.06.2022',
-			id: 6,
-		},
-		{
-			img: '/images/default_img.svg',
-			title: 'Заголовок',
-			desc: 'Описание Описание Описание Описание Описание Описание Описание Описание',
-			date: '30.06.2022',
-			id: 7,
-		},
-		{
-			img: '/images/default_img.svg',
-			title: 'Заголовок',
-			desc: 'Описание Описание Описание Описание Описание Описание Описание Описание',
-			date: '30.06.2022',
-			id: 8,
-		},
-		{
-			img: '/images/default_img.svg',
-			title: 'Заголовок',
-			desc: 'Описание Описание Описание Описание Описание Описание Описание Описание',
-			date: '30.06.2022',
-			id: 9,
-		},
-		{
-			img: '/images/default_img.svg',
-			title: 'Заголовок',
-			desc: 'Описание Описание Описание Описание Описание Описание Описание Описание',
-			date: '30.06.2022',
-			id: 10,
-		},
-	]
+	const [gold, setGold] = useState();
+
+	useEffect(() => {
+		axios
+			.get('https://uluus.ru/api/premium/')
+			.then((response) => {
+				const request = response.data;
+				setGold(request);
+			})
+	}, []);
 
 	return (
 		<Box>
@@ -50,7 +27,7 @@ const HomeGold = () => {
 						Золотой блок
 					</Title>
 					<Grid container spacing={2}>
-						{data.map((card, index) => (
+						{gold?.map((card, index) => (
 							<Grid
 								key={index}
 								item

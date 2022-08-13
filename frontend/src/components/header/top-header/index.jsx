@@ -29,7 +29,6 @@ const CustomBox = styled(Box)(({ theme }) => ({
 
 const TopHeader = (props) => {
 	const uluus = props.uluus;
-	console.log(uluus);
 
 	return (
 		<CustomBox>

@@ -1,4 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+
+import axios from 'axios';
 
 import { Box, Container, Input, Button, Pagination } from '@mui/material';
 import { styled } from '@mui/system';
@@ -45,53 +48,24 @@ const CustomInput = styled(Input)(({ theme }) => ({
 const HomeAd = () => {
 	const [page, setPage] = useState(1);
 	const [input, setInput] = useState('');
-	const data = [
-		{
-			id: 1,
-			img: '/images/default_img_2.svg',
-			title: 'Продаю Автомобиль Toyota Camry 2.5',
-			desc: 'Описание Описание Описание Описание Описание Описание Описание',
-			number: '+7(912)-222-22-22',
-			date: '07.08.2022, 18:02',
-			watch: '120 просмотров',
-		},
-		{
-			id: 2,
-			img: '/images/default_img_2.svg',
-			title: 'Продаю Автомобиль Toyota Camry 2.5',
-			desc: 'Описание Описание Описание Описание Описание Описание Описание',
-			number: '+7(912)-222-22-22',
-			date: '07.08.2022, 18:02',
-			watch: '120 просмотров',
-		},
-		{
-			id: 3,
-			img: '/images/default_img_2.svg',
-			title: 'Продаю Автомобиль Toyota Camry 2.5',
-			desc: 'Описание Описание Описание Описание Описание Описание Описание',
-			number: '+7(912)-222-22-22',
-			date: '07.08.2022, 18:02',
-			watch: '120 просмотров',
-		},
-		{
-			id: 4,
-			img: '/images/default_img_2.svg',
-			title: 'Продаю Автомобиль Toyota Camry 2.5',
-			desc: 'Описание Описание Описание Описание Описание Описание Описание',
-			number: '+7(912)-222-22-22',
-			date: '07.08.2022, 18:02',
-			watch: '120 просмотров',
-		},
-		{
-			id: 5,
-			img: '/images/default_img_2.svg',
-			title: 'Продаю Автомобиль Toyota Camry 2.5',
-			desc: 'Описание Описание Описание Описание Описание Описание Описание',
-			number: '+7(912)-222-22-22',
-			date: '07.08.2022, 18:02',
-			watch: '120 просмотров',
-		},
-	]
+	const [adverts, setAdverts] = useState();
+	const [count, setCount] = useState();
+	const category = useSelector((state) => state.category.value);
+
+	const advertCount = 5;
+
+	useEffect(() => {
+		axios
+			.get(`https://uluus.ru/api/${category}/`)
+			.then((response) => {
+				const request = response.data;
+				setAdverts(request);
+				setCount(Math.ceil(request.length / advertCount));
+			})
+			.catch((error) => {
+				console.log('error', error);
+			});
+	}, [category]);
 
 	const handleSubmit = (event) => {
 		console.log(input);
@@ -138,12 +112,12 @@ const HomeAd = () => {
 						flexDirection: 'column',
 						gap: 1,
 					}}>
-						{data.map((card, index) => (
+						{adverts?.filter((item, index) => (index >= (page - 1) * advertCount) && (index < page * advertCount)).map((card, index) => (
 							<AdCard data={card} key={index} />
 						))}
 					</Box>
 					<Pagination
-						count={10}
+						count={count}
 						page={page}
 						onChange={(e, value) => setPage(value)}
 						variant='outlined'

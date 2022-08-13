@@ -175,7 +175,6 @@ const AdForm = () => {
 			.get('https://uluus.ru/api/uluus/')
 			.then((response) => {
 				const request = response.data;
-				console.log(request);
 				setUluusOptions(request);
 			})
 			.catch((error) => {
@@ -225,9 +224,6 @@ const AdForm = () => {
 			.catch((error) => {
 				console.log('error', error)
 			});
-		for (var pair of formData.entries()) {
-			console.log(pair);
-		}
 	};
 
 	return (

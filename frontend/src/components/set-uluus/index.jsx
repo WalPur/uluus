@@ -120,9 +120,6 @@ const SetUluusComponent = () => {
 		}
 	};
 
-	console.log(newUluus);
-	console.log(selected);
-
 	return (
 		<Box>
 			<Container maxWidth='lg'>

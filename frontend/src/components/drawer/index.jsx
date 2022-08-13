@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { Box, SwipeableDrawer, Divider, Typography } from '@mui/material';
@@ -7,6 +8,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import { styled } from '@mui/system';
 
 import { Text16 } from '../../global-styles';
+import { setCategory } from '../../slices/categorySlice';
 
 const CustomLink = styled(Link)(({ theme }) => ({
 	display: 'flex',
@@ -45,9 +47,23 @@ const CustomButton = styled(Link)(({ theme }) => ({
 
 const Drawer = (props) => {
 	const data = props.data;
+	const dispatch = useDispatch();
 	const [open, setOpen] = useState(false);
 
 	const toggleDrawer = (open) => (event) => {
+		if (
+			event &&
+			event.type === 'keydown' &&
+			(event.key === 'Tab' || event.key === 'Shift')
+		) {
+			return;
+		}
+		setOpen(open);
+	};
+
+	const toggleDrawer2 = (open, value) => (event) => {
+		console.log(value);
+		dispatch(setCategory(value));
 		if (
 			event &&
 			event.type === 'keydown' &&
@@ -94,8 +110,8 @@ const Drawer = (props) => {
 				{data.map((item, index) => (
 					<Box key={index}>
 						<CustomLink
-							to={item.path}
-							onClick={toggleDrawer(false)}
+							to='/'
+							onClick={toggleDrawer2(false, item.value)}
 						>
 							<Box
 								sx={{ maxWidth: '29px', maxHeight: '29px', }}

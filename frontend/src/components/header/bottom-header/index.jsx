@@ -1,13 +1,15 @@
+import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { Box } from '@mui/material';
 import { styled } from '@mui/material';
 
 import { Text12 } from '../../../global-styles';
+import { setCategory } from '../../../slices/categorySlice';
 
 const CustomLink = styled(Link)(({ theme }) => ({
 	display: 'block',
-	textDecoration: 'none',
+	cursor: 'pointer',
 	color: '#FFF',
 	width: 92,
 	height: 92,
@@ -24,6 +26,7 @@ const CustomLink = styled(Link)(({ theme }) => ({
 
 const BottomHeader = (props) => {
 	const data = props.data;
+	const dispatch = useDispatch();
 	return (
 		<Box sx={{
 			display: 'flex',
@@ -32,7 +35,10 @@ const BottomHeader = (props) => {
 		}}>
 			{data.map((item, index) => (
 				<CustomLink
-					to={item.path}
+					to='/'
+					onClick={() => {
+						dispatch(setCategory(item.value));
+					}}
 					key={index}
 				>
 					<Box

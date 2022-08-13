@@ -52,29 +52,35 @@ const RightBox = styled(Box)(({ theme }) => ({
 		flexDirection: 'row',
 	}
 }));
+const CustomImage = styled('img')(({ theme }) => ({
+	maxWidth: '120px',
+	[theme.breakpoints.down('sm')]: {
+		maxWidth: 'none',
+	}
+}));
 
 const AdCard = (props) => {
 	const navigate = useNavigate();
 	const data = props.data;
 	return (
 		<CardBox onClick={() => navigate('/ad-detail/' + data.id)}>
-			<img src={data.img} />
+			{data.image.length ? <CustomImage src={'https://uluus.ru' + data.image[0].image} /> : <></>}
 			<TextBox sx={{
 				gap: 1.5,
 			}}>
 				<LeftBox>
 					<Subtitle>
-						{data.title}
+						{data.name}
 					</Subtitle>
 					<Box sx={{
 						flexGrow: 1,
 					}}>
 						<Text12>
-							{data.desc}
+							{data.description}
 						</Text12>
 					</Box>
 					<Text14>
-						{data.number}
+						{data.phone}
 					</Text14>
 				</LeftBox>
 				<RightBox sx={{
@@ -86,7 +92,7 @@ const AdCard = (props) => {
 						{data.date}
 					</CustomSubtitle>
 					<Text12>
-						{data.watch}
+						{data.views}
 					</Text12>
 				</RightBox>
 			</TextBox>
