@@ -59,6 +59,7 @@ const HomeAd = () => {
 			.get(`https://uluus.ru/api/${category}/`)
 			.then((response) => {
 				const request = response.data;
+				console.log(request);
 				setAdverts(request);
 				setCount(Math.ceil(request.length / advertCount));
 			})

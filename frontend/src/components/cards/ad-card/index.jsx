@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router';
 
 import { Box } from '@mui/material';
@@ -62,8 +63,11 @@ const CustomImage = styled('img')(({ theme }) => ({
 const AdCard = (props) => {
 	const navigate = useNavigate();
 	const data = props.data;
+	useEffect(() => {
+		console.log(data.slug)
+	}, []);
 	return (
-		<CardBox onClick={() => navigate('/ad-detail/' + data.id)}>
+		<CardBox onClick={() => navigate('/ad-detail/' + data.slug)}>
 			{data.image.length ? <CustomImage src={'https://uluus.ru' + data.image[0].image} /> : <></>}
 			<TextBox sx={{
 				gap: 1.5,

@@ -29,7 +29,7 @@ const GoldCard = (props) => {
 						{data.date}
 					</Text12>
 					<Text12
-						onClick={() => navigate('/ad-detail/' + data.id)}
+						onClick={() => navigate('/ad-detail/' + data.slug)}
 						sx={{
 							cursor: 'pointer',
 							color: '#0D6EFD',
