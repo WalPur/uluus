@@ -41,7 +41,16 @@ class PaginatedElasticSearchAPIView(APIView, LimitOffsetPagination):
 
         results = self.paginate_queryset(response, request, view=self)
         serializer = self.serializer_class(results, many=True)
-        return self.get_paginated_response(serializer.data)
+        uluuses = request.GET.get("uluus", "")
+        if uluuses != "":
+            uluuses = set(map(int, request.GET.get("uluus", "").split(',')))
+            new_data = []
+            for obj in serializer.data:
+                if uluuses.intersection(set(obj["uluus"])):
+                    new_data.append(obj)
+            return self.get_paginated_response(new_data)
+        else:
+            return self.get_paginated_response(serializer.data)
 
 
 class SearchCar(PaginatedElasticSearchAPIView):
