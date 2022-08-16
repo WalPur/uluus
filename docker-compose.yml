@@ -7,8 +7,6 @@ services:
       - discovery.type=single-node
     ports:
       - "9200:9200"
-    env_file:
-      - './infrastucture/services/elasticsearch/.env'
   postgres:
     image: postgres:12
     env_file:
