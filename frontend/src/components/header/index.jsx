@@ -58,6 +58,12 @@ function Header(props) {
 			label: 'Вакансии',
 			value: 'jobs',
 		},
+		{
+			img: '/images/building.svg',
+			img_hovered: '/images/building_hovered.svg',
+			label: 'Ремонт и строительство',
+			value: '',
+		},
 	];
 	return (
 		<Box sx={{
