@@ -40,12 +40,12 @@ class formRent(viewsets.ModelViewSet):
     serializer_class = rent.RentSerializer
 
     def get_queryset(self):
-        user_uluus = self.request.GET.get("uluus", "")
-        if user_uluus != "":
-            response = AdvertRent.objects.filter(uluus=user_uluus).order_by('date')
+        uluuses = self.request.GET.get("uluus", "")
+        if uluuses != "":
+            uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
+            return AdvertRent.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
         else:
-            response = AdvertRent.objects.all().order_by('date')
-        return response
+            return AdvertRent.objects.all().order_by('date')
 
 
 class formCar(viewsets.ModelViewSet):
@@ -53,12 +53,12 @@ class formCar(viewsets.ModelViewSet):
     serializer_class = car.CarSerializer
 
     def get_queryset(self):
-        user_uluus = self.request.GET.get("uluus", "")
-        if user_uluus != "":
-            response = AdvertCar.objects.filter(uluus=user_uluus).order_by('date')
+        uluuses = self.request.GET.get("uluus", "")
+        if uluuses != "":
+            uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
+            return AdvertCar.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
         else:
-            response = AdvertCar.objects.all().order_by('date')
-        return response
+            return AdvertCar.objects.all().order_by('date')
 
 
 class formService(viewsets.ModelViewSet):
@@ -66,12 +66,12 @@ class formService(viewsets.ModelViewSet):
     serializer_class = service.ServiceSerializer
 
     def get_queryset(self):
-        user_uluus = self.request.GET.get("uluus", "")
-        if user_uluus != "":
-            response = AdvertService.objects.filter(uluus=user_uluus).order_by('date')
+        uluuses = self.request.GET.get("uluus", "")
+        if uluuses != "":
+            uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
+            return AdvertService.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
         else:
-            response = AdvertService.objects.all().order_by('date')
-        return response
+            return AdvertService.objects.all().order_by('date')
 
 
 class formHome(viewsets.ModelViewSet):
@@ -79,12 +79,12 @@ class formHome(viewsets.ModelViewSet):
     serializer_class = home.HomeSerializer
 
     def get_queryset(self):
-        user_uluus = self.request.GET.get("uluus", "")
-        if user_uluus != "":
-            response = AdvertHome.objects.filter(uluus=user_uluus).order_by('date')
+        uluuses = self.request.GET.get("uluus", "")
+        if uluuses != "":
+            uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
+            return AdvertHome.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
         else:
-            response = AdvertHome.objects.all().order_by('date')
-        return response
+            return AdvertHome.objects.all().order_by('date')
 
 
 class formFood(viewsets.ModelViewSet):
@@ -92,12 +92,12 @@ class formFood(viewsets.ModelViewSet):
     serializer_class = food.FoodSerializer
 
     def get_queryset(self):
-        user_uluus = self.request.GET.get("uluus", "")
-        if user_uluus != "":
-            response = AdvertFood.objects.filter(uluus=user_uluus).order_by('date')
+        uluuses = self.request.GET.get("uluus", "")
+        if uluuses != "":
+            uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
+            return AdvertFood.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
         else:
-            response = AdvertFood.objects.all().order_by('date')
-        return response
+            return AdvertFood.objects.all().order_by('date')
 
 
 class formJobs(viewsets.ModelViewSet):
@@ -105,25 +105,24 @@ class formJobs(viewsets.ModelViewSet):
     serializer_class = jobs.JobsSerializer
 
     def get_queryset(self):
-        user_uluus = self.request.GET.get("uluus", "")
-        if user_uluus != "":
-            response = AdvertJobs.objects.filter(uluus=user_uluus).order_by('date')
+        uluuses = self.request.GET.get("uluus", "")
+        if uluuses != "":
+            uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
+            return AdvertJobs.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
         else:
-            response = AdvertJobs.objects.all().order_by('date')
-        return response
-
+            return AdvertJobs.objects.all().order_by('date')
 
 class formRemont(viewsets.ModelViewSet):
     http_method_names = ['post', 'get']
     serializer_class = remont.RemontSerializer
 
     def get_queryset(self):
-        user_uluus = self.request.GET.get("uluus", "")
-        if user_uluus != "":
-            response = AdvertRemont.objects.filter(uluus=user_uluus).order_by('date')
+        uluuses = self.request.GET.get("uluus", "")
+        if uluuses != "":
+            uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
+            return AdvertRemont.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
         else:
-            response = AdvertRemont.objects.all().order_by('date')
-        return response
+            return AdvertRemont.objects.all().order_by('date')
 
 
 class LimitPagination(MultipleModelLimitOffsetPagination):

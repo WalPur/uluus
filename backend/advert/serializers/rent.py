@@ -53,7 +53,7 @@ class RentSerializer(serializers.ModelSerializer):
                 RentImages.objects.create(**img, post=advert)
         else:
             advert = AdvertRent.objects.create(**validated_data)
-        advert.slug = f'rent/{advert.id}/'
+        advert.slug = 'rent'
         advert.uluus.set(uluuses)
         advert.save(update_fields=["slug"])
 

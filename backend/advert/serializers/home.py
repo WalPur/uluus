@@ -52,7 +52,7 @@ class HomeSerializer(serializers.ModelSerializer):
                 HomeImages.objects.create(**img, post=advert)
         else:
             advert = AdvertHome.objects.create(**validated_data)
-        advert.slug = f'home/{advert.id}/'
+        advert.slug = 'home'
         advert.uluus.set(uluuses)
         advert.save(update_fields=["slug"])
         

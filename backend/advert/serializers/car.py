@@ -54,7 +54,7 @@ class CarSerializer(serializers.ModelSerializer):
                 CarImages.objects.create(**img, post=advert)
         else:
             advert = AdvertCar.objects.create(**validated_data)
-        advert.slug = f'car/{advert.id}/'
+        advert.slug = 'car'
         advert.uluus.set(uluuses)
         advert.save(update_fields=["slug"])
         
