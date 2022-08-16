@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'rest_framework', 
     'django_elasticsearch_dsl',
     'corsheaders',
+    'drf_multiple_model',
 
     'advert',
     'search'
@@ -42,7 +43,7 @@ REST_FRAMEWORK = {
 
 ELASTICSEARCH_DSL = {
     'default': {
-        'hosts': env("ELASTICSEARCH_DSL_HOSTS", 'localhost:9200')
+        'hosts': env("ELASTICSEARCH_DSL_HOSTS")
     },
 }
 
@@ -114,8 +115,10 @@ USE_TZ = True
 
 STATIC_URL = '/django_static/'
 STATIC_ROOT = "/static"
+# STATIC_ROOT = BASE_DIR / '/static'
 MEDIA_URL = '/django_media/'
 MEDIA_ROOT = '/media'
+# MEDIA_ROOT = BASE_DIR / '/media'
 
 CORS_ALLOWED_ORIGINS = env('URLS').split(', ')
 
