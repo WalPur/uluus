@@ -52,7 +52,7 @@ class ServiceSerializer(serializers.ModelSerializer):
                 ServiceImages.objects.create(**img, post=advert)
         else:
             advert = AdvertService.objects.create(**validated_data)
-        advert.slug = f'service/{advert.id}/'
+        advert.slug = 'service'
         advert.uluus.set(uluuses)
         advert.save(update_fields=["slug"])
 

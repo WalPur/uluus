@@ -64,3 +64,14 @@ class JobsCategory(models.TextChoices):
     NEED = 'NEED'
     SEARCH = 'SEARCH'
     OTHER = 'OTHER'
+
+
+class RemontCategory(models.TextChoices):
+    """Подкатегории ремонта и строительства"""
+
+    DOORS = 'DOORS'
+    WINDOWS = 'WINDOWS'
+    PLUMBING = 'PLUMBING'
+    MATERIALS = 'MATERIALS'
+    TOOLS = 'TOOLS'
+    OTHER = 'OTHER'

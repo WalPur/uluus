@@ -31,3 +31,9 @@ class JobsActions(models.TextChoices):
     PERMANENTLY = 'PERMANENTLY'
     TEMPORALLY = 'TEMPORALLY'
 
+class RemontActions(models.TextChoices):
+    """Действия ремонта"""
+
+    SELL = 'SELL'
+    BUY = 'BUY'
+    TRADE = 'TRADE'

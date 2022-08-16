@@ -1,9 +1,11 @@
 import abc
+from itertools import chain
 
 from django.http import HttpResponse
 from elasticsearch_dsl import Q
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.views import APIView
+from rest_framework.response import Response
 
 from advert.documents import (
     RentDocument,
@@ -12,6 +14,7 @@ from advert.documents import (
     HomeDocument,
     JobsDocument,
     ServiceDocument,
+    RemontDocument
 )
 from advert.serializers import (
     car,
@@ -20,6 +23,7 @@ from advert.serializers import (
     jobs,
     rent,
     service,
+    remont
 )
 
 
@@ -141,6 +145,40 @@ class SearchService(PaginatedElasticSearchAPIView):
 class SearchRent(PaginatedElasticSearchAPIView):
     serializer_class = rent.RentSerializer
     document_class = RentDocument
+
+    def generate_q_expression(self, query):
+        return Q(
+            "multi_match",
+            query=query,
+            fields=[
+                "name",
+                "description",
+                "user_name",
+            ],
+            fuzziness="auto",
+        )
+
+
+class SearchRemont(PaginatedElasticSearchAPIView):
+    serializer_class = remont.RemontSerializer
+    document_class = RemontDocument
+
+    def generate_q_expression(self, query):
+        return Q(
+            "multi_match",
+            query=query,
+            fields=[
+                "name",
+                "description",
+                "user_name",
+            ],
+            fuzziness="auto",
+        )
+
+
+class SearchFood(PaginatedElasticSearchAPIView):
+    serializer_class = food.FoodSerializer
+    document_class = FoodDocument
 
     def generate_q_expression(self, query):
         return Q(

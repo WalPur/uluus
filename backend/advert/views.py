@@ -1,4 +1,4 @@
-from django.db.models import F
+from django.db.models import F, Q
 from rest_framework import viewsets, generics
 from rest_framework.response import Response
 from drf_multiple_model.views import FlatMultipleModelAPIView
@@ -13,12 +13,7 @@ from .models import (
     AdvertHome,
     AdvertFood,
     AdvertJobs,
-    RentImages,
-    CarImages,
-    ServiceImages,
-    HomeImages,
-    FoodImages,
-    JobsImages,
+    AdvertRemont,
     Uluss
 )
 
@@ -29,6 +24,7 @@ from .serializers import (
     jobs,
     rent,
     service,
+    remont,
     uluus
 )
 
@@ -44,12 +40,12 @@ class formRent(viewsets.ModelViewSet):
     serializer_class = rent.RentSerializer
 
     def get_queryset(self):
-        user_uluus = self.request.GET.get("uluus", "")
-        if user_uluus != "":
-            response = AdvertRent.objects.filter(uluus=user_uluus).order_by('date')
+        uluuses = self.request.GET.get("uluus", "")
+        if uluuses != "":
+            uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
+            return AdvertRent.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
         else:
-            response = AdvertRent.objects.all().order_by('date')
-        return response
+            return AdvertRent.objects.all().order_by('date')
 
 
 class formCar(viewsets.ModelViewSet):
@@ -57,12 +53,12 @@ class formCar(viewsets.ModelViewSet):
     serializer_class = car.CarSerializer
 
     def get_queryset(self):
-        user_uluus = self.request.GET.get("uluus", "")
-        if user_uluus != "":
-            response = AdvertCar.objects.filter(uluus=user_uluus).order_by('date')
+        uluuses = self.request.GET.get("uluus", "")
+        if uluuses != "":
+            uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
+            return AdvertCar.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
         else:
-            response = AdvertCar.objects.all().order_by('date')
-        return response
+            return AdvertCar.objects.all().order_by('date')
 
 
 class formService(viewsets.ModelViewSet):
@@ -70,12 +66,12 @@ class formService(viewsets.ModelViewSet):
     serializer_class = service.ServiceSerializer
 
     def get_queryset(self):
-        user_uluus = self.request.GET.get("uluus", "")
-        if user_uluus != "":
-            response = AdvertService.objects.filter(uluus=user_uluus).order_by('date')
+        uluuses = self.request.GET.get("uluus", "")
+        if uluuses != "":
+            uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
+            return AdvertService.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
         else:
-            response = AdvertService.objects.all().order_by('date')
-        return response
+            return AdvertService.objects.all().order_by('date')
 
 
 class formHome(viewsets.ModelViewSet):
@@ -83,12 +79,12 @@ class formHome(viewsets.ModelViewSet):
     serializer_class = home.HomeSerializer
 
     def get_queryset(self):
-        user_uluus = self.request.GET.get("uluus", "")
-        if user_uluus != "":
-            response = AdvertHome.objects.filter(uluus=user_uluus).order_by('date')
+        uluuses = self.request.GET.get("uluus", "")
+        if uluuses != "":
+            uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
+            return AdvertHome.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
         else:
-            response = AdvertHome.objects.all().order_by('date')
-        return response
+            return AdvertHome.objects.all().order_by('date')
 
 
 class formFood(viewsets.ModelViewSet):
@@ -96,12 +92,12 @@ class formFood(viewsets.ModelViewSet):
     serializer_class = food.FoodSerializer
 
     def get_queryset(self):
-        user_uluus = self.request.GET.get("uluus", "")
-        if user_uluus != "":
-            response = AdvertFood.objects.filter(uluus=user_uluus).order_by('date')
+        uluuses = self.request.GET.get("uluus", "")
+        if uluuses != "":
+            uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
+            return AdvertFood.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
         else:
-            response = AdvertFood.objects.all().order_by('date')
-        return response
+            return AdvertFood.objects.all().order_by('date')
 
 
 class formJobs(viewsets.ModelViewSet):
@@ -109,12 +105,24 @@ class formJobs(viewsets.ModelViewSet):
     serializer_class = jobs.JobsSerializer
 
     def get_queryset(self):
-        user_uluus = self.request.GET.get("uluus", "")
-        if user_uluus != "":
-            response = AdvertJobs.objects.filter(uluus=user_uluus).order_by('date')
+        uluuses = self.request.GET.get("uluus", "")
+        if uluuses != "":
+            uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
+            return AdvertJobs.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
         else:
-            response = AdvertJobs.objects.all().order_by('date')
-        return response
+            return AdvertJobs.objects.all().order_by('date')
+
+class formRemont(viewsets.ModelViewSet):
+    http_method_names = ['post', 'get']
+    serializer_class = remont.RemontSerializer
+
+    def get_queryset(self):
+        uluuses = self.request.GET.get("uluus", "")
+        if uluuses != "":
+            uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
+            return AdvertRemont.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
+        else:
+            return AdvertRemont.objects.all().order_by('date')
 
 
 class LimitPagination(MultipleModelLimitOffsetPagination):
@@ -125,16 +133,97 @@ class LimitPagination(MultipleModelLimitOffsetPagination):
     max_offset = 50
 
 
+def name_content_with_letter(queryset, request, q, *args, **kwargs):
+    query = q
+    uluuses = request.GET.get("uluus", "")
+    if uluuses != "":
+        uluuses = set(map(int, request.GET.get("uluus", "").split(',')))
+        return queryset.filter((Q(name__icontains=query) | Q(description__icontains=query)) & Q(uluus__id__in=uluuses))
+    else:
+        return queryset.filter(Q(name__icontains=query) | Q(description__icontains=query))
+
+
+def name_content_with_no_letter(queryset, request, *args, **kwargs):
+    uluuses = request.GET.get("uluus", "")
+    if uluuses != "":
+        uluuses = set(map(int, request.GET.get("uluus", "").split(',')))
+        return queryset.filter(Q(uluus__id__in=uluuses))
+    else:
+        return queryset.all()
+
+
+
+class formSearch(FlatMultipleModelAPIView):
+    sorting_fields = ['-date']
+    pagination_class = LimitPagination
+    querylist = [
+        {
+            'queryset': AdvertRent.objects.filter(is_premium=False),
+            'serializer_class': rent.RentSerializer,
+            'filter_fn': name_content_with_letter
+        },
+        {
+            'queryset': AdvertCar.objects.filter(is_premium=False),
+            'serializer_class': car.CarSerializer,
+            'filter_fn': name_content_with_letter
+        },
+        {
+            'queryset': AdvertService.objects.filter(is_premium=False),
+            'serializer_class': service.ServiceSerializer,
+            'filter_fn': name_content_with_letter
+        },
+        {
+            'queryset': AdvertHome.objects.filter(is_premium=False),
+            'serializer_class': home.HomeSerializer,
+            'filter_fn': name_content_with_letter
+        },
+        {
+            'queryset': AdvertFood.objects.filter(is_premium=False),
+            'serializer_class': food.FoodSerializer,
+            'filter_fn': name_content_with_letter
+        },
+        {
+            'queryset': AdvertJobs.objects.filter(is_premium=False),
+            'serializer_class': jobs.JobsSerializer,
+            'filter_fn': name_content_with_letter
+        },
+    ]
+
+
 class formAll(FlatMultipleModelAPIView):
     sorting_fields = ['-date']
     pagination_class = LimitPagination
     querylist = [
-        {'queryset': AdvertRent.objects.filter(is_premium=False), 'serializer_class': rent.RentSerializer},
-        {'queryset': AdvertCar.objects.filter(is_premium=False), 'serializer_class': car.CarSerializer},
-        {'queryset': AdvertService.objects.filter(is_premium=False), 'serializer_class': service.ServiceSerializer},
-        {'queryset': AdvertHome.objects.filter(is_premium=False), 'serializer_class': home.HomeSerializer},
-        {'queryset': AdvertFood.objects.filter(is_premium=False), 'serializer_class': food.FoodSerializer},
-        {'queryset': AdvertJobs.objects.filter(is_premium=False), 'serializer_class': jobs.JobsSerializer},
+        {
+            'queryset': AdvertRent.objects.filter(is_premium=False),
+            'serializer_class': rent.RentSerializer,
+            'filter_fn': name_content_with_no_letter
+        },
+        {
+            'queryset': AdvertCar.objects.filter(is_premium=False),
+            'serializer_class': car.CarSerializer,
+            'filter_fn': name_content_with_no_letter
+        },
+        {
+            'queryset': AdvertService.objects.filter(is_premium=False),
+            'serializer_class': service.ServiceSerializer,
+            'filter_fn': name_content_with_no_letter
+        },
+        {
+            'queryset': AdvertHome.objects.filter(is_premium=False),
+            'serializer_class': home.HomeSerializer,
+            'filter_fn': name_content_with_no_letter
+        },
+        {
+            'queryset': AdvertFood.objects.filter(is_premium=False),
+            'serializer_class': food.FoodSerializer,
+            'filter_fn': name_content_with_no_letter
+        },
+        {
+            'queryset': AdvertJobs.objects.filter(is_premium=False),
+            'serializer_class': jobs.JobsSerializer,
+            'filter_fn': name_content_with_no_letter
+        },
     ]
 
 
@@ -281,3 +370,25 @@ class formJobsId(generics.GenericAPIView):
         ).data
 
         return Response(jobs_serializer)
+
+
+class formRemontId(generics.GenericAPIView):
+
+    queryset = ''
+    
+    def get(self, request, id, *args, **kwargs):
+
+        context = {
+            'request': request,
+        }
+
+        query = AdvertRemont.objects.filter(id=id)
+        query.update(views = F("views") + 1)
+        
+        remont_serializer = remont.RemontSerializer(
+            query,
+            many=True, 
+            context=context
+        ).data
+
+        return Response(remont_serializer)

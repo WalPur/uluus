@@ -1,27 +1,27 @@
 from rest_framework import serializers
 
 from ..models import (
-    AdvertRent,
-    RentImages,
+    AdvertRemont,
+    RemontImages,
 )
 
 
-class RentImageSerializer(serializers.ModelSerializer):
+class RemontImageSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = RentImages
+        model = RemontImages
         fields = ('id','image',)
 
 
-class RentSerializer(serializers.ModelSerializer):
-    images = RentImageSerializer(
+class RemontSerializer(serializers.ModelSerializer):
+    images = RemontImageSerializer(
         many=True,
         required=False
     )
     image = serializers.SerializerMethodField()
 
     class Meta:
-        model = AdvertRent
+        model = AdvertRemont
         fields = (
             "id",
             "name",
@@ -34,7 +34,6 @@ class RentSerializer(serializers.ModelSerializer):
             "settlement",
             "uluus",
             "price",
-            "improvement",
             "category",
             "action",
             "is_premium",
@@ -48,12 +47,12 @@ class RentSerializer(serializers.ModelSerializer):
         uluuses = validated_data.pop('uluus')
         if 'images' in validated_data:
             images = validated_data.pop('images')
-            advert = AdvertRent.objects.create(**validated_data)
+            advert = AdvertRemont.objects.create(**validated_data)
             for img in images:
-                RentImages.objects.create(**img, post=advert)
+                RemontImages.objects.create(**img, post=advert)
         else:
-            advert = AdvertRent.objects.create(**validated_data)
-        advert.slug = 'rent'
+            advert = AdvertRemont.objects.create(**validated_data)
+        advert.slug = 'remont'
         advert.uluus.set(uluuses)
         advert.save(update_fields=["slug"])
 
@@ -61,7 +60,7 @@ class RentSerializer(serializers.ModelSerializer):
     
     @staticmethod
     def get_image(obj):
-        return RentImageSerializer(
-            RentImages.objects.filter(post_id=obj.id),
+        return RemontImageSerializer(
+            RemontImages.objects.filter(post_id=obj.id),
             many=True
         ).data

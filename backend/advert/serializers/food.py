@@ -52,7 +52,7 @@ class FoodSerializer(serializers.ModelSerializer):
                 FoodImages.objects.create(**img, post=advert)
         else:
             advert = AdvertFood.objects.create(**validated_data)
-        advert.slug = f'food/{advert.id}/'
+        advert.slug = 'food'
         advert.uluus.set(uluuses)
         advert.save(update_fields=["slug"])
         

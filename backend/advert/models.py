@@ -373,6 +373,58 @@ class AdvertJobs(models.Model):
         verbose_name_plural = 'Объявления вакансий'
 
 
+class AdvertRemont(models.Model):
+    """Модель объявлений ремонта"""
+
+    name = models.CharField(max_length=255, verbose_name="Заголовок объявления")
+    description = models.TextField(verbose_name="Описание")
+    phone = models.CharField(max_length=255, verbose_name='Номер телефона')
+    is_whatsapp = models.BooleanField(verbose_name='Есть Whatsapp')
+    user_name = models.CharField(verbose_name='Имя', max_length=255)
+    settlement = models.CharField(
+        verbose_name='Населенный пункт',
+        max_length=255
+    )
+    uluus = models.ManyToManyField(
+        Uluss,
+        verbose_name="Улус объявления",
+        blank=True,
+    )
+    price = models.PositiveIntegerField(
+        verbose_name="Цена",
+        default=0,
+    )
+    category = models.CharField(
+        choices=subcategories.RemontCategory.choices,
+        max_length=128,
+        default=subcategories.RemontCategory.DOORS,
+        verbose_name="Подкатегория ремонта и строительства"
+    )
+    action = models.CharField(
+        choices=actions.RemontActions.choices,
+        max_length=128,
+        default=actions.RemontActions.SELL,
+        verbose_name="Подкатегория ремонта и строительства"
+    )
+    is_premium = models.BooleanField(
+        verbose_name='Премиум',
+        default=False
+    )
+    date = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Время отправки объявления"
+    )
+    views = models.IntegerField(default=0, blank=True)
+    slug = models.SlugField(max_length=200, blank=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name = 'Объявление ремонта и строительства'
+        verbose_name_plural = 'Объявления ремонта и строительства'
+
+
 class RentImages(models.Model):
     """Модель картинок недвижимости"""
 
@@ -497,3 +549,24 @@ class JobsImages(models.Model):
     class Meta:
         verbose_name = 'Изображение вакансий'
         verbose_name_plural = 'Изображения вакансий'
+
+
+class RemontImages(models.Model):
+    """Модель картинок ремонта"""
+
+    post = models.ForeignKey(
+        AdvertRemont,
+        verbose_name="Объявление",
+        on_delete=models.CASCADE,
+    )
+    image = models.ImageField(
+        upload_to='JobsImages/',
+        verbose_name="Изображение",
+    )
+
+    def __str__(self):
+        return f'{self.post} изображение'
+
+    class Meta:
+        verbose_name = 'Изображение ремонта и строительства'
+        verbose_name_plural = 'Изображения ремонта и строительства'

@@ -7,12 +7,14 @@ from .models import (
     AdvertHome,
     AdvertFood,
     AdvertJobs,
+    AdvertRemont,
     RentImages,
     CarImages,
     ServiceImages,
     HomeImages,
     FoodImages,
     JobsImages,
+    RemontImages,
     Uluss
 )
 
@@ -100,3 +102,16 @@ class JobsAdmin(admin.ModelAdmin):
     list_filter = ['name']
     search_fields = ['name']
     inlines = [JobsImagesInline, ]
+
+
+class RemontImagesInline(admin.TabularInline):
+    model = RemontImages
+    extra = 0
+
+
+@admin.register(AdvertRemont)
+class RemontAdmin(admin.ModelAdmin):
+    list_display = ['id', 'name']
+    list_filter = ['name']
+    search_fields = ['name']
+    inlines = [RemontImagesInline, ]
