@@ -1,6 +1,12 @@
 version: "3.3"
    
 services:
+  es:
+    image: elasticsearch:7.17.5
+    environment:
+      - discovery.type=single-node
+    ports:
+      - "9200:9200"
   postgres:
     image: postgres:12
     env_file:
@@ -19,6 +25,7 @@ services:
       - 8000   
     depends_on:
       - postgres
+      - es
   nginx:
     restart: unless-stopped
     build:

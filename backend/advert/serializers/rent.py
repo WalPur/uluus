@@ -23,6 +23,7 @@ class RentSerializer(serializers.ModelSerializer):
     class Meta:
         model = AdvertRent
         fields = (
+            "id",
             "name",
             "description",
             "images",
@@ -61,6 +62,6 @@ class RentSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_image(obj):
         return RentImageSerializer(
-            RentImages.objects.filter(post=obj),
+            RentImages.objects.filter(post_id=obj.id),
             many=True
         ).data

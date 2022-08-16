@@ -23,6 +23,7 @@ class CarSerializer(serializers.ModelSerializer):
     class Meta:
         model = AdvertCar
         fields = (
+            "id",
             "name",
             "description",
             "images",
@@ -62,6 +63,6 @@ class CarSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_image(obj):
         return CarImageSerializer(
-            CarImages.objects.filter(post=obj),
+            CarImages.objects.filter(post=obj.id),
             many=True
         ).data

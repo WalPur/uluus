@@ -23,6 +23,7 @@ class HomeSerializer(serializers.ModelSerializer):
     class Meta:
         model = AdvertHome
         fields = (
+            "id",
             "name",
             "description",
             "images",
@@ -60,6 +61,6 @@ class HomeSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_image(obj):
         return HomeImageSerializer(
-            HomeImages.objects.filter(post=obj),
+            HomeImages.objects.filter(post=obj.id),
             many=True
         ).data

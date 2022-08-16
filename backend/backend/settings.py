@@ -2,7 +2,7 @@ from pathlib import Path
 import environ
 
 env = environ.Env(
-    DEBUG=(bool, False)
+    DEBUG=(bool, True)
 )
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,15 +25,25 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'rest_framework', 
+    'django_elasticsearch_dsl',
     'corsheaders',
 
     'advert',
+    'search'
 ]
 
 REST_FRAMEWORK = {
     "DEFAULT_PERMISSION_CLASSES": [
         "rest_framework.permissions.AllowAny",
     ],
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 5,
+}
+
+ELASTICSEARCH_DSL = {
+    'default': {
+        'hosts': env("ELASTICSEARCH_DSL_HOSTS", 'localhost:9200')
+    },
 }
 
 MIDDLEWARE = [
@@ -69,11 +79,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-    # 'default': env.db()
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+    'default': env.db()
 }
 
 

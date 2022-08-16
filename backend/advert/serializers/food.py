@@ -23,6 +23,7 @@ class FoodSerializer(serializers.ModelSerializer):
     class Meta:
         model = AdvertFood
         fields = (
+            "id",
             "name",
             "description",
             "images",
@@ -60,6 +61,6 @@ class FoodSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_image(obj):
         return FoodImageSerializer(
-            FoodImages.objects.filter(post=obj),
+            FoodImages.objects.filter(post=obj.id),
             many=True
         ).data

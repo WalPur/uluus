@@ -23,6 +23,7 @@ class JobsSerializer(serializers.ModelSerializer):
     class Meta:
         model = AdvertJobs
         fields = (
+            "id",
             "name",
             "description",
             "images",
@@ -60,6 +61,6 @@ class JobsSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_image(obj):
         return JobImageSerializer(
-            JobsImages.objects.filter(post=obj),
+            JobsImages.objects.filter(post=obj.id),
             many=True
         ).data

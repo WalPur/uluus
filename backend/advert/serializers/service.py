@@ -23,6 +23,7 @@ class ServiceSerializer(serializers.ModelSerializer):
     class Meta:
         model = AdvertService
         fields = (
+            "id",
             "name",
             "description",
             "images",
@@ -60,6 +61,6 @@ class ServiceSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_image(obj):
         return ServiceImageSerializer(
-            ServiceImages.objects.filter(post=obj),
+            ServiceImages.objects.filter(post=obj.id),
             many=True
         ).data
