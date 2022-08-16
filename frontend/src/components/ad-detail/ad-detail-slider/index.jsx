@@ -16,6 +16,7 @@ const CustomSlider = styled(Slider)(({ theme }) => ({
 		height: 'auto',
 	},
 	'&.slick-slider .slick-prev': {
+		zIndex: 1000,
 		left: '20px',
 		width: 'auto',
 		height: 'auto',
@@ -38,6 +39,8 @@ const CustomSlider = styled(Slider)(({ theme }) => ({
 	},
 }));
 const CustomSlider2 = styled(Slider)(({ theme }) => ({
+	overflow: 'hidden',
+	height: '120px',
 	[theme.breakpoints.down('sm')]: {
 		display: 'none',
 	},
@@ -82,7 +85,7 @@ function SamplePrevArrow(props) {
 }
 
 const AdDetailSlider = (props) => {
-	const images = props.images;
+	const images = props?.images;
 	const [nav1, setNav1] = useState();
 	const [nav2, setNav2] = useState();
 	const settings1 = {
@@ -114,6 +117,12 @@ const AdDetailSlider = (props) => {
 					slidesToShow: 3,
 				}
 			},
+			{
+				breakpoint: 750,
+				settings: {
+					slidesToShow: 2,
+				}
+			},
 		]
 	}
 	return (
@@ -127,11 +136,11 @@ const AdDetailSlider = (props) => {
 				ref={slider1 => (setNav1(slider1))}
 				{...settings1}
 			>
-				{images.map((item, index) => (
+				{images?.map((item, index) => (
 					<CustomBox
 						key={index}
 					>
-						<img src={item} style={{ width: 'auto', height: '100%', overflow: 'hidden' }} />
+						<img src={'https://uluus.ru' + item.image} style={{ width: 'auto', height: '100%', overflow: 'hidden' }} />
 					</CustomBox>
 				))}
 			</CustomSlider>
@@ -141,7 +150,7 @@ const AdDetailSlider = (props) => {
 				ref={slider2 => (setNav2(slider2))}
 				{...settings2}
 			>
-				{images.map((item, index) => (
+				{images?.map((item, index) => (
 					<Box
 						key={index}
 						sx={{
@@ -152,7 +161,7 @@ const AdDetailSlider = (props) => {
 							height: '120px',
 						}}
 					>
-						<img src={item} style={{ maxWidth: '90%', width: 'auto', height: '100%', overflow: 'hidden' }} />
+						<img src={'https://uluus.ru' + item.image} style={{ maxWidth: '90%', width: 'auto', height: '100%', overflow: 'hidden', cursor: 'pointer', }} />
 					</Box>
 				))}
 			</CustomSlider2>

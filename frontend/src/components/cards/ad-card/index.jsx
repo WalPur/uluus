@@ -67,7 +67,7 @@ const AdCard = (props) => {
 		console.log(data.slug)
 	}, []);
 	return (
-		<CardBox onClick={() => navigate('/ad-detail/' + data.slug)}>
+		<CardBox onClick={() => navigate('/ad-detail/' + data?.slug)}>
 			{data.image.length ? <CustomImage src={'https://uluus.ru' + data.image[0].image} /> : <></>}
 			<TextBox sx={{
 				gap: 1.5,

@@ -2,7 +2,8 @@ import {
 	AdDetail,
 } from '../components';
 
-function Detail() {
+function Detail(props) {
+	const category = props.category;
 	return (
 		<div style={{
 			padding: '33px 0',
@@ -10,7 +11,7 @@ function Detail() {
 			flexDirection: 'column',
 			gap: '33px',
 		}}>
-			<AdDetail />
+			<AdDetail category={category} />
 		</div>
 	)
 }

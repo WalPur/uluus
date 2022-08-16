@@ -5,6 +5,9 @@ import { useSelector } from 'react-redux';
 import { Box, Container } from '@mui/material';
 import { styled } from '@mui/system';
 
+import { Text20, Text16, Text14 } from '../../global-styles';
+import categories from '../../data/categories.json';
+
 import axios from 'axios';
 
 import {
@@ -14,45 +17,136 @@ import {
 const CustomBox = styled(Box)(({ theme }) => ({
 	background: '#FFFFFF',
 	padding: '20px 85px',
+	display: 'flex',
+	flexDirection: 'column',
+	gap: '10px',
 	[theme.breakpoints.down('sm')]: {
 		padding: '20px 40px',
 	}
 }));
 
-const AdDetail = () => {
+const AdDetail = (props) => {
+	const category = props?.category;
 	const params = useParams();
 	const id = params.id;
-	console.log(id);
-	const category = useSelector((state) => state.category.value);
 	const [data, setData] = useState();
+	const [uluus, setUluus] = useState();
+	const categoryInfo = categories.filter(item => item.category.value === category.toUpperCase())[0];
+	// console.log(data['improvement']);
 
 	useEffect(() => {
 		axios
 			.get('https://uluus.ru/api/' + category + '/' + id + '/')
 			.then((response) => {
+				const request = response.data[0];
+				setData(request);
+				console.log(categoryInfo.add[0].register);
+				console.log(categoryInfo.add[0].values.filter(value => value.value === request[categoryInfo.add[0].register])[0].label);
+				console.log(categoryInfo);
+				console.log(category);
+				console.log(data);
+				console.log(uluus);
+			})
+			.catch((error) => {
+				console.log('error', error);
+			});
+		axios
+			.get('https://uluus.ru/api/uluus/')
+			.then((response) => {
 				const request = response.data;
 				console.log(request);
+				setUluus(request);
 			})
 			.catch((error) => {
 				console.log('error', error);
 			});
 	}, []);
 
-	const images = [
-		'/images/default_img.svg',
-		'/images/default_img_2.svg',
-		'/images/default_img.svg',
-		'/images/default_img_2.svg',
-		'/images/default_img.svg',
-		'/images/default_img_2.svg',
-		'/images/default_img.svg',
-		'/images/default_img_2.svg',
-	]
 	return (
 		<Box>
 			<Container maxWidth='lg'>
 				<CustomBox>
-					<AdDetailSlider images={images} />
+					<Box sx={{
+						display: 'flex',
+						gap: '10px',
+					}}>
+						<Text16>
+							{categoryInfo.category.label}
+						</Text16>
+						<Text16>
+							{categoryInfo.subcategory.filter(item => item.value === data?.category)[0]?.label}
+						</Text16>
+					</Box>
+					<Box sx={{
+						display: 'flex',
+						gap: '10px',
+					}}>
+						<Text20>
+							{categoryInfo.action.filter(item => item.value === data?.action)[0]?.label}
+						</Text20>
+						<Text20>
+							{data?.name}
+						</Text20>
+					</Box>
+					{data?.image.length ? <AdDetailSlider images={data?.image} /> : <></>}
+					<Text20>
+						{data?.price} руб.
+					</Text20>
+					<Box sx={{
+						display: 'flex',
+						flexDirection: 'column',
+						gap: '10px',
+					}}>
+						{data ? categoryInfo.add?.map((item, index) => (
+							<Box
+								key={index}
+								sx={{
+									display: 'flex',
+									gap: '10px',
+								}}
+							>
+								<Text16>
+									{item.label + ':'}
+								</Text16>
+								<Text16>
+									{item.values.filter(value => value.value === data[item.register])[0].label}
+								</Text16>
+							</Box>
+						)) : <></>}
+					</Box>
+					<Box sx={{
+						display: 'flex',
+						flexDirection: 'column',
+						gap: '10px',
+					}}>
+						<Text16 sx={{
+							fontWeight: 700,
+						}}>
+							Описание
+						</Text16>
+						<Text14>
+							{data?.description}
+						</Text14>
+					</Box>
+					<Box sx={{
+						display: 'flex',
+						gap: '10px',
+					}}>
+						<Text16 sx={{
+							fontWeight: 700,
+						}}>
+							Населенный пункт:
+						</Text16>
+						<Text16>
+							{data?.settlement}
+						</Text16>
+					</Box>
+					<Text20>
+						{data?.phone}
+					</Text20>
+					<Text20>
+						{data?.user_name}
+					</Text20>
 				</CustomBox>
 			</Container>
 		</Box>
