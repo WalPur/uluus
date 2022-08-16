@@ -25,6 +25,7 @@ function App() {
 				<Route path="/ad-detail/home/:id" element={<Detail category='home' />}></Route>
 				<Route path="/ad-detail/food/:id" element={<Detail category='food' />}></Route>
 				<Route path="/ad-detail/jobs/:id" element={<Detail category='jobs' />}></Route>
+				<Route path="/ad-detail/remont/:id" element={<Detail category='remont' />}></Route>
 				<Route path="/ad-post" element={<AdPost />}></Route>
 				{/* <Route path="/set-uluus" element={<SetUluus />}></Route> */}
 			</Routes>

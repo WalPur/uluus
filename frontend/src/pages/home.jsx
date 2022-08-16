@@ -12,7 +12,7 @@ function Home() {
 			flexDirection: 'column',
 			gap: '33px',
 		}}>
-			<HomeSlider />
+			{/* <HomeSlider /> */}
 			<HomeGold />
 			<HomeAd />
 		</div>

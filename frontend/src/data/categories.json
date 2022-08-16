@@ -336,32 +336,32 @@
 	{
 		"category": {
 			"label": "Ремонт и строительство",
-			"value": ""
+			"value": "REMONT"
 		},
 		"subcategory": [
 			{
 				"label": "Двери",
-				"value": ""
+				"value": "DOORS"
 			},
 			{
 				"label": "Окна",
-				"value": ""
+				"value": "WINDOWS"
 			},
 			{
 				"label": "Сантехника",
-				"value": ""
+				"value": "PLUMBING"
 			},
 			{
 				"label": "Стройматериалы",
-				"value": ""
+				"value": "MATERIALS"
 			},
 			{
 				"label": "Инструменты и оборудование",
-				"value": ""
+				"value": "TOOLS"
 			},
 			{
 				"label": "Разное",
-				"value": ""
+				"value": "OTHER"
 			}
 		],
 		"action": [

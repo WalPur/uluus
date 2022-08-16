@@ -62,7 +62,7 @@ function Header(props) {
 			img: '/images/building.svg',
 			img_hovered: '/images/building_hovered.svg',
 			label: 'Ремонт и строительство',
-			value: '',
+			value: 'remont',
 		},
 	];
 	return (
