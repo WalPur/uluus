@@ -72,7 +72,7 @@ function Header(props) {
 		}}>
 			<Container maxWidth='lg'>
 				<HeaderBox>
-					<TopHeader uluus={uluus} />
+					<TopHeader />
 					<BottomHeader data={data} />
 				</HeaderBox>
 				<HeaderMobileBox>

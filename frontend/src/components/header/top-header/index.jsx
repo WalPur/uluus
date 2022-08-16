@@ -19,11 +19,24 @@ const CustomLink = styled(Link)(({ theme }) => ({
 		background: '#004FC4',
 	}
 }));
+const CustomLink2 = styled('a')(({ theme }) => ({
+	display: 'inline-block',
+	padding: '3px 15px',
+	borderRadius: '4.8px',
+	textDecoration: 'none',
+	background: '#0D6EFD',
+	'&:hover': {
+		background: '#589CFF',
+	},
+	'&:active': {
+		background: '#004FC4',
+	}
+}));
 const CustomBox = styled(Box)(({ theme }) => ({
 	marginBottom: 26,
 	width: '100%',
 	display: 'flex',
-	justifyContent: 'space-between',
+	// justifyContent: 'space-between',
 	alignItems: 'center',
 	gap: '60px',
 }));
@@ -39,26 +52,23 @@ const TopHeader = (props) => {
 					Uluus.ru
 				</Typography>
 			</Box>
-			{/* <Box
-				sx={{
-					flexGrow: 1,
-				}}
-			>
-				<Link
-					to='/set-uluus'
-					style={{
-						display: 'flex',
-						gap: 6,
-						textDecoration: 'none',
-						color: '#000',
-					}}
+			<Box sx={{
+				flexGrow: 1,
+				display: 'flex',
+				justifyContent: 'end',
+			}}>
+				<CustomLink2
+					href='https://sakhaconcert.ru/'
+					target='_blank'
 				>
-					<img src='/images/placemark.svg' />
-					<Text16>
-						{uluus === '' ? 'Выберите ваш улус' : uluus}
-					</Text16>
-				</Link>
-			</Box> */}
+					<Text20 sx={{
+						color: '#FFF',
+						width: 'fit-content',
+					}}>
+						Мероприятия
+					</Text20>
+				</CustomLink2>
+			</Box>
 			<CustomLink
 				to='/ad-post'
 			>

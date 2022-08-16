@@ -62,14 +62,11 @@ const CustomImage = styled('img')(({ theme }) => ({
 
 const AdCard = (props) => {
 	const navigate = useNavigate();
-	const data = props.data;
+	const data = props?.data;
 	const date = new Date(data.date);
-	useEffect(() => {
-		console.log(date.toLocaleString());
-	}, []);
 	return (
-		<CardBox onClick={() => navigate('/ad-detail/' + data?.slug)}>
-			{data.image.length ? <CustomImage src={'https://uluus.ru' + data.image[0].image} /> : <></>}
+		<CardBox onClick={() => navigate('/ad-detail/' + data?.slug + '/' + data?.id + '/')}>
+			{data.image.length ? <CustomImage src={'https://uluus.ru' + data?.image[0].image} /> : <></>}
 			<TextBox sx={{
 				gap: 1.5,
 			}}>

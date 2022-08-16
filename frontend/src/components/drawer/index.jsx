@@ -43,6 +43,21 @@ const CustomButton = styled(Link)(({ theme }) => ({
 		background: '#004FC4',
 	}
 }));
+const CustomButton2 = styled('a')(({ theme }) => ({
+	margin: '32px 12px',
+	padding: '3px 15px',
+	justifySelf: 'flex-end',
+	display: 'inline-block',
+	borderRadius: '4.8px',
+	textDecoration: 'none',
+	background: '#0D6EFD',
+	'&:hover': {
+		background: '#589CFF',
+	},
+	'&:active': {
+		background: '#004FC4',
+	}
+}));
 
 const Drawer = (props) => {
 	const data = props.data;
@@ -132,6 +147,17 @@ const Drawer = (props) => {
 					</Box>
 				))}
 			</Box >
+			<CustomButton2
+				href='https://sakhaconcert.ru/'
+				target='_blank'
+				onClick={toggleDrawer(false)}
+			>
+				<Text16 sx={{
+					color: '#FFF',
+				}}>
+					Мероприятия
+				</Text16>
+			</CustomButton2>
 		</Box >
 	);
 

@@ -68,6 +68,7 @@ const AdDetail = (props) => {
 				<CustomBox>
 					<Box sx={{
 						display: 'flex',
+						flexWrap: 'wrap',
 						gap: '10px',
 					}}>
 						<Text16>
@@ -79,6 +80,7 @@ const AdDetail = (props) => {
 					</Box>
 					<Box sx={{
 						display: 'flex',
+						flexWrap: 'wrap',
 						gap: '10px',
 					}}>
 						<Text20>
@@ -102,6 +104,7 @@ const AdDetail = (props) => {
 								key={index}
 								sx={{
 									display: 'flex',
+									flexWrap: 'wrap',
 									gap: '10px',
 								}}
 							>
@@ -130,6 +133,7 @@ const AdDetail = (props) => {
 					</Box>
 					<Box sx={{
 						display: 'flex',
+						flexWrap: 'wrap',
 						gap: '10px',
 					}}>
 						<Text16 sx={{
