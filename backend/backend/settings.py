@@ -80,11 +80,11 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-    # 'default': env.db()
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.sqlite3',
+    #     'NAME': BASE_DIR / 'db.sqlite3',
+    # }
+    'default': env.db()
 }
 
 
@@ -114,11 +114,11 @@ USE_TZ = True
 
 
 STATIC_URL = '/django_static/'
-# STATIC_ROOT = "/static"
-STATIC_ROOT = BASE_DIR / '/static'
+STATIC_ROOT = "/static"
+# STATIC_ROOT = BASE_DIR / '/static'
 MEDIA_URL = '/django_media/'
-# MEDIA_ROOT = '/media'
-MEDIA_ROOT = BASE_DIR / '/media'
+MEDIA_ROOT = '/media'
+# MEDIA_ROOT = BASE_DIR / '/media'
 
 CORS_ALLOWED_ORIGINS = ["http://localhost:3000", "http://127.0.0.1:3000"]
 
