@@ -30,7 +30,6 @@ const CustomLink = styled(Link)(({ theme }) => ({
 	},
 }));
 const CustomButton = styled(Link)(({ theme }) => ({
-	margin: '32px 12px',
 	padding: '3px 15px',
 	justifySelf: 'flex-end',
 	display: 'inline-block',
@@ -133,16 +132,6 @@ const Drawer = (props) => {
 					</Box>
 				))}
 			</Box >
-			<CustomButton
-				to='/ad-post'
-				onClick={toggleDrawer(false)}
-			>
-				<Text16 sx={{
-					color: '#FFF',
-				}}>
-					Подать объявление
-				</Text16>
-			</CustomButton>
 		</Box >
 	);
 
@@ -156,7 +145,7 @@ const Drawer = (props) => {
 				<MenuIcon fontSize='large' sx={{ cursor: 'pointer', color: '#0D6EFD' }} onClick={toggleDrawer(true)} />
 				<Box>
 					<Link
-						to='/set-uluus'
+						to='/ad-post'
 						style={{
 							display: 'flex',
 							gap: 6,
@@ -164,9 +153,17 @@ const Drawer = (props) => {
 							color: '#000',
 						}}
 					>
-						<img src='/images/placemark.svg' />
 						<Text16>
-							Выберите ваш улус
+							<CustomButton
+								to='/ad-post'
+								onClick={toggleDrawer(false)}
+							>
+								<Text16 sx={{
+									color: '#FFF',
+								}}>
+									Подать объявление
+								</Text16>
+							</CustomButton>
 						</Text16>
 					</Link>
 				</Box>

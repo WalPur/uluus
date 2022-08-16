@@ -23,6 +23,7 @@ const CustomBox = styled(Box)(({ theme }) => ({
 	marginBottom: 26,
 	width: '100%',
 	display: 'flex',
+	justifyContent: 'space-between',
 	alignItems: 'center',
 	gap: '60px',
 }));
@@ -38,7 +39,7 @@ const TopHeader = (props) => {
 					Uluus.ru
 				</Typography>
 			</Box>
-			<Box
+			{/* <Box
 				sx={{
 					flexGrow: 1,
 				}}
@@ -57,7 +58,7 @@ const TopHeader = (props) => {
 						{uluus === '' ? 'Выберите ваш улус' : uluus}
 					</Text16>
 				</Link>
-			</Box>
+			</Box> */}
 			<CustomLink
 				to='/ad-post'
 			>
