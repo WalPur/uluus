@@ -8,6 +8,7 @@ from .models import (
     AdvertHome,
     AdvertJobs,
     AdvertService,
+    AdvertRemont
 )
 
 
@@ -194,6 +195,39 @@ class JobsDocument(Document):
 
     class Django:
         model = AdvertJobs
+        fields = (
+            "name",
+            "description",
+            "phone",
+            "is_whatsapp",
+            "user_name",
+            "settlement",
+            "price",
+            "category",
+            "action",
+            "is_premium",
+            "slug",
+            "views",
+            "date",
+        )
+
+
+@registry.register_document
+class RemontDocument(Document):
+    id = fields.IntegerField()
+    uluus = fields.NestedField(properties={
+        'name': fields.TextField(),
+        'pk': fields.IntegerField(),
+    })
+    class Index:
+        name = 'remont_adverts'
+        settings = {
+            'number_of_shards': 1,
+            'number_of_replicas': 0,
+        }
+
+    class Django:
+        model = AdvertRemont
         fields = (
             "name",
             "description",
