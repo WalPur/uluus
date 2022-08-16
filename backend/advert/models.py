@@ -421,8 +421,8 @@ class AdvertRemont(models.Model):
         return self.name
 
     class Meta:
-        verbose_name = 'Объявление услуг'
-        verbose_name_plural = 'Объявления услуг'
+        verbose_name = 'Объявление ремонта и строительства'
+        verbose_name_plural = 'Объявления ремонта и строительства'
 
 
 class RentImages(models.Model):
