@@ -63,8 +63,9 @@ const CustomImage = styled('img')(({ theme }) => ({
 const AdCard = (props) => {
 	const navigate = useNavigate();
 	const data = props.data;
+	const date = new Date(data.date);
 	useEffect(() => {
-		console.log(data.slug)
+		console.log(date.toLocaleString());
 	}, []);
 	return (
 		<CardBox onClick={() => navigate('/ad-detail/' + data?.slug)}>
@@ -93,7 +94,7 @@ const AdCard = (props) => {
 					<CustomSubtitle sx={{
 						textAlign: 'end',
 					}}>
-						{data.date}
+						{date.toLocaleString().slice(0, -3)}
 					</CustomSubtitle>
 					<Text12>
 						{data.views}

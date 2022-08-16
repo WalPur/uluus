@@ -82,7 +82,7 @@ const HomeAd = () => {
 					gap: '33px',
 				}}>
 					<Title>
-						Доска объявлений в Якутии
+						Доска объявлений
 					</Title>
 					<form
 						onSubmit={handleSubmit}
