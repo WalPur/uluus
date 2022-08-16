@@ -4,7 +4,8 @@ services:
   es:
     image: elasticsearch:7.17.5
     environment:
-      - discovery.type=single-node
+      discovery.type: single-node
+      ES_JAVA_OPTS: "-Xmx300m"
     ports:
       - "9200:9200"
   postgres:
