@@ -109,7 +109,7 @@ const HomeAd = () => {
 			.get(input ? `https://uluus.ru/${category !== 'adverts' ? 'search/' : 'api/'}${category}/${input ? input + '/' : ''}?limit=${advertCount}&offset=${(page - 1) * advertCount}?uluus=${uluusId.join(',')}` : `https://uluus.ru/api/${category}/?limit=${advertCount}&offset=0`)
 			.then((response) => {
 				const request = response.data;
-				console.log(request);
+				console.log(response);
 				setAdverts(request.results);
 				setCount(category === 'adverts' ? Math.ceil(((request.overall_total - request.results.length) / advertCount)) + 1 : Math.ceil(request.count / advertCount));
 				setPage(1);
