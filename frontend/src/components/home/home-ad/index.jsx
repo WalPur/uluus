@@ -88,8 +88,9 @@ const HomeAd = () => {
 	useEffect(() => {
 		const uluusId = uluus.filter(item => selected.includes(item.name)).map(item => item = item.id);
 		console.log(page);
+		const api = input || uluusId.length ? `https://uluus.ru/${category === 'adverts' || input === '' ? 'api/' : 'search/'}${category}/${input ? input + '/' : ''}?limit=${advertCount}&offset=${(page - 1) * advertCount}/?uluus=${uluusId.join(',')}` : `https://uluus.ru/api/${category}/?limit=${advertCount}&offset=${(page - 1) * advertCount}`;
 		axios
-			.get(input ? `https://uluus.ru/${category !== 'adverts' ? 'search/' : 'api/'}${category}/${input ? input + '/' : ''}?limit=${advertCount}&offset=${(page - 1) * advertCount}` : `https://uluus.ru/api/${category}/?limit=${advertCount}&offset=${(page - 1) * advertCount}`)
+			.get(api)
 			.then((response) => {
 				const request = response.data;
 				console.log(response);
@@ -105,14 +106,16 @@ const HomeAd = () => {
 
 	const handleSubmit = (event) => {
 		const uluusId = uluus.filter(item => selected.includes(item.name)).map(item => item = item.id);
+		console.log(uluusId.length);
+		setPage(1);
+		const api = input || uluusId.length ? `https://uluus.ru/${category === 'adverts' || input === '' ? 'api/' : 'search/'}${category}/${input ? input + '/' : ''}?uluus=${uluusId.join(',')}` : `https://uluus.ru/api/${category}/?limit=${advertCount}&offset=${(page - 1) * advertCount}`;
 		axios
-			.get(input ? `https://uluus.ru/${category !== 'adverts' ? 'search/' : 'api/'}${category}/${input ? input + '/' : ''}?limit=${advertCount}&offset=${(page - 1) * advertCount}?uluus=${uluusId.join(',')}` : `https://uluus.ru/api/${category}/?limit=${advertCount}&offset=0`)
+			.get(api)
 			.then((response) => {
 				const request = response.data;
 				console.log(response);
 				setAdverts(request.results);
-				setCount(category === 'adverts' ? Math.ceil(((request.overall_total - request.results.length) / advertCount)) + 1 : Math.ceil(request.count / advertCount));
-				setPage(1);
+				setCount(category === 'adverts' ? Math.ceil(((request.overall_total - request.results.length) / advertCount)) + 1 : Math.ceil(request.results.length >= 5 ? request.count / advertCount : request.results.length / advertCount));
 				setPrevCategory(category);
 			})
 			.catch((error) => {
