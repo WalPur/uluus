@@ -552,7 +552,6 @@ const AdForm = () => {
 								isOptionEqualToValue={(option, value) => option.id === value.id}
 								onChange={(e, data) => {
 									setUluuses(data);
-									console.log(data);
 								}}
 								renderInput={(params) => (
 									<TextField
