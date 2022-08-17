@@ -170,6 +170,21 @@ const AdForm = () => {
 		shouldUseNativeValidation: true,
 	});
 
+	function getCookie(name) {
+		var cookieValue = null;
+		if (document.cookie && document.cookie !== '') {
+			var cookies = document.cookie.split(';');
+			for (var i = 0; i < cookies.length; i++) {
+				var cookie = cookies[i].trim();
+				if (cookie.substring(0, name.length + 1) === (name + '=')) {
+					cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+					break;
+				}
+			}
+		}
+		return cookieValue;
+	}
+
 	useEffect(() => {
 		axios
 			.get('https://uluus.ru/api/uluus/?limit=100')
@@ -205,13 +220,14 @@ const AdForm = () => {
 	const onSubmit = async (data, event) => {
 		const uluus = allUluus ? [...uluusOptions].map(item => item = item.id) : [...uluuses].map(item => item = item.id);
 		const formData = new FormData(event.target)
+		var csrftoken = getCookie('csrftoken');
 		uluus.map((e, i) => {
 			formData.append('uluus', e);
 		})
 		images.map((e, i) => {
 			formData.append('images[' + i + ']image', uploadImages[i]);
 		})
-		const headers = { 'Content-Type': 'multipart/form-data' };
+		const headers = { 'Content-Type': 'multipart/form-data', 'X-CSRFToken': csrftoken };
 		axios({
 			url: 'https://uluus.ru/api/' + category.toLowerCase() + '/',
 			method: "POST",
