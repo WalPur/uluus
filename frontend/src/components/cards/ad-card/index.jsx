@@ -54,11 +54,20 @@ const RightBox = styled(Box)(({ theme }) => ({
 	}
 }));
 const CustomImage = styled('img')(({ theme }) => ({
+	width: '100%'
+	// [theme.breakpoints.down('sm')]: {
+	// 	maxWidth: 'none',
+	// }
+}));
+const ImageBox = styled(Box)(({ theme }) => ({
+	display: 'flex',
+	alignItems: 'center',
 	maxWidth: '120px',
+	width: '100%',
 	[theme.breakpoints.down('sm')]: {
 		maxWidth: 'none',
 	}
-}));
+}))
 
 const AdCard = (props) => {
 	const navigate = useNavigate();
@@ -66,7 +75,9 @@ const AdCard = (props) => {
 	const date = new Date(data.date);
 	return (
 		<CardBox onClick={() => navigate('/ad-detail/' + data?.slug + '/' + data?.id + '/')}>
-			{data.image.length ? <CustomImage src={'https://uluus.ru' + data?.image[0].image} /> : <></>}
+			<ImageBox>
+				{data.image.length ? <CustomImage src={'https://uluus.ru' + data?.image[0].image} /> : <></>}
+			</ImageBox>
 			<TextBox sx={{
 				gap: 1.5,
 			}}>
