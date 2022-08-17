@@ -9,17 +9,18 @@ const GoldCard = (props) => {
 	const data = props?.data
 	const date = new Date(data.date);
 	return (
-		<Box sx={{ background: '#FFFFFF', overflow: 'hidden' }}>
+		<Box sx={{ background: '#FFFFFF', overflow: 'hidden', height: '100%' }}>
 			<img style={{ width: '100%', height: 'auto' }} src={data?.image.length !== 0 ? 'https://uluus.ru' + data?.image[0]?.image : '/images/default_img.svg'} />
 			<Box sx={{
 				display: 'flex',
 				flexDirection: 'column',
 				padding: '10px',
+				height: '100%',
 			}}>
-				<Text16 sx={{ mb: 1 }}>
+				<Text16 sx={{ mb: 1, height: '13%' }}>
 					{data.name}
 				</Text16>
-				<Text12 sx={{ mb: 1 }}>
+				<Text12 sx={{ flexGrow: 1, mb: 1, maxHeight: '100px', overflow: 'hidden' }}>
 					{data.description}
 				</Text12>
 				<Box sx={{
