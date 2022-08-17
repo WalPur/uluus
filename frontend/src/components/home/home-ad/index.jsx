@@ -88,7 +88,7 @@ const HomeAd = () => {
 	useEffect(() => {
 		const uluusId = uluus.filter(item => selected.includes(item.name)).map(item => item = item.id);
 		console.log(page);
-		const api = input || uluusId.length ? `https://uluus.ru/${category === 'adverts' || input === '' ? 'api/' : 'search/'}${category}/${input ? input + '/' : ''}?limit=${advertCount}&offset=${(page - 1) * advertCount}/?uluus=${uluusId.join(',')}` : `https://uluus.ru/api/${category}/?limit=${advertCount}&offset=${(page - 1) * advertCount}`;
+		const api = input || uluusId.length ? `https://uluus.ru/${category === 'adverts' || input === '' ? 'api/' : 'search/'}${category}/${input ? input + '/' : ''}?limit=${advertCount}&offset=${(page - 1) * advertCount}&uluus=${uluusId.join(',')}` : `https://uluus.ru/api/${category}/?limit=${advertCount}&offset=${(page - 1) * advertCount}`;
 		axios
 			.get(api)
 			.then((response) => {
