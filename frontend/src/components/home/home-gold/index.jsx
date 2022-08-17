@@ -15,7 +15,6 @@ const HomeGold = () => {
 			.get('https://uluus.ru/api/premium/?limit=5')
 			.then((response) => {
 				const request = response.data;
-				console.log('gold', request.results);
 				setGold(request.results);
 			})
 	}, []);

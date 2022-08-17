@@ -171,11 +171,10 @@ const AdForm = () => {
 	});
 
 	useEffect(() => {
-		console.log(category);
 		axios
 			.get('https://uluus.ru/api/uluus/?limit=100')
 			.then((response) => {
-				const request = response.data.results;
+				const request = response.data.results.sort((a, b) => { return a.name.localeCompare(b.name) });
 				setUluusOptions(request);
 			})
 			.catch((error) => {

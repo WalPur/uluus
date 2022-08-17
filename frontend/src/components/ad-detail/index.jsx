@@ -32,7 +32,6 @@ const AdDetail = (props) => {
 	const [data, setData] = useState();
 	const [uluus, setUluus] = useState();
 	const categoryInfo = categories.filter(item => item.category.value === category.toUpperCase())[0];
-	// console.log(data['improvement']);
 
 	useEffect(() => {
 		axios
@@ -40,12 +39,6 @@ const AdDetail = (props) => {
 			.then((response) => {
 				const request = response.data[0];
 				setData(request);
-				console.log(categoryInfo.add[0].register);
-				console.log(categoryInfo.add[0].values.filter(value => value.value === request[categoryInfo.add[0].register])[0].label);
-				console.log(categoryInfo);
-				console.log(category);
-				console.log(data);
-				console.log(uluus);
 			})
 			.catch((error) => {
 				console.log('error', error);
@@ -54,7 +47,6 @@ const AdDetail = (props) => {
 			.get('https://uluus.ru/api/uluus/')
 			.then((response) => {
 				const request = response.data;
-				console.log(request);
 				setUluus(request);
 			})
 			.catch((error) => {
