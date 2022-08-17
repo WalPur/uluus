@@ -43,7 +43,7 @@ class formRent(viewsets.ModelViewSet):
         uluuses = self.request.GET.get("uluus", "")
         if uluuses != "":
             uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
-            return AdvertRent.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
+            return AdvertRent.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('date')
         else:
             return AdvertRent.objects.all().order_by('date')
 
@@ -56,7 +56,7 @@ class formCar(viewsets.ModelViewSet):
         uluuses = self.request.GET.get("uluus", "")
         if uluuses != "":
             uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
-            return AdvertCar.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
+            return AdvertCar.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('date')
         else:
             return AdvertCar.objects.all().order_by('date')
 
@@ -69,7 +69,7 @@ class formService(viewsets.ModelViewSet):
         uluuses = self.request.GET.get("uluus", "")
         if uluuses != "":
             uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
-            return AdvertService.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
+            return AdvertService.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('date')
         else:
             return AdvertService.objects.all().order_by('date')
 
@@ -82,7 +82,7 @@ class formHome(viewsets.ModelViewSet):
         uluuses = self.request.GET.get("uluus", "")
         if uluuses != "":
             uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
-            return AdvertHome.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
+            return AdvertHome.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('date')
         else:
             return AdvertHome.objects.all().order_by('date')
 
@@ -95,7 +95,7 @@ class formFood(viewsets.ModelViewSet):
         uluuses = self.request.GET.get("uluus", "")
         if uluuses != "":
             uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
-            return AdvertFood.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
+            return AdvertFood.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('date')
         else:
             return AdvertFood.objects.all().order_by('date')
 
@@ -108,7 +108,7 @@ class formJobs(viewsets.ModelViewSet):
         uluuses = self.request.GET.get("uluus", "")
         if uluuses != "":
             uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
-            return AdvertJobs.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
+            return AdvertJobs.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('date')
         else:
             return AdvertJobs.objects.all().order_by('date')
 
@@ -120,7 +120,7 @@ class formRemont(viewsets.ModelViewSet):
         uluuses = self.request.GET.get("uluus", "")
         if uluuses != "":
             uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
-            return AdvertRemont.objects.filter(Q(uluus__id__in=uluuses)).order_by('date')
+            return AdvertRemont.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('date')
         else:
             return AdvertRemont.objects.all().order_by('date')
 
@@ -138,7 +138,7 @@ def name_content_with_letter(queryset, request, q, *args, **kwargs):
     uluuses = request.GET.get("uluus", "")
     if uluuses != "":
         uluuses = set(map(int, request.GET.get("uluus", "").split(',')))
-        return queryset.filter((Q(name__icontains=query) | Q(description__icontains=query)) & Q(uluus__id__in=uluuses))
+        return queryset.filter((Q(name__icontains=query) | Q(description__icontains=query)) & Q(uluus__id__in=uluuses)).distinct()
     else:
         return queryset.filter(Q(name__icontains=query) | Q(description__icontains=query))
 
@@ -147,7 +147,7 @@ def name_content_with_no_letter(queryset, request, *args, **kwargs):
     uluuses = request.GET.get("uluus", "")
     if uluuses != "":
         uluuses = set(map(int, request.GET.get("uluus", "").split(',')))
-        return queryset.filter(Q(uluus__id__in=uluuses))
+        return queryset.filter(Q(uluus__id__in=uluuses)).distinct()
     else:
         return queryset.all()
 
