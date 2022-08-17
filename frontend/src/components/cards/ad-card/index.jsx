@@ -94,7 +94,7 @@ const AdCard = (props) => {
 						{date.toLocaleString().slice(0, -3)}
 					</CustomSubtitle>
 					<Text12>
-						{data.views}
+						просмотры: {data.views}
 					</Text12>
 				</RightBox>
 			</TextBox>
