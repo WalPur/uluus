@@ -43,9 +43,9 @@ class formRent(viewsets.ModelViewSet):
         uluuses = self.request.GET.get("uluus", "")
         if uluuses != "":
             uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
-            return AdvertRent.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('date')
+            return AdvertRent.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('-date')
         else:
-            return AdvertRent.objects.all().order_by('date')
+            return AdvertRent.objects.all().order_by('-date')
 
 
 class formCar(viewsets.ModelViewSet):
@@ -56,9 +56,9 @@ class formCar(viewsets.ModelViewSet):
         uluuses = self.request.GET.get("uluus", "")
         if uluuses != "":
             uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
-            return AdvertCar.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('date')
+            return AdvertCar.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('-date')
         else:
-            return AdvertCar.objects.all().order_by('date')
+            return AdvertCar.objects.all().order_by('-date')
 
 
 class formService(viewsets.ModelViewSet):
@@ -69,9 +69,9 @@ class formService(viewsets.ModelViewSet):
         uluuses = self.request.GET.get("uluus", "")
         if uluuses != "":
             uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
-            return AdvertService.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('date')
+            return AdvertService.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('-date')
         else:
-            return AdvertService.objects.all().order_by('date')
+            return AdvertService.objects.all().order_by('-date')
 
 
 class formHome(viewsets.ModelViewSet):
@@ -82,9 +82,9 @@ class formHome(viewsets.ModelViewSet):
         uluuses = self.request.GET.get("uluus", "")
         if uluuses != "":
             uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
-            return AdvertHome.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('date')
+            return AdvertHome.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('-date')
         else:
-            return AdvertHome.objects.all().order_by('date')
+            return AdvertHome.objects.all().order_by('-date')
 
 
 class formFood(viewsets.ModelViewSet):
@@ -95,9 +95,9 @@ class formFood(viewsets.ModelViewSet):
         uluuses = self.request.GET.get("uluus", "")
         if uluuses != "":
             uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
-            return AdvertFood.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('date')
+            return AdvertFood.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('-date')
         else:
-            return AdvertFood.objects.all().order_by('date')
+            return AdvertFood.objects.all().order_by('-date')
 
 
 class formJobs(viewsets.ModelViewSet):
@@ -108,9 +108,9 @@ class formJobs(viewsets.ModelViewSet):
         uluuses = self.request.GET.get("uluus", "")
         if uluuses != "":
             uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
-            return AdvertJobs.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('date')
+            return AdvertJobs.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('-date')
         else:
-            return AdvertJobs.objects.all().order_by('date')
+            return AdvertJobs.objects.all().order_by('-date')
 
 class formRemont(viewsets.ModelViewSet):
     http_method_names = ['post', 'get']
@@ -120,9 +120,9 @@ class formRemont(viewsets.ModelViewSet):
         uluuses = self.request.GET.get("uluus", "")
         if uluuses != "":
             uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
-            return AdvertRemont.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('date')
+            return AdvertRemont.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('-date')
         else:
-            return AdvertRemont.objects.all().order_by('date')
+            return AdvertRemont.objects.all().order_by('-date')
 
 
 class LimitPagination(MultipleModelLimitOffsetPagination):
