@@ -135,9 +135,22 @@ class formAll(viewsets.ModelViewSet):
         uluuses = self.request.GET.get("uluus", "")
         if uluuses != "":
             uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
-            return Advert.objects.filter(Q(uluus__id__in=uluuses)).distinct().order_by('-date')
+            return Advert.objects.filter(Q(uluus__id__in=uluuses), is_premium=False).distinct().order_by('-date')
         else:
-            return Advert.objects.all().order_by('-date')
+            return Advert.objects.filter(is_premium=False).order_by('-date')
+
+
+class formPremium(viewsets.ModelViewSet):
+    http_method_names = ['get']
+    serializer_class = advert.Serializer
+
+    def get_queryset(self):
+        uluuses = self.request.GET.get("uluus", "")
+        if uluuses != "":
+            uluuses = set(map(int, self.request.GET.get("uluus", "").split(',')))
+            return Advert.objects.filter(Q(uluus__id__in=uluuses), is_premium=True).distinct().order_by('-date')
+        else:
+            return Advert.objects.filter(is_premium=True).order_by('-date')
 
 
 class LimitPagination(MultipleModelLimitOffsetPagination):
@@ -202,56 +215,6 @@ class formSearch(FlatMultipleModelAPIView):
             'serializer_class': jobs.JobsSerializer,
             'filter_fn': name_content_with_letter
         },
-    ]
-
-
-# class formAll(FlatMultipleModelAPIView):
-#     sorting_fields = ['-date']
-#     pagination_class = LimitPagination
-#     querylist = [
-#         {
-#             'queryset': AdvertRent.objects.filter(is_premium=False),
-#             'serializer_class': rent.RentSerializer,
-#             'filter_fn': name_content_with_no_letter
-#         },
-#         {
-#             'queryset': AdvertCar.objects.filter(is_premium=False),
-#             'serializer_class': car.CarSerializer,
-#             'filter_fn': name_content_with_no_letter
-#         },
-#         {
-#             'queryset': AdvertService.objects.filter(is_premium=False),
-#             'serializer_class': service.ServiceSerializer,
-#             'filter_fn': name_content_with_no_letter
-#         },
-#         {
-#             'queryset': AdvertHome.objects.filter(is_premium=False),
-#             'serializer_class': home.HomeSerializer,
-#             'filter_fn': name_content_with_no_letter
-#         },
-#         {
-#             'queryset': AdvertFood.objects.filter(is_premium=False),
-#             'serializer_class': food.FoodSerializer,
-#             'filter_fn': name_content_with_no_letter
-#         },
-#         {
-#             'queryset': AdvertJobs.objects.filter(is_premium=False),
-#             'serializer_class': jobs.JobsSerializer,
-#             'filter_fn': name_content_with_no_letter
-#         },
-#     ]
-
-
-class formPremium(FlatMultipleModelAPIView):
-    sorting_fields = ['-date']
-    pagination_class = LimitPagination
-    querylist = [
-        {'queryset': AdvertRent.objects.filter(is_premium=True), 'serializer_class': rent.RentSerializer},
-        {'queryset': AdvertCar.objects.filter(is_premium=True), 'serializer_class': car.CarSerializer},
-        {'queryset': AdvertService.objects.filter(is_premium=True), 'serializer_class': service.ServiceSerializer},
-        {'queryset': AdvertHome.objects.filter(is_premium=True), 'serializer_class': home.HomeSerializer},
-        {'queryset': AdvertFood.objects.filter(is_premium=True), 'serializer_class': food.FoodSerializer},
-        {'queryset': AdvertJobs.objects.filter(is_premium=True), 'serializer_class': jobs.JobsSerializer},
     ]
 
 

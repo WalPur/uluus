@@ -34,9 +34,10 @@ router.register('food', formFood, basename='food')
 router.register('jobs', formJobs, basename='jobs')
 router.register('remont', formRemont, basename='remont')
 router.register('advert', formAll, basename='advert')
+router.register('premium', formPremium, basename='premium')
 
 urlpatterns = [
-    path('premium/', formPremium.as_view(), name='card-form'),
+    # path('premium/', formPremium.as_view(), name='card-form'),
     # path('adverts/', formAll.as_view(), name='card-form'),
     path('adverts/<str:q>/', formSearch.as_view(), name='card-form'),
     path('rent/<int:id>/', formRentId.as_view(), name='rent advert page'),
