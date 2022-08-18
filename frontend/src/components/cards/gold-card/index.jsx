@@ -1,8 +1,24 @@
 import { useNavigate } from 'react-router';
 
 import { Box } from '@mui/material';
+import { styled } from '@mui/system';
 
 import { Text16, Text14, Text12 } from '../../../global-styles';
+
+const CustomImage = styled('img')(({ theme }) => ({
+	height: '100%',
+	width: 'auto',
+}));
+const ImageBox = styled(Box)(({ theme }) => ({
+	display: 'flex',
+	justifyContent: 'center',
+	// maxHeight: '130px',
+	height: '130px',
+	overflow: 'hidden',
+	[theme.breakpoints.down('sm')]: {
+		maxHeight: 'none',
+	}
+}))
 
 const GoldCard = (props) => {
 	const navigate = useNavigate();
@@ -10,7 +26,9 @@ const GoldCard = (props) => {
 	const date = new Date(data.date);
 	return (
 		<Box sx={{ background: '#FFFFFF', overflow: 'hidden', display: 'flex', flexDirection: 'column', height: '100%' }}>
-			<img style={{ width: '100%', height: 'auto' }} src={data?.image.length !== 0 ? 'https://uluus.ru' + data?.image[0]?.image : '/images/default_img.svg'} />
+			<ImageBox>
+				<CustomImage src={data?.image.length !== 0 ? 'https://uluus.ru' + data?.image[0]?.image : '/images/default_img.svg'} />
+			</ImageBox>
 			<Box sx={{
 				flexGrow: 1,
 				display: 'flex',

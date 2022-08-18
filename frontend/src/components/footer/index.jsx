@@ -46,18 +46,18 @@ const Footer = () => {
 	const routes = [
 		{
 			label: 'Контакты',
-			path: '/'
+			path: '/contacts'
 		},
 		{
 			label: 'Правила подачи объявлений',
-			path: '/'
+			path: '/adverts-rules'
 		},
 		{
 			label: 'Пользовательское соглашение',
-			path: '/'
+			path: '/privacy-policy'
 		},
 	];
-	return(
+	return (
 		<Box sx={{
 			padding: '30px 0',
 			background: '#FFFFFF',
@@ -65,7 +65,7 @@ const Footer = () => {
 			<Container maxWidth='lg'>
 				<CustomBox>
 					<RoutesBox>
-						{routes.map(( route, index ) => (
+						{routes.map((route, index) => (
 							<Link
 								to={route.path}
 								key={index}
