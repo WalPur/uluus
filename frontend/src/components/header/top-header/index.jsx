@@ -49,7 +49,7 @@ const TopHeader = (props) => {
 
 	return (
 		<CustomBox>
-			<Link to='/' style={{ display: 'flex', gap: '8px', textDecoration: 'none' }} onClick={dispatch(setCategory('adverts'))}>
+			<Link to='/' style={{ display: 'flex', gap: '8px', textDecoration: 'none' }} onClick={dispatch(setCategory('advert'))}>
 				<img src='/images/uluusru_logo.svg' />
 				<Typography sx={{ fontFamily: 'ArciformSansRegular', fontSize: 32, color: '#2C318F', }}>
 					Uluus.ru
@@ -79,7 +79,7 @@ const TopHeader = (props) => {
 			</Box>
 			<CustomLink
 				to='/ad-post'
-				onClick={dispatch(setCategory('adverts'))}
+				onClick={dispatch(setCategory('advert'))}
 			>
 				<Text20 sx={{
 					color: '#FFF'

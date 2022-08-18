@@ -102,7 +102,7 @@ const Drawer = (props) => {
 			}}>
 				<HashLink
 					to='/'
-					onClick={toggleDrawer2(false, 'adverts')}
+					onClick={toggleDrawer2(false, 'advert')}
 					style={{
 						display: 'flex',
 						gap: '5px',
