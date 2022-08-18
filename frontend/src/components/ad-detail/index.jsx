@@ -67,7 +67,7 @@ const AdDetail = (props) => {
 							{categoryInfo.category.label}
 						</Text16>
 						<Text16>
-							{categoryInfo.subcategory.filter(item => item.value === data?.category)[0]?.label}
+							{categoryInfo.subcategory.filter(item => item.value === data?.subcategory)[0]?.label}
 						</Text16>
 					</Box>
 					<Box sx={{

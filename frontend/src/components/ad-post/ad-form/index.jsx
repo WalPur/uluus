@@ -265,7 +265,7 @@ const AdForm = () => {
 							flexWrap: 'wrap',
 						}}>
 							<CustomSelect
-								{...register("cat", {
+								{...register("category", {
 									required: true,
 								})}
 								displayEmpty
@@ -290,7 +290,7 @@ const AdForm = () => {
 								))}
 							</CustomSelect>
 							<CustomSelect
-								{...register("category", {
+								{...register("subcategory", {
 									required: true,
 								})}
 								displayEmpty
