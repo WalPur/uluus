@@ -75,7 +75,6 @@ const CustomSelect = styled(Select)(({ theme }) => ({
 
 const HomeAd = () => {
 	const category = useSelector((state) => state.category.value);
-	const [prevCategory, setPrevCategory] = useState('');
 	const [page, setPage] = useState(1);
 	const [input, setInput] = useState('');
 	const [adverts, setAdverts] = useState([]);
@@ -123,7 +122,7 @@ const HomeAd = () => {
 
 	useEffect(() => {
 		const uluusId = uluus.filter(item => selected.includes(item.name)).map(item => item = item.id);
-		const api = input || uluusId.length ? `https://uluus.ru/${category === 'advert' || input === '' ? 'api/' : 'search/'}${category}/${input ? input + '/' : ''}?limit=${advertCount}&offset=${(page - 1) * advertCount}&uluus=${uluusId.join(',')}` : `https://uluus.ru/api/${category}/?limit=${advertCount}&offset=${(page - 1) * advertCount}`;
+		const api = input || uluusId.length ? `https://uluus.ru/${input === '' ? 'api/' : 'search/'}${category}/${input ? input + '/' : ''}?limit=${advertCount}&offset=${(page - 1) * advertCount}&uluus=${uluusId.join(',')}` : `https://uluus.ru/api/${category}/?limit=${advertCount}&offset=${(page - 1) * advertCount}`;
 		axios
 			.get(api)
 			.then((response) => {
@@ -131,8 +130,6 @@ const HomeAd = () => {
 				const request = response.data;
 				setAdverts(request.results);
 				setCount(Math.ceil(request.count / advertCount));
-				// if (prevCategory !== category) setPage(1);
-				// setPrevCategory(category);
 			})
 			.catch((error) => {
 				console.log('error', error);
@@ -142,7 +139,7 @@ const HomeAd = () => {
 	const handleSubmit = (event) => {
 		const uluusId = uluus.filter(item => selected.includes(item.name)).map(item => item = item.id);
 		setPage(1);
-		const api = input || uluusId.length ? `https://uluus.ru/${category === 'advert' || input === '' ? 'api/' : 'search/'}${category}/${input ? input + '/' : ''}?uluus=${uluusId.join(',')}` : `https://uluus.ru/api/${category}/?limit=${advertCount}&offset=${(page - 1) * advertCount}`;
+		const api = input || uluusId.length ? `https://uluus.ru/${input === '' ? 'api/' : 'search/'}${category}/${input ? input + '/' : ''}?uluus=${uluusId.join(',')}` : `https://uluus.ru/api/${category}/?limit=${advertCount}&offset=${(page - 1) * advertCount}`;
 		axios
 			.get(api)
 			.then((response) => {
@@ -150,7 +147,6 @@ const HomeAd = () => {
 				const request = response.data;
 				setAdverts(request.results);
 				setCount(Math.ceil(request.count / advertCount));
-				setPrevCategory(category);
 			})
 			.catch((error) => {
 				console.log('error', error);
