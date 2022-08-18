@@ -1,15 +1,15 @@
 from rest_framework import serializers
 
 from ..models import (
-    AdvertRemont,
-    RemontImages,
+    Advert,
+    AdvertImages,
 )
 
 
 class RemontImageSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = RemontImages
+        model = AdvertImages
         fields = ('id','image',)
 
 
@@ -21,7 +21,7 @@ class RemontSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
 
     class Meta:
-        model = AdvertRemont
+        model = Advert
         fields = (
             "id",
             "name",
@@ -34,7 +34,7 @@ class RemontSerializer(serializers.ModelSerializer):
             "settlement",
             "uluus",
             "price",
-            "category",
+            "subcategory",
             "action",
             "is_premium",
             "slug",
@@ -47,11 +47,11 @@ class RemontSerializer(serializers.ModelSerializer):
         uluuses = validated_data.pop('uluus')
         if 'images' in validated_data:
             images = validated_data.pop('images')
-            advert = AdvertRemont.objects.create(**validated_data)
+            advert = Advert.objects.create(**validated_data)
             for img in images:
-                RemontImages.objects.create(**img, post=advert)
+                AdvertImages.objects.create(**img, post=advert)
         else:
-            advert = AdvertRemont.objects.create(**validated_data)
+            advert = Advert.objects.create(**validated_data)
         advert.slug = 'remont'
         advert.uluus.set(uluuses)
         advert.save(update_fields=["slug"])
@@ -61,6 +61,6 @@ class RemontSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_image(obj):
         return RemontImageSerializer(
-            RemontImages.objects.filter(post_id=obj.id),
+            AdvertImages.objects.filter(post_id=obj.id),
             many=True
         ).data

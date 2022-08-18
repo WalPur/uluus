@@ -1,15 +1,15 @@
 from rest_framework import serializers
 
 from ..models import (
-    AdvertService,
-    ServiceImages,
+    Advert,
+    AdvertImages,
 )
 
 
 class ServiceImageSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = ServiceImages
+        model = AdvertImages
         fields = ('id','image',)
 
 
@@ -21,7 +21,7 @@ class ServiceSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
 
     class Meta:
-        model = AdvertService
+        model = Advert
         fields = (
             "id",
             "name",
@@ -34,7 +34,7 @@ class ServiceSerializer(serializers.ModelSerializer):
             "settlement",
             "uluus",
             "price",
-            "category",
+            "subcategory",
             "action",
             "is_premium",
             "slug",
@@ -47,11 +47,11 @@ class ServiceSerializer(serializers.ModelSerializer):
         uluuses = validated_data.pop('uluus')
         if 'images' in validated_data:
             images = validated_data.pop('images')
-            advert = AdvertService.objects.create(**validated_data)
+            advert = Advert.objects.create(**validated_data)
             for img in images:
-                ServiceImages.objects.create(**img, post=advert)
+                AdvertImages.objects.create(**img, post=advert)
         else:
-            advert = AdvertService.objects.create(**validated_data)
+            advert = Advert.objects.create(**validated_data)
         advert.slug = 'service'
         advert.uluus.set(uluuses)
         advert.save(update_fields=["slug"])
@@ -61,6 +61,6 @@ class ServiceSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_image(obj):
         return ServiceImageSerializer(
-            ServiceImages.objects.filter(post=obj.id),
+            AdvertImages.objects.filter(post=obj.id),
             many=True
         ).data

@@ -2,6 +2,7 @@ from django_elasticsearch_dsl import Document, fields
 from django_elasticsearch_dsl.registries import registry
 
 from .models import (
+    Advert,
     AdvertRent,
     AdvertCar,
     AdvertFood,
@@ -27,7 +28,7 @@ class RentDocument(Document):
         }
 
     class Django:
-        model = AdvertRent
+        model = Advert
         fields = (
             "name",
             "description",
@@ -37,7 +38,9 @@ class RentDocument(Document):
             "settlement",
             "price",
             "improvement",
-            "category",
+            "transmission",
+            "drive_unit",
+            "subcategory",
             "action",
             "is_premium",
             "slug",
@@ -60,7 +63,7 @@ class CarDocument(Document):
         }
 
     class Django:
-        model = AdvertCar
+        model = Advert
         fields = (
             "name",
             "description",
@@ -69,9 +72,10 @@ class CarDocument(Document):
             "user_name",
             "settlement",
             "price",
+            "improvement",
             "transmission",
             "drive_unit",
-            "category",
+            "subcategory",
             "action",
             "is_premium",
             "slug",
@@ -95,7 +99,7 @@ class ServiceDocument(Document):
         }
 
     class Django:
-        model = AdvertService
+        model = Advert
         fields = (
             "name",
             "description",
@@ -104,7 +108,10 @@ class ServiceDocument(Document):
             "user_name",
             "settlement",
             "price",
-            "category",
+            "improvement",
+            "transmission",
+            "drive_unit",
+            "subcategory",
             "action",
             "is_premium",
             "slug",
@@ -128,7 +135,7 @@ class HomeDocument(Document):
         }
 
     class Django:
-        model = AdvertHome
+        model = Advert
         fields = (
             "name",
             "description",
@@ -137,7 +144,10 @@ class HomeDocument(Document):
             "user_name",
             "settlement",
             "price",
-            "category",
+            "improvement",
+            "transmission",
+            "drive_unit",
+            "subcategory",
             "action",
             "is_premium",
             "slug",
@@ -161,7 +171,7 @@ class FoodDocument(Document):
         }
 
     class Django:
-        model = AdvertFood
+        model = Advert
         fields = (
             "name",
             "description",
@@ -170,7 +180,10 @@ class FoodDocument(Document):
             "user_name",
             "settlement",
             "price",
-            "category",
+            "improvement",
+            "transmission",
+            "drive_unit",
+            "subcategory",
             "action",
             "is_premium",
             "slug",
@@ -194,7 +207,7 @@ class JobsDocument(Document):
         }
 
     class Django:
-        model = AdvertJobs
+        model = Advert
         fields = (
             "name",
             "description",
@@ -203,7 +216,10 @@ class JobsDocument(Document):
             "user_name",
             "settlement",
             "price",
-            "category",
+            "improvement",
+            "transmission",
+            "drive_unit",
+            "subcategory",
             "action",
             "is_premium",
             "slug",
@@ -227,7 +243,7 @@ class RemontDocument(Document):
         }
 
     class Django:
-        model = AdvertRemont
+        model = Advert
         fields = (
             "name",
             "description",
@@ -236,7 +252,10 @@ class RemontDocument(Document):
             "user_name",
             "settlement",
             "price",
-            "category",
+            "improvement",
+            "transmission",
+            "drive_unit",
+            "subcategory",
             "action",
             "is_premium",
             "slug",

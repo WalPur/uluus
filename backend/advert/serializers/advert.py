@@ -6,15 +6,15 @@ from ..models import (
 )
 
 
-class RentImageSerializer(serializers.ModelSerializer):
+class ImageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = AdvertImages
         fields = ('id','image',)
 
 
-class RentSerializer(serializers.ModelSerializer):
-    images = RentImageSerializer(
+class Serializer(serializers.ModelSerializer):
+    images = ImageSerializer(
         many=True,
         required=False
     )
@@ -34,6 +34,8 @@ class RentSerializer(serializers.ModelSerializer):
             "settlement",
             "uluus",
             "price",
+            "transmission",
+            "drive_unit",
             "improvement",
             "subcategory",
             "action",
@@ -43,25 +45,9 @@ class RentSerializer(serializers.ModelSerializer):
             "date",
         )
     
-    def create(self, validated_data):
-
-        uluuses = validated_data.pop('uluus')
-        if 'images' in validated_data:
-            images = validated_data.pop('images')
-            advert = Advert.objects.create(**validated_data)
-            for img in images:
-                AdvertImages.objects.create(**img, post=advert)
-        else:
-            advert = Advert.objects.create(**validated_data)
-        advert.slug = 'rent'
-        advert.uluus.set(uluuses)
-        advert.save(update_fields=["slug"])
-
-        return advert
-    
     @staticmethod
     def get_image(obj):
-        return RentImageSerializer(
-            AdvertImages.objects.filter(post_id=obj.id),
+        return ImageSerializer(
+            AdvertImages.objects.filter(post=obj.id),
             many=True
         ).data

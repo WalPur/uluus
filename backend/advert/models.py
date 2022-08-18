@@ -1,6 +1,6 @@
 from django.db import models
 
-from . import subcategories, actions, oddFields
+from . import subcategories, actions, oddFields, types
 
 
 class Uluss(models.Model):
@@ -423,6 +423,104 @@ class AdvertRemont(models.Model):
     class Meta:
         verbose_name = 'Объявление ремонта и строительства'
         verbose_name_plural = 'Объявления ремонта и строительства'
+
+
+class Advert(models.Model):
+    """Общая модель объявлений"""
+
+    # Общие поля
+    name = models.CharField(max_length=255, verbose_name="Заголовок объявления")
+    description = models.TextField(verbose_name="Описание")
+    phone = models.CharField(max_length=255, verbose_name='Номер телефона')
+    is_whatsapp = models.BooleanField(verbose_name='Есть Whatsapp')
+    user_name = models.CharField(verbose_name='Имя', max_length=255)
+    settlement = models.CharField(
+        verbose_name='Населенный пункт',
+        max_length=255
+    )
+    uluus = models.ManyToManyField(
+        Uluss,
+        verbose_name="Улус объявления",
+        blank=True,
+    )
+    price = models.PositiveIntegerField(
+        verbose_name="Цена",
+        default=0,
+    )
+    is_premium = models.BooleanField(
+        verbose_name='Премиум',
+        default=False
+    )
+
+    # Разделяющие поля
+    subcategory = models.CharField(
+        choices=subcategories.Subcategories.choices,
+        max_length=128,
+        verbose_name="Подкатегория объявления"
+    )
+    action = models.CharField(
+        choices=actions.Actions.choices,
+        max_length=128,
+        verbose_name="Действия объявления"
+    )
+
+    # Опциональные поля
+    improvement = models.CharField(
+        choices=oddFields.RentImprovement.choices,
+        max_length=128,
+        default=None,
+        verbose_name="Благоустройство",
+        null=True
+    )
+    transmission = models.CharField(
+        choices=oddFields.CarTransmisson.choices,
+        max_length=128,
+        default=None,
+        verbose_name='Коробка авто',
+        null=True
+    )
+    drive_unit = models.CharField(
+        choices=oddFields.CarDriveUnit.choices,
+        max_length=128,
+        default=None,
+        verbose_name="Привод авто",
+        null=True
+    )
+
+    # Мета поля
+    slug = models.SlugField(max_length=200, blank=True)
+    views = models.IntegerField(default=0, blank=0)
+    date = models.DateTimeField(
+        auto_now=True,
+        verbose_name="Время отправки объявления"
+    )
+
+    def __str__(self):
+        return self.name
+    class Meta:
+        verbose_name = 'Объявление'
+        verbose_name_plural = 'Объявления'
+
+
+class AdvertImages(models.Model):
+    """Модель картинок объявления"""
+
+    post = models.ForeignKey(
+        Advert,
+        verbose_name="Объявление",
+        on_delete=models.CASCADE,
+    )
+    image = models.ImageField(
+        upload_to='Images/',
+        verbose_name="Изображение",
+    )
+
+    def __str__(self):
+        return f'{self.post} изображение'
+
+    class Meta:
+        verbose_name = 'Изображение объявления'
+        verbose_name_plural = 'Изображения объявления'
 
 
 class RentImages(models.Model):

@@ -37,3 +37,22 @@ class RemontActions(models.TextChoices):
     SELL = 'SELL'
     BUY = 'BUY'
     TRADE = 'TRADE'
+
+
+class Actions(models.TextChoices):
+    """Действия объявления"""
+
+    # Действия недвижимости
+    SELL = 'SELL'
+    BUY = 'BUY'
+    TRADE = 'TRADE'
+    RENT_OUT = 'RENT_OUT'
+    TO_RENT = 'TO_RENT'
+
+    # Действия услуг
+    PROVIDE = 'PROVIDE'
+    USE = 'USE'
+
+    # Действия для вакансий
+    PERMANENTLY = 'PERMANENTLY'
+    TEMPORALLY = 'TEMPORALLY'

@@ -1,15 +1,15 @@
 from rest_framework import serializers
 
 from ..models import (
-    AdvertFood,
-    FoodImages,
+    Advert,
+    AdvertImages,
 )
 
 
 class FoodImageSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = FoodImages
+        model = AdvertImages
         fields = ('id','image',)
 
 
@@ -21,7 +21,7 @@ class FoodSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
 
     class Meta:
-        model = AdvertFood
+        model = Advert
         fields = (
             "id",
             "name",
@@ -34,7 +34,7 @@ class FoodSerializer(serializers.ModelSerializer):
             "settlement",
             "uluus",
             "price",
-            "category",
+            "subcategory",
             "action",
             "is_premium",
             "slug",
@@ -47,11 +47,11 @@ class FoodSerializer(serializers.ModelSerializer):
         uluuses = validated_data.pop('uluus')
         if 'images' in validated_data:
             images = validated_data.pop('images')
-            advert = AdvertFood.objects.create(**validated_data)
+            advert = Advert.objects.create(**validated_data)
             for img in images:
-                FoodImages.objects.create(**img, post=advert)
+                AdvertImages.objects.create(**img, post=advert)
         else:
-            advert = AdvertFood.objects.create(**validated_data)
+            advert = Advert.objects.create(**validated_data)
         advert.slug = 'food'
         advert.uluus.set(uluuses)
         advert.save(update_fields=["slug"])
@@ -61,6 +61,6 @@ class FoodSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_image(obj):
         return FoodImageSerializer(
-            FoodImages.objects.filter(post=obj.id),
+            AdvertImages.objects.filter(post=obj.id),
             many=True
         ).data
