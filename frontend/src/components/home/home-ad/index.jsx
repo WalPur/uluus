@@ -6,6 +6,7 @@ import axios from 'axios';
 import { Box, Container, Input, Button, Pagination, Select, MenuItem, Checkbox, InputLabel, ListItemIcon, FormControl } from '@mui/material';
 import { styled } from '@mui/system';
 import SearchIcon from '@mui/icons-material/Search';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { AdCard } from '../../';
 import { Title, Text20 } from '../../../global-styles';
@@ -187,7 +188,7 @@ const HomeAd = () => {
 
 								return (
 									<Box sx={{ display: 'flex', width: '100%' }}>
-										<Text20 sx={{ width: '100%', overflow: 'hidden' }}>{selected.join(", ")}</Text20>
+										<Text20 sx={{ width: '100%', overflow: 'hidden', }}>{selected.join(", ")}</Text20>
 									</Box>
 								);
 							}}
@@ -218,7 +219,7 @@ const HomeAd = () => {
 								</MenuItem>
 							))}
 						</CustomSelect>
-						<CustomButton type='submit'>
+						<CustomButton type='submit' sx={{ borderRadius: '4.8px' }}>
 							<Text20 sx={{
 								color: '#FFF',
 								textTransform: 'none',
