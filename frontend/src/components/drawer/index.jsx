@@ -176,28 +176,16 @@ const Drawer = (props) => {
 			}}>
 				<MenuIcon fontSize='large' sx={{ cursor: 'pointer', color: '#0D6EFD' }} onClick={toggleDrawer(true)} />
 				<Box>
-					<Link
+					<CustomButton
 						to='/ad-post'
-						style={{
-							display: 'flex',
-							gap: 6,
-							textDecoration: 'none',
-							color: '#000',
-						}}
+						onClick={toggleDrawer(false)}
 					>
-						<Text16>
-							<CustomButton
-								to='/ad-post'
-								onClick={toggleDrawer(false)}
-							>
-								<Text16 sx={{
-									color: '#FFF',
-								}}>
-									Подать объявление
-								</Text16>
-							</CustomButton>
+						<Text16 sx={{
+							color: '#FFF',
+						}}>
+							Подать объявление
 						</Text16>
-					</Link>
+					</CustomButton>
 				</Box>
 			</Box>
 			<SwipeableDrawer
