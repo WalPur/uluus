@@ -39,7 +39,6 @@ router.register('premium', formPremium, basename='premium')
 urlpatterns = [
     # path('premium/', formPremium.as_view(), name='card-form'),
     # path('adverts/', formAll.as_view(), name='card-form'),
-    path('adverts/<str:q>/', formSearch.as_view(), name='card-form'),
     path('rent/<int:id>/', formRentId.as_view(), name='rent advert page'),
     path('car/<int:id>/', formCarId.as_view(), name='car advert page'),
     path('service/<int:id>/', formServiceId.as_view(), name='service advert page'),

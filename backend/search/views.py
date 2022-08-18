@@ -12,7 +12,8 @@ from advert.documents import (
     HomeDocument,
     JobsDocument,
     ServiceDocument,
-    RemontDocument
+    RemontDocument,
+    AdvertDocument
 )
 from advert.serializers import (
     advert,
@@ -237,3 +238,24 @@ class SearchRemont(PaginatedElasticSearchAPIView):
                 },
             }
         )
+
+
+class SearchAdvert(PaginatedElasticSearchAPIView):
+    serializer_class = advert.Serializer
+    document_class = AdvertDocument
+
+    def generate_q_expression(self, query):
+        return Q(
+            {
+                "multi_match": {
+                    "query": query,
+                    "fields": [
+                        "name",
+                        "description",
+                        "user_name",
+                    ],
+                    "fuzziness":'auto'
+                }
+            }
+        )
+

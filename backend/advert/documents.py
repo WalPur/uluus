@@ -262,3 +262,39 @@ class RemontDocument(Document):
             "views",
             "date",
         )
+
+
+@registry.register_document
+class AdvertDocument(Document):
+    id = fields.IntegerField()
+    uluus = fields.NestedField(properties={
+        'name': fields.TextField(),
+        'pk': fields.IntegerField(),
+    })
+    class Index:
+        name = 'adverts'
+        settings = {
+            'number_of_shards': 1,
+            'number_of_replicas': 0,
+        }
+
+    class Django:
+        model = Advert
+        fields = (
+            "name",
+            "description",
+            "phone",
+            "is_whatsapp",
+            "user_name",
+            "settlement",
+            "price",
+            "improvement",
+            "transmission",
+            "drive_unit",
+            "subcategory",
+            "action",
+            "is_premium",
+            "slug",
+            "views",
+            "date",
+        )

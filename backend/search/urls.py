@@ -8,6 +8,7 @@ from search.views import (
     SearchService,
     SearchRent,
     SearchRemont,
+    SearchAdvert,
 )
 
 urlpatterns = [
@@ -18,4 +19,5 @@ urlpatterns = [
     path('service/<str:query>/', SearchService.as_view()),
     path('rent/<str:query>/', SearchRent.as_view()),
     path('remont/<str:query>/', SearchRemont.as_view()),
+    path('advert/<str:query>/', SearchAdvert.as_view()),
 ]
