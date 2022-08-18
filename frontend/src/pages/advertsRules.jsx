@@ -103,7 +103,7 @@ function AdvertsRules() {
 		'Режим работы: пн-вс с 9:00 до 21:00',
 	];
 	return (
-		<Box sx={{
+		<Box id='adverts-rules' sx={{
 			padding: '33px 0',
 			display: 'flex',
 			flexDirection: 'column',

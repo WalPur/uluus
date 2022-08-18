@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 import { Box, Container } from '@mui/material';
 import { styled } from '@mui/system';
@@ -46,15 +46,15 @@ const Footer = () => {
 	const routes = [
 		{
 			label: 'Контакты',
-			path: '/contacts'
+			path: '/contacts#contacts'
 		},
 		{
 			label: 'Правила подачи объявлений',
-			path: '/adverts-rules'
+			path: '/adverts-rules#adverts-rules'
 		},
 		{
 			label: 'Пользовательское соглашение',
-			path: '/privacy-policy'
+			path: '/privacy-policy#privacy-policy'
 		},
 	];
 	return (
@@ -66,7 +66,7 @@ const Footer = () => {
 				<CustomBox>
 					<RoutesBox>
 						{routes.map((route, index) => (
-							<Link
+							<HashLink
 								to={route.path}
 								key={index}
 								style={{ textDecoration: 'none' }}
@@ -74,7 +74,7 @@ const Footer = () => {
 								<CustomText16>
 									{route.label}
 								</CustomText16>
-							</Link>
+							</HashLink>
 						))}
 					</RoutesBox>
 					<Box sx={{

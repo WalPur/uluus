@@ -109,7 +109,7 @@ function PrivacyPolicy() {
 		'Общество с ограниченной ответственностью «Театр эстрады “Саха концерт”». Адрес: 677010, Республика Саха (Якутия), город Якутск, улица Якова Потапова дом 19, 2 квартира',
 	];
 	return (
-		<Box sx={{
+		<Box id='privacy-policy' sx={{
 			padding: '33px 0',
 			display: 'flex',
 			flexDirection: 'column',

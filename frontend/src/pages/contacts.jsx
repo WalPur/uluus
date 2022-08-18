@@ -28,7 +28,7 @@ function Contacts() {
 		},
 	];
 	return (
-		<Box sx={{
+		<Box id='contacts' sx={{
 			padding: '33px 0',
 			display: 'flex',
 			flexDirection: 'column',
