@@ -77,7 +77,6 @@ const Drawer = (props) => {
 	};
 
 	const toggleDrawer2 = (open, value) => (event) => {
-		console.log(value);
 		dispatch(setCategory(value));
 		if (
 			event &&
