@@ -49,6 +49,7 @@ const CustomInput = styled(Input)(({ theme }) => ({
 	[theme.breakpoints.down('sm')]: {
 		padding: '4px 8px',
 		fontSize: '16px',
+		borderRadius: '4.8px',
 	}
 }));
 const CustomForm = styled('form')(({ theme }) => ({
@@ -60,6 +61,7 @@ const CustomForm = styled('form')(({ theme }) => ({
 	}
 }));
 const CustomSelect = styled(Select)(({ theme }) => ({
+	borderRadius: '4.8px 0px 0px 4.8px',
 	width: '80%',
 	background: '#FFF',
 	[theme.breakpoints.down('md')]: {
@@ -67,6 +69,7 @@ const CustomSelect = styled(Select)(({ theme }) => ({
 	},
 	[theme.breakpoints.down('sm')]: {
 		width: '100%',
+		borderRadius: '4.8px',
 	}
 }));
 
@@ -219,7 +222,7 @@ const HomeAd = () => {
 								</MenuItem>
 							))}
 						</CustomSelect>
-						<CustomButton type='submit' sx={{ borderRadius: '4.8px' }}>
+						<CustomButton type='submit' sx={{ /*borderRadius: '4.8px' */ }}>
 							<Text20 sx={{
 								color: '#FFF',
 								textTransform: 'none',
