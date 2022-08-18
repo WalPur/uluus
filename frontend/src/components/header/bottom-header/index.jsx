@@ -27,7 +27,6 @@ const CustomLink = styled(HashLink)(({ theme }) => ({
 
 const BottomHeader = (props) => {
 	const category = useSelector((state) => state.category.value);
-	console.log(category);
 	const data = props.data;
 	const dispatch = useDispatch();
 	return (

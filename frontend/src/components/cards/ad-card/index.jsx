@@ -93,6 +93,9 @@ const AdCard = (props) => {
 						</Text12>
 					</Box>
 					<Text14>
+						{data.price} рублей
+					</Text14>
+					<Text14>
 						{data.phone}
 					</Text14>
 				</LeftBox>

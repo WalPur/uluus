@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router';
 
 import { Box } from '@mui/material';
 
-import { Text16, Text12 } from '../../../global-styles';
+import { Text16, Text14, Text12 } from '../../../global-styles';
 
 const GoldCard = (props) => {
 	const navigate = useNavigate();
@@ -23,9 +23,14 @@ const GoldCard = (props) => {
 				<Text12 sx={{ flexGrow: 1, mb: 1, }}>
 					{data.description}
 				</Text12>
+				<Text14 sx={{ mb: 1 }}>
+					{data.price} рублей
+				</Text14>
 				<Box sx={{
 					display: 'flex',
+					flexWrap: 'wrap',
 					justifyContent: 'space-between',
+					gap: '5px',
 				}}>
 					<Text12>
 						{date.toLocaleString().slice(0, -3)}

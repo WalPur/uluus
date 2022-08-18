@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
-import { Box, Typography } from '@mui/material';
+import { Box, Typography, MenuItem } from '@mui/material';
 import { styled } from '@mui/material';
 
 import { Text20, Text16 } from '../../../global-styles';
@@ -60,17 +60,22 @@ const TopHeader = (props) => {
 				display: 'flex',
 				justifyContent: 'end',
 			}}>
-				<CustomLink2
-					href='https://sakhaconcert.ru/'
-					target='_blank'
+				<MenuItem
+					sx={{
+						'&:hover p': {
+							color: '#82B4FF',
+						}
+					}}
+					onClick={() => window.open('https://sakhaconcert.ru/', '_blank')}
 				>
 					<Text20 sx={{
-						color: '#FFF',
+						color: '#0D6EFD',
 						width: 'fit-content',
+						textDecoration: 'underline',
 					}}>
-						Мероприятия
+						САХАКОНЦЕРТ.RU
 					</Text20>
-				</CustomLink2>
+				</MenuItem>
 			</Box>
 			<CustomLink
 				to='/ad-post'
