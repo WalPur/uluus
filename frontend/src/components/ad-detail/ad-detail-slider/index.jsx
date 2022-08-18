@@ -53,10 +53,51 @@ const CustomBox = styled(Box)(({ theme }) => ({
 	height: '300px',
 	overflow: 'hidden',
 	[theme.breakpoints.down('sm')]: {
-		height: '200px',
+		maxHeight: '200px',
+		width: '100%',
 	},
 	[theme.breakpoints.down(400)]: {
-		height: '150px',
+		maxHeight: '150px',
+	},
+}));
+const CustomImage = styled('img')(({ theme }) => ({
+	height: '100%!important',
+	width: 'auto!important',
+	[theme.breakpoints.down('md')]: {
+		height: '100%!important',
+		width: 'auto!important',
+	},
+	[theme.breakpoints.down(700)]: {
+		height: 'auto!important',
+		width: '100%!important',
+	},
+	[theme.breakpoints.down('sm')]: {
+		height: '100%!important',
+		width: 'auto!important',
+	},
+	[theme.breakpoints.down(400)]: {
+		height: 'auto!important',
+		width: '100%!important',
+	},
+}));
+const CustomImage2 = styled('img')(({ theme }) => ({
+	height: 'auto!important',
+	width: '100%!important',
+	[theme.breakpoints.down('md')]: {
+		height: 'auto!important',
+		width: '100%!important',
+	},
+	[theme.breakpoints.down(700)]: {
+		height: 'auto!important',
+		width: '100%!important',
+	},
+	[theme.breakpoints.down('sm')]: {
+		height: '100%!important',
+		width: 'auto!important',
+	},
+	[theme.breakpoints.down(400)]: {
+		height: 'auto!important',
+		width: '100%!important',
 	},
 }));
 function SampleNextArrow(props) {
@@ -140,7 +181,7 @@ const AdDetailSlider = (props) => {
 					<CustomBox
 						key={index}
 					>
-						<img src={'https://uluus.ru' + item.image} style={{ width: 'auto', height: '100%', overflow: 'hidden' }} />
+						<CustomImage src={'https://uluus.ru' + item.image} style={{ overflow: 'hidden' }} />
 					</CustomBox>
 				))}
 			</CustomSlider>
@@ -161,7 +202,7 @@ const AdDetailSlider = (props) => {
 							height: '120px',
 						}}
 					>
-						<img src={'https://uluus.ru' + item.image} style={{ maxWidth: '90%', width: 'auto', height: '100%', overflow: 'hidden', cursor: 'pointer', }} />
+						<CustomImage2 src={'https://uluus.ru' + item.image} style={{ maxWidth: '90%', width: 'auto', height: '100%', overflow: 'hidden', cursor: 'pointer', }} />
 					</Box>
 				))}
 			</CustomSlider2>

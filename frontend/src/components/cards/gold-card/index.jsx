@@ -8,6 +8,10 @@ import { Text16, Text14, Text12 } from '../../../global-styles';
 const CustomImage = styled('img')(({ theme }) => ({
 	height: '100%',
 	width: 'auto',
+	[theme.breakpoints.down('sm')]: {
+		width: '100%',
+		height: 'auto',
+	}
 }));
 const ImageBox = styled(Box)(({ theme }) => ({
 	display: 'flex',
@@ -16,7 +20,8 @@ const ImageBox = styled(Box)(({ theme }) => ({
 	height: '130px',
 	overflow: 'hidden',
 	[theme.breakpoints.down('sm')]: {
-		maxHeight: 'none',
+		width: '100%',
+		height: 'auto',
 	}
 }))
 

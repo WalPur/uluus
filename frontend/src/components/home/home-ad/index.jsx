@@ -126,7 +126,6 @@ const HomeAd = () => {
 		axios
 			.get(api)
 			.then((response) => {
-				console.log(response);
 				const request = response.data;
 				setAdverts(request.results);
 				setCount(Math.ceil(request.count / advertCount));
@@ -143,7 +142,6 @@ const HomeAd = () => {
 		axios
 			.get(api)
 			.then((response) => {
-				console.log(response);
 				const request = response.data;
 				setAdverts(request.results);
 				setCount(Math.ceil(request.count / advertCount));
