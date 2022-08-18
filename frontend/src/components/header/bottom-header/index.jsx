@@ -1,5 +1,6 @@
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 import { Box } from '@mui/material';
 import { styled } from '@mui/material';
@@ -7,7 +8,7 @@ import { styled } from '@mui/material';
 import { Text12 } from '../../../global-styles';
 import { setCategory } from '../../../slices/categorySlice';
 
-const CustomLink = styled(Link)(({ theme }) => ({
+const CustomLink = styled(HashLink)(({ theme }) => ({
 	display: 'block',
 	cursor: 'pointer',
 	color: '#FFF',
@@ -25,6 +26,8 @@ const CustomLink = styled(Link)(({ theme }) => ({
 }));
 
 const BottomHeader = (props) => {
+	const category = useSelector((state) => state.category.value);
+	console.log(category);
 	const data = props.data;
 	const dispatch = useDispatch();
 	return (
@@ -35,7 +38,7 @@ const BottomHeader = (props) => {
 		}}>
 			{data.map((item, index) => (
 				<CustomLink
-					to='/'
+					to='/#Adverts'
 					onClick={() => {
 						dispatch(setCategory(item.value));
 					}}
@@ -45,7 +48,7 @@ const BottomHeader = (props) => {
 						className='header-img'
 						sx={{
 							mb: 1,
-							display: 'flex',
+							display: category !== item.value ? 'flex' : 'none',
 							justifyContent: 'center',
 							alignItems: 'center',
 							width: 92,
@@ -57,7 +60,7 @@ const BottomHeader = (props) => {
 					<Box
 						className='header-img-hover'
 						sx={{
-							display: 'none',
+							display: category === item.value ? 'flex' : 'none',
 							mb: 1,
 							justifyContent: 'center',
 							alignItems: 'center',
@@ -68,12 +71,13 @@ const BottomHeader = (props) => {
 						}}>
 						<img src={item.img_hovered} />
 					</Box>
-					<Text12 sx={{ display: 'none', textAlign: 'center' }}>
+					<Text12 sx={{ display: category === item.value ? 'block' : 'none', textAlign: 'center' }}>
 						{item.label}
 					</Text12>
 				</CustomLink>
-			))}
-		</Box>
+			))
+			}
+		</Box >
 	);
 }
 

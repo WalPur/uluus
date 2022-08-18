@@ -58,11 +58,11 @@
 				"register": "improvement",
 				"values": [
 					{
-						"label": "Бывшего употребления",
+						"label": "Б/у",
 						"value": "WAS_USED"
 					},
 					{
-						"label": "Черно-белое",
+						"label": "Ч/б",
 						"value": "BLACK"
 					},
 					{

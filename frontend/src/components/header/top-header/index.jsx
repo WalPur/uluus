@@ -1,9 +1,11 @@
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { Box, Typography } from '@mui/material';
 import { styled } from '@mui/material';
 
 import { Text20, Text16 } from '../../../global-styles';
+import { setCategory } from '../../../slices/categorySlice';
 
 const CustomLink = styled(Link)(({ theme }) => ({
 	padding: '3px 15px',
@@ -43,15 +45,16 @@ const CustomBox = styled(Box)(({ theme }) => ({
 
 const TopHeader = (props) => {
 	const uluus = props.uluus;
+	const dispatch = useDispatch();
 
 	return (
 		<CustomBox>
-			<Box sx={{ display: 'flex', gap: 0.8 }}>
+			<Link to='/' style={{ display: 'flex', gap: '8px', textDecoration: 'none' }} onClick={dispatch(setCategory('adverts'))}>
 				<img src='/images/uluusru_logo.svg' />
 				<Typography sx={{ fontFamily: 'ArciformSansRegular', fontSize: 32, color: '#2C318F', }}>
 					Uluus.ru
 				</Typography>
-			</Box>
+			</Link>
 			<Box sx={{
 				flexGrow: 1,
 				display: 'flex',
@@ -71,6 +74,7 @@ const TopHeader = (props) => {
 			</Box>
 			<CustomLink
 				to='/ad-post'
+				onClick={dispatch(setCategory('adverts'))}
 			>
 				<Text20 sx={{
 					color: '#FFF'

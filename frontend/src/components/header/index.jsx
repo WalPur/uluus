@@ -5,7 +5,7 @@ import TopHeader from './top-header';
 import BottomHeader from './bottom-header';
 import { Drawer } from '../';
 
-const HeaderBox = styled(Box)(({ theme }) => ({
+const HeaderDesktopBox = styled(Box)(({ theme }) => ({
 	padding: '15px 0 0 0',
 	[theme.breakpoints.down('md')]: {
 		display: 'none',
@@ -16,6 +16,15 @@ const HeaderMobileBox = styled(Box)(({ theme }) => ({
 	display: 'none',
 	[theme.breakpoints.down('md')]: {
 		display: 'block',
+	}
+}));
+const HeaderBox = styled(Box)(({ theme }) => ({
+	background: '#FFFFFF',
+	borderBottom: '2px solid #CED4DA',
+	[theme.breakpoints.down('md')]: {
+		position: 'sticky',
+		top: 0,
+		zIndex: 1000,
 	}
 }));
 
@@ -66,20 +75,17 @@ function Header(props) {
 		},
 	];
 	return (
-		<Box sx={{
-			background: '#FFFFFF',
-			borderBottom: '2px solid #CED4DA',
-		}}>
+		<HeaderBox>
 			<Container maxWidth='lg'>
-				<HeaderBox>
+				<HeaderDesktopBox>
 					<TopHeader />
 					<BottomHeader data={data} />
-				</HeaderBox>
+				</HeaderDesktopBox>
 				<HeaderMobileBox>
 					<Drawer data={data} />
 				</HeaderMobileBox>
 			</Container>
-		</Box>
+		</HeaderBox>
 	);
 }
 

@@ -11,6 +11,7 @@ import { AdCard } from '../../';
 import { Title, Text20 } from '../../../global-styles';
 
 const CustomButton = styled(Button)(({ theme }) => ({
+	width: '20%',
 	padding: '9px 17px',
 	display: 'flex',
 	alignItems: 'center',
@@ -23,9 +24,14 @@ const CustomButton = styled(Button)(({ theme }) => ({
 	'&:active': {
 		background: '#004FC4',
 	},
+	[theme.breakpoints.down('md')]: {
+		width: '25%',
+	},
 	[theme.breakpoints.down('sm')]: {
 		padding: '4px 8px',
 		gap: '4px',
+		width: '100%',
+		borderRadius: '4.8px',
 	}
 }));
 const CustomInput = styled(Input)(({ theme }) => ({
@@ -44,6 +50,24 @@ const CustomInput = styled(Input)(({ theme }) => ({
 		fontSize: '16px',
 	}
 }));
+const CustomForm = styled('form')(({ theme }) => ({
+	display: 'flex',
+	width: '100%',
+	[theme.breakpoints.down('sm')]: {
+		flexDirection: 'column',
+		gap: '5px',
+	}
+}));
+const CustomSelect = styled(Select)(({ theme }) => ({
+	width: '80%',
+	background: '#FFF',
+	[theme.breakpoints.down('md')]: {
+		width: '75%',
+	},
+	[theme.breakpoints.down('sm')]: {
+		width: '100%',
+	}
+}));
 
 const HomeAd = () => {
 	const category = useSelector((state) => state.category.value);
@@ -56,7 +80,15 @@ const HomeAd = () => {
 	const [selected, setSelected] = useState([]);
 	const [count, setCount] = useState(1);
 
+	const ITEM_HEIGHT = 48;
+	const ITEM_PADDING_TOP = 8;
 	const MenuProps = {
+		PaperProps: {
+			style: {
+				maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+				width: 250,
+			},
+		},
 		getContentAnchorEl: null,
 		anchorOrigin: {
 			vertical: "bottom",
@@ -130,7 +162,7 @@ const HomeAd = () => {
 	};
 
 	return (
-		<Box>
+		<Box id="Adverts">
 			<Container maxWidth='lg'>
 				<Box sx={{
 					display: 'flex',
@@ -140,35 +172,10 @@ const HomeAd = () => {
 					<Title>
 						Доска объявлений
 					</Title>
-					<form
+					<CustomForm
 						onSubmit={handleSubmit}
-						style={{
-							display: 'flex',
-						}}>
-						<CustomInput
-							onChange={(e) => setInput(e.target.value)}
-							placeholder='Поиск объявлений'
-						/>
-						<CustomButton type='submit'>
-							<SearchIcon sx={{
-								color: '#FFFFFF',
-								width: '22px',
-								height: '22px',
-							}} />
-							<Text20 sx={{
-								color: '#FFF',
-								textTransform: 'none',
-								lineHeight: '150%',
-							}}>
-								Найти
-							</Text20>
-						</CustomButton>
-					</form>
-					<FormControl>
-						<Select
-							sx={{
-								background: '#FFF',
-							}}
+					>
+						<CustomSelect
 							multiple
 							displayEmpty
 							value={selected}
@@ -178,7 +185,11 @@ const HomeAd = () => {
 									return <Text20 sx={{ opacity: 0.5, color: '#6c757d' }}>Выбрать улус</Text20>;
 								}
 
-								return <Text20>{selected.join(", ")}</Text20>;
+								return (
+									<Box sx={{ display: 'flex', width: '100%' }}>
+										<Text20 sx={{ width: '100%', overflow: 'hidden' }}>{selected.join(", ")}</Text20>
+									</Box>
+								);
 							}}
 							MenuProps={MenuProps}
 						>
@@ -206,8 +217,37 @@ const HomeAd = () => {
 									<Text20>{option}</Text20>
 								</MenuItem>
 							))}
-						</Select>
-					</FormControl>
+						</CustomSelect>
+						<CustomButton type='submit'>
+							<Text20 sx={{
+								color: '#FFF',
+								textTransform: 'none',
+								lineHeight: '150%',
+							}}>
+								Применить
+							</Text20>
+						</CustomButton>
+					</CustomForm>
+					<CustomForm onSubmit={handleSubmit}>
+						<CustomInput
+							onChange={(e) => setInput(e.target.value)}
+							placeholder='Поиск объявлений'
+						/>
+						<CustomButton type='submit'>
+							<SearchIcon sx={{
+								color: '#FFFFFF',
+								width: '22px',
+								height: '22px',
+							}} />
+							<Text20 sx={{
+								color: '#FFF',
+								textTransform: 'none',
+								lineHeight: '150%',
+							}}>
+								Найти
+							</Text20>
+						</CustomButton>
+					</CustomForm>
 					<Box sx={{
 						display: 'flex',
 						flexDirection: 'column',

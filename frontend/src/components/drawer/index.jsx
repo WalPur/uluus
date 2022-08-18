@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
 
 import { Box, SwipeableDrawer, Divider, Typography } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -10,7 +11,7 @@ import { styled } from '@mui/system';
 import { Text16 } from '../../global-styles';
 import { setCategory } from '../../slices/categorySlice';
 
-const CustomLink = styled(Link)(({ theme }) => ({
+const CustomLink = styled(HashLink)(({ theme }) => ({
 	display: 'flex',
 	textDecoration: 'none',
 	alignItems: 'center',
@@ -99,12 +100,17 @@ const Drawer = (props) => {
 				alignItems: 'center',
 				justifyContent: 'space-between',
 			}}>
-				<Box sx={{
-					display: 'flex',
-					gap: '5px',
-					alignItems: 'center',
-				}}>
-					<img src='images/uluusru_logo.svg' />
+				<HashLink
+					to='/'
+					onClick={toggleDrawer2(false, 'adverts')}
+					style={{
+						display: 'flex',
+						gap: '5px',
+						alignItems: 'center',
+						textDecoration: 'none',
+					}}
+				>
+					<img src='/images/uluusru_logo.svg' />
 					<Typography sx={{
 						fontFamily: 'ArciformSansRegular',
 						fontSize: '20px',
@@ -113,7 +119,7 @@ const Drawer = (props) => {
 					}}>
 						Uluus.ru
 					</Typography>
-				</Box>
+				</HashLink>
 				<CloseIcon fontSize='large' onClick={toggleDrawer(false)} />
 			</Box>
 			<Divider />
@@ -124,7 +130,7 @@ const Drawer = (props) => {
 				{data.map((item, index) => (
 					<Box key={index}>
 						<CustomLink
-							to='/'
+							to='/#Adverts'
 							onClick={toggleDrawer2(false, item.value)}
 						>
 							<Box
