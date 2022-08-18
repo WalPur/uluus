@@ -1,7 +1,5 @@
 import abc
-from itertools import chain
 
-from django.http import HttpResponse
 from elasticsearch_dsl import Q
 from rest_framework.pagination import LimitOffsetPagination
 from rest_framework.views import APIView
@@ -17,13 +15,7 @@ from advert.documents import (
     RemontDocument
 )
 from advert.serializers import (
-    car,
-    food,
-    home,
-    jobs,
-    rent,
-    service,
-    remont
+    advert,
 )
 
 
@@ -58,136 +50,190 @@ class PaginatedElasticSearchAPIView(APIView, LimitOffsetPagination):
 
 
 class SearchCar(PaginatedElasticSearchAPIView):
-    serializer_class = car.CarSerializer
+    serializer_class = advert.Serializer
     document_class = CarDocument
 
     def generate_q_expression(self, query):
         return Q(
-            "multi_match",
-            query=query,
-            fields=[
-                "name",
-                "description",
-                "user_name",
-            ],
-            fuzziness="auto",
+            {
+                "bool": {
+                    "must": {
+                        "multi_match": {
+                            "query": query,
+                            "fields": [
+                                "name",
+                                "description",
+                                "user_name",
+                            ],
+                            "fuzziness":'auto'
+                        }
+                    },
+                    "filter" : {
+                        "term": {"slug": "car"}
+                    }
+                },
+            }
         )
 
 
 class SearchFood(PaginatedElasticSearchAPIView):
-    serializer_class = food.FoodSerializer
+    serializer_class = advert.Serializer
     document_class = FoodDocument
 
     def generate_q_expression(self, query):
         return Q(
-            "multi_match",
-            query=query,
-            fields=[
-                "name",
-                "description",
-                "user_name",
-            ],
-            fuzziness="auto",
+            {
+                "bool": {
+                    "must": {
+                        "multi_match": {
+                            "query": query,
+                            "fields": [
+                                "name",
+                                "description",
+                                "user_name",
+                            ],
+                            "fuzziness":'auto'
+                        }
+                    },
+                    "filter" : {
+                        "term": {"slug": "food"}
+                    }
+                },
+            }
         )
 
 
 class SearchHome(PaginatedElasticSearchAPIView):
-    serializer_class = home.HomeSerializer
+    serializer_class = advert.Serializer
     document_class = HomeDocument
 
     def generate_q_expression(self, query):
         return Q(
-            "multi_match",
-            query=query,
-            fields=[
-                "name",
-                "description",
-                "user_name",
-            ],
-            fuzziness="auto",
+            {
+                "bool": {
+                    "must": {
+                        "multi_match": {
+                            "query": query,
+                            "fields": [
+                                "name",
+                                "description",
+                                "user_name",
+                            ],
+                            "fuzziness":'auto'
+                        }
+                    },
+                    "filter" : {
+                        "term": {"slug": "home"}
+                    }
+                },
+            }
         )
 
 
+
 class SearchJobs(PaginatedElasticSearchAPIView):
-    serializer_class = jobs.JobsSerializer
+    serializer_class = advert.Serializer
     document_class = JobsDocument
 
     def generate_q_expression(self, query):
         return Q(
-            "multi_match",
-            query=query,
-            fields=[
-                "name",
-                "description",
-                "user_name",
-            ],
-            fuzziness="auto",
+            {
+                "bool": {
+                    "must": {
+                        "multi_match": {
+                            "query": query,
+                            "fields": [
+                                "name",
+                                "description",
+                                "user_name",
+                            ],
+                            "fuzziness":'auto'
+                        }
+                    },
+                    "filter" : {
+                        "term": {"slug": "jobs"}
+                    }
+                },
+            }
         )
 
 
 class SearchService(PaginatedElasticSearchAPIView):
-    serializer_class = service.ServiceSerializer
+    serializer_class = advert.Serializer
     document_class = ServiceDocument
 
     def generate_q_expression(self, query):
         return Q(
-            "multi_match",
-            query=query,
-            fields=[
-                "name",
-                "description",
-                "user_name",
-            ],
-            fuzziness="auto",
+            {
+                "bool": {
+                    "must": {
+                        "multi_match": {
+                            "query": query,
+                            "fields": [
+                                "name",
+                                "description",
+                                "user_name",
+                            ],
+                            "fuzziness":'auto'
+                        }
+                    },
+                    "filter" : {
+                        "term": {"slug": "service"}
+                    }
+                },
+            }
         )
 
 
 class SearchRent(PaginatedElasticSearchAPIView):
-    serializer_class = rent.RentSerializer
+    serializer_class = advert.Serializer
     document_class = RentDocument
 
     def generate_q_expression(self, query):
         return Q(
-            "multi_match",
-            query=query,
-            fields=[
-                "name",
-                "description",
-                "user_name",
-            ],
-            fuzziness="auto",
+            {
+                "bool": {
+                    "must": {
+                        "multi_match": {
+                            "query": query,
+                            "fields": [
+                                "name",
+                                "description",
+                                "user_name",
+                            ],
+                            "fuzziness":'auto'
+                        }
+                    },
+                    "filter" : {
+                        "term": {"slug": "rent"}
+                    }
+                },
+            }
         )
 
 
 class SearchRemont(PaginatedElasticSearchAPIView):
-    serializer_class = remont.RemontSerializer
+    serializer_class = advert.Serializer
     document_class = RemontDocument
 
     def generate_q_expression(self, query):
         return Q(
-            "multi_match",
-            query=query,
-            fields=[
-                "name",
-                "description",
-                "user_name",
-            ],
-            fuzziness="auto",
-        )
-
-
-class SearchFood(PaginatedElasticSearchAPIView):
-    serializer_class = food.FoodSerializer
-    document_class = FoodDocument
-
-    def generate_q_expression(self, query):
-        return Q(
-            "multi_match",
-            query=query,
-            fields=[
-                "name",
-                "description",
-                "user_name",
-            ],
-            fuzziness="auto",
+            {
+                "bool": {
+                    "must": {
+                        "multi_match": {
+                            "query": query,
+                            "fields": [
+                                "name",
+                                "description",
+                                "user_name",
+                            ],
+                            "fuzziness":'auto'
+                        }
+                    },
+                    "filter" : {
+                        "term": {"slug": "remont"}
+                    }
+                },
+            }
         )

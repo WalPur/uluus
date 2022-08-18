@@ -1,15 +1,15 @@
 from rest_framework import serializers
 
 from ..models import (
-    AdvertCar,
-    CarImages,
+    Advert,
+    AdvertImages,
 )
 
 
 class CarImageSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = CarImages
+        model = AdvertImages
         fields = ('id','image',)
 
 
@@ -21,7 +21,7 @@ class CarSerializer(serializers.ModelSerializer):
     image = serializers.SerializerMethodField()
 
     class Meta:
-        model = AdvertCar
+        model = Advert
         fields = (
             "id",
             "name",
@@ -36,7 +36,7 @@ class CarSerializer(serializers.ModelSerializer):
             "price",
             "transmission",
             "drive_unit",
-            "category",
+            "subcategory",
             "action",
             "is_premium",
             "slug",
@@ -49,11 +49,11 @@ class CarSerializer(serializers.ModelSerializer):
         uluuses = validated_data.pop('uluus')
         if 'images' in validated_data:
             images = validated_data.pop('images')
-            advert = AdvertCar.objects.create(**validated_data)
+            advert = Advert.objects.create(**validated_data)
             for img in images:
-                CarImages.objects.create(**img, post=advert)
+                AdvertImages.objects.create(**img, post=advert)
         else:
-            advert = AdvertCar.objects.create(**validated_data)
+            advert = Advert.objects.create(**validated_data)
         advert.slug = 'car'
         advert.uluus.set(uluuses)
         advert.save(update_fields=["slug"])
@@ -63,6 +63,6 @@ class CarSerializer(serializers.ModelSerializer):
     @staticmethod
     def get_image(obj):
         return CarImageSerializer(
-            CarImages.objects.filter(post=obj.id),
+            AdvertImages.objects.filter(post=obj.id),
             many=True
         ).data
