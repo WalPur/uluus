@@ -451,6 +451,12 @@ class Advert(models.Model):
         verbose_name='Премиум',
         default=False
     )
+    premium_link = models.CharField(
+        verbose_name="Ссылка на премиум",
+        default="",
+        max_length=255,
+        null=True
+    )
 
     # Разделяющие поля
     subcategory = models.CharField(
