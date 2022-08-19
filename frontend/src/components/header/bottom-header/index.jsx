@@ -8,7 +8,7 @@ import { styled } from '@mui/material';
 import { Text12 } from '../../../global-styles';
 import { setCategory } from '../../../slices/categorySlice';
 
-const CustomLink = styled(HashLink)(({ theme }) => ({
+const CustomLink = styled(Link)(({ theme }) => ({
 	display: 'block',
 	cursor: 'pointer',
 	color: '#FFF',
@@ -37,7 +37,7 @@ const BottomHeader = (props) => {
 		}}>
 			{data.map((item, index) => (
 				<CustomLink
-					to='/#Adverts'
+					to='/'
 					onClick={() => {
 						dispatch(setCategory(item.value));
 					}}

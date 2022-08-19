@@ -4,21 +4,21 @@ import { Subtitle, Text20 } from '../global-styles';
 
 function Contacts() {
 	const data = [
+		// {
+		// 	title: 'Телефоны контактных центров',
+		// 	rows: [
+		// 		{
+		// 			label: 'Якутск',
+		// 			text: '+7 (914) 272-63-00',
+		// 		},
+		// 		{
+		// 			label: 'Регионы',
+		// 			text: '+7 (914) 272-63-00',
+		// 		},
+		// 	]
+		// },
 		{
-			title: 'Телефоны контактных центров',
-			rows: [
-				{
-					label: 'Якутск',
-					text: '+7 (914) 272-63-00',
-				},
-				{
-					label: 'Регионы',
-					text: '+7 (914) 272-63-00',
-				},
-			]
-		},
-		{
-			title: 'Отдел поддержки клиентов',
+			// title: 'Отдел поддержки клиентов',
 			rows: [
 				{
 					label: 'Электронная почта',
@@ -51,9 +51,13 @@ function Contacts() {
 							flexDirection: 'column',
 							gap: '20px',
 						}}>
-							<Subtitle sx={{ fontWeight: 700 }}>
-								{item.title}
-							</Subtitle>
+							{item.title ? (
+								<Subtitle sx={{ fontWeight: 700 }}>
+									{item.title}
+								</Subtitle>
+							) : (
+								<></>
+							)}
 							{item.rows.map((row, index) => (
 								<Box
 									key={index}

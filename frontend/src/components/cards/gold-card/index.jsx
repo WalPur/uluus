@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router';
+import { useNavigate, Link } from 'react-router';
 
 import { Box } from '@mui/material';
 import { styled } from '@mui/system';
@@ -58,15 +58,20 @@ const GoldCard = (props) => {
 					<Text12>
 						{date.toLocaleString().slice(0, -3)}
 					</Text12>
-					<Text12
-						onClick={() => navigate('/ad-detail/' + data.slug + '/' + data.id + '/')}
-						sx={{
+					<a
+						href={data.premium_link}
+						target='_blank'
+						style={{
 							cursor: 'pointer',
-							color: '#0D6EFD',
+							textDecoration: 'none',
 						}}
 					>
-						подробнее
-					</Text12>
+						<Text12 sx={{
+							color: '#0D6EFD',
+						}}>
+							подробнее
+						</Text12>
+					</a>
 				</Box>
 			</Box>
 		</Box>

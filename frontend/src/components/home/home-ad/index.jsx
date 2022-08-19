@@ -1,24 +1,35 @@
 import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
+import { HashLink } from 'react-router-hash-link';
 
 import axios from 'axios';
 
 import { Box, Container, Input, Button, Pagination, Select, MenuItem, Checkbox, InputLabel, ListItemIcon, FormControl } from '@mui/material';
 import { styled } from '@mui/system';
 import SearchIcon from '@mui/icons-material/Search';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import { AdCard } from '../../';
-import { Title, Text20 } from '../../../global-styles';
+import { Title, Text20, Text16 } from '../../../global-styles';
+import { HomeGold } from '../../';
 
+const CustomHashLink = styled(HashLink)(({ theme }) => ({
+	width: '15%',
+	borderRadius: '4.8px',
+	[theme.breakpoints.down('md')]: {
+		width: '23%',
+	},
+	[theme.breakpoints.down('sm')]: {
+		width: '100%',
+	}
+}));
 const CustomButton = styled(Button)(({ theme }) => ({
-	width: '20%',
-	padding: '9px 17px',
 	display: 'flex',
 	alignItems: 'center',
 	gap: '8px',
+	padding: '9px 17px',
 	background: '#0D6EFD',
-	borderRadius: '0px 4.8px 4.8px 0px',
+	width: '100%',
+	height: '100%',
 	'&:hover': {
 		background: '#589CFF',
 	},
@@ -26,13 +37,11 @@ const CustomButton = styled(Button)(({ theme }) => ({
 		background: '#004FC4',
 	},
 	[theme.breakpoints.down('md')]: {
-		width: '25%',
+		padding: '9px 9px',
 	},
 	[theme.breakpoints.down('sm')]: {
 		padding: '4px 8px',
 		gap: '4px',
-		width: '100%',
-		borderRadius: '4.8px',
 	}
 }));
 const CustomInput = styled(Input)(({ theme }) => ({
@@ -40,7 +49,7 @@ const CustomInput = styled(Input)(({ theme }) => ({
 	flexGrow: 1,
 	background: '#FFFFFF',
 	border: '1px solid #CED4DA',
-	borderRadius: '4.8px 0px 0px 4.8px',
+	borderRadius: '4.8px',
 	fontFamily: 'Open Sans, sans-serif',
 	fontWeight: 400,
 	fontSize: 20,
@@ -49,27 +58,26 @@ const CustomInput = styled(Input)(({ theme }) => ({
 	[theme.breakpoints.down('sm')]: {
 		padding: '4px 8px',
 		fontSize: '16px',
-		borderRadius: '4.8px',
 	}
 }));
 const CustomForm = styled('form')(({ theme }) => ({
 	display: 'flex',
 	width: '100%',
+	gap: '10px',
 	[theme.breakpoints.down('sm')]: {
 		flexDirection: 'column',
 		gap: '5px',
 	}
 }));
 const CustomSelect = styled(Select)(({ theme }) => ({
-	borderRadius: '4.8px 0px 0px 4.8px',
-	width: '80%',
+	borderRadius: '4.8px',
 	background: '#FFF',
+	width: '30%',
 	[theme.breakpoints.down('md')]: {
-		width: '75%',
+		// width: '75%',
 	},
 	[theme.breakpoints.down('sm')]: {
 		width: '100%',
-		borderRadius: '4.8px',
 	}
 }));
 
@@ -162,16 +170,13 @@ const HomeAd = () => {
 	};
 
 	return (
-		<Box id="Adverts">
+		<Box>
 			<Container maxWidth='lg'>
 				<Box sx={{
 					display: 'flex',
 					flexDirection: 'column',
 					gap: '33px',
 				}}>
-					<Title>
-						Доска объявлений
-					</Title>
 					<CustomForm
 						onSubmit={handleSubmit}
 					>
@@ -218,41 +223,42 @@ const HomeAd = () => {
 								</MenuItem>
 							))}
 						</CustomSelect>
-						<CustomButton type='submit' sx={{ /*borderRadius: '4.8px' */ }}>
-							<Text20 sx={{
-								color: '#FFF',
-								textTransform: 'none',
-								lineHeight: '150%',
-							}}>
-								Применить
-							</Text20>
-						</CustomButton>
-					</CustomForm>
-					<CustomForm onSubmit={handleSubmit}>
+						{/* <Box sx={{ flexGrow: 1, display: 'flex', }}> */}
 						<CustomInput
+							sx={{ flexGrow: 1 }}
 							onChange={(e) => setInput(e.target.value)}
-							placeholder='Поиск объявлений'
+							placeholder='Поиск объявлений по ключевым словам'
 						/>
-						<CustomButton type='submit'>
-							<SearchIcon sx={{
-								color: '#FFFFFF',
-								width: '22px',
-								height: '22px',
-							}} />
-							<Text20 sx={{
-								color: '#FFF',
-								textTransform: 'none',
-								lineHeight: '150%',
-							}}>
-								Найти
-							</Text20>
-						</CustomButton>
+						<CustomHashLink to='/#Adverts' style={{ textDecoration: 'none' }}>
+							<CustomButton type='submit'>
+								<SearchIcon sx={{
+									color: '#FFFFFF',
+									width: '22px',
+									height: '22px',
+								}} />
+								<Text20 sx={{
+									color: '#FFF',
+									textTransform: 'none',
+									lineHeight: '150%',
+								}}>
+									Найти
+								</Text20>
+							</CustomButton>
+						</CustomHashLink>
+						{/* </Box> */}
 					</CustomForm>
-					<Box sx={{
-						display: 'flex',
-						flexDirection: 'column',
-						gap: 1,
-					}}>
+					<Title>
+						Доска объявлений
+					</Title>
+					<HomeGold />
+					<Box
+						id='Adverts'
+						sx={{
+							display: 'flex',
+							flexDirection: 'column',
+							gap: 1,
+						}}
+					>
 						{adverts?.map((card, index) => (
 							<AdCard data={card} key={index} />
 						))}

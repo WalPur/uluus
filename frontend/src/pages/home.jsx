@@ -13,7 +13,7 @@ function Home() {
 			gap: '33px',
 		}}>
 			{/* <HomeSlider /> */}
-			<HomeGold />
+			{/* <HomeGold /> */}
 			<HomeAd />
 		</div>
 	)

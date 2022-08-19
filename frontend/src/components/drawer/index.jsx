@@ -11,11 +11,12 @@ import { styled } from '@mui/system';
 import { Text16 } from '../../global-styles';
 import { setCategory } from '../../slices/categorySlice';
 
-const CustomLink = styled(HashLink)(({ theme }) => ({
+const CustomLink = styled(Link)(({ theme }) => ({
 	display: 'flex',
 	textDecoration: 'none',
 	alignItems: 'center',
 	gap: '10px',
+	cursor: 'pointer',
 	padding: '10px 12px',
 	'&:hover': {
 		background: '#0D6EFD',
@@ -129,7 +130,7 @@ const Drawer = (props) => {
 				{data.map((item, index) => (
 					<Box key={index}>
 						<CustomLink
-							to='/#Adverts'
+							to='/'
 							onClick={toggleDrawer2(false, item.value)}
 						>
 							<Box
