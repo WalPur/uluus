@@ -82,6 +82,7 @@ const TopHeader = (props) => {
 				onClick={dispatch(setCategory('advert'))}
 			>
 				<Text20 sx={{
+					fontSize: '18px',
 					color: '#FFF'
 				}}>
 					Подать объявление
