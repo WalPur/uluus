@@ -43,7 +43,7 @@ REST_FRAMEWORK = {
 
 ELASTICSEARCH_DSL = {
     'default': {
-        'hosts': env("ELASTICSEARCH_DSL_HOSTS")
+        'hosts': "89.108.115.113:9200"
     },
 }
 
