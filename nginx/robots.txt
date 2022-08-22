@@ -1,0 +1,4 @@
+User-agent: *
+disallow: /api/*
+disallow: /search/*
+disallow: /admin/*
