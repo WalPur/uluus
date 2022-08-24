@@ -153,7 +153,6 @@ const HomeAd = () => {
 			.get(api)
 			.then((response) => {
 				const request = response.data;
-				console.log(request);
 				setAdverts(request.results);
 				setCount(Math.ceil(request.count / advertCount));
 			})
