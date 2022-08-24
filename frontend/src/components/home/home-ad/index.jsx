@@ -151,6 +151,7 @@ const HomeAd = () => {
 			.get(api)
 			.then((response) => {
 				const request = response.data;
+				console.log(request);
 				setAdverts(request.results);
 				setCount(Math.ceil(request.count / advertCount));
 			})
@@ -229,8 +230,8 @@ const HomeAd = () => {
 							onChange={(e) => setInput(e.target.value)}
 							placeholder='Поиск объявлений по ключевым словам'
 						/>
-						<CustomHashLink to='/#Adverts' style={{ textDecoration: 'none' }}>
-							<CustomButton type='submit'>
+						<CustomHashLink to='/#Adverts' style={{ textDecoration: 'none' }} onClick={handleSubmit}>
+							<CustomButton>
 								<SearchIcon sx={{
 									color: '#FFFFFF',
 									width: '22px',
