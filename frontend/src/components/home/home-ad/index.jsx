@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { HashLink } from 'react-router-hash-link';
 
@@ -90,6 +90,7 @@ const HomeAd = () => {
 	const [uluuses, setUluuses] = useState([]);
 	const [selected, setSelected] = useState([]);
 	const [count, setCount] = useState(1);
+	const scrollRef = React.createRef();
 
 	const ITEM_HEIGHT = 48;
 	const ITEM_PADDING_TOP = 8;
@@ -144,6 +145,7 @@ const HomeAd = () => {
 	}, [category, page]);
 
 	const handleSubmit = (event) => {
+		window.scrollTo(0, scrollRef.current.offsetTop);
 		const uluusId = uluus.filter(item => selected.includes(item.name)).map(item => item = item.id);
 		setPage(1);
 		const api = input || uluusId.length ? `https://uluus.ru/${input === '' ? 'api/' : 'search/'}${category}/${input ? input + '/' : ''}?uluus=${uluusId.join(',')}` : `https://uluus.ru/api/${category}/?limit=${advertCount}&offset=${(page - 1) * advertCount}`;
@@ -224,14 +226,12 @@ const HomeAd = () => {
 								</MenuItem>
 							))}
 						</CustomSelect>
-						{/* <Box sx={{ flexGrow: 1, display: 'flex', }}> */}
 						<CustomInput
 							sx={{ flexGrow: 1 }}
 							onChange={(e) => setInput(e.target.value)}
 							placeholder='Поиск объявлений по ключевым словам'
 						/>
-						<CustomHashLink to='/#Adverts' style={{ textDecoration: 'none' }} onClick={handleSubmit}>
-							<CustomButton>
+							<CustomButton type='submit'>
 								<SearchIcon sx={{
 									color: '#FFFFFF',
 									width: '22px',
@@ -245,15 +245,13 @@ const HomeAd = () => {
 									Найти
 								</Text20>
 							</CustomButton>
-						</CustomHashLink>
-						{/* </Box> */}
 					</CustomForm>
 					<Title>
 						Доска объявлений
 					</Title>
 					<HomeGold />
 					<Box
-						id='Adverts'
+						ref={scrollRef}
 						sx={{
 							display: 'flex',
 							flexDirection: 'column',
