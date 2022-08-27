@@ -1,4 +1,5 @@
 from rest_framework import serializers
+from rest_framework.serializers import ImageField
 
 from ..models import (
     Advert,
@@ -7,10 +8,11 @@ from ..models import (
 
 
 class ImageSerializer(serializers.ModelSerializer):
+    image = ImageField(read_only=True, source='thumbnail')
 
     class Meta:
         model = AdvertImages
-        fields = ('id','image',)
+        fields = ('id', 'image')
 
 
 class Serializer(serializers.ModelSerializer):

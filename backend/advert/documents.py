@@ -3,13 +3,6 @@ from django_elasticsearch_dsl.registries import registry
 
 from .models import (
     Advert,
-    AdvertRent,
-    AdvertCar,
-    AdvertFood,
-    AdvertHome,
-    AdvertJobs,
-    AdvertService,
-    AdvertRemont
 )
 
 

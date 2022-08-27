@@ -8,13 +8,6 @@ from rest_framework.pagination import PageNumberPagination
 
 from .models import (
     Advert,
-    AdvertRent,
-    AdvertCar,
-    AdvertService,
-    AdvertHome,
-    AdvertFood,
-    AdvertJobs,
-    AdvertRemont,
     Uluss
 )
 
@@ -24,6 +17,7 @@ from .serializers import (
     food,
     home,
     jobs,
+    premium,
     rent,
     service,
     remont,
@@ -142,7 +136,7 @@ class formAll(viewsets.ModelViewSet):
 
 class formPremium(viewsets.ModelViewSet):
     http_method_names = ['get']
-    serializer_class = advert.Serializer
+    serializer_class = premium.Serializer
 
     def get_queryset(self):
         uluuses = self.request.GET.get("uluus", "")
@@ -178,44 +172,6 @@ def name_content_with_no_letter(queryset, request, *args, **kwargs):
         return queryset.filter(Q(uluus__id__in=uluuses)).distinct()
     else:
         return queryset.all()
-
-
-
-class formSearch(FlatMultipleModelAPIView):
-    sorting_fields = ['-date']
-    pagination_class = LimitPagination
-    querylist = [
-        {
-            'queryset': AdvertRent.objects.filter(is_premium=False),
-            'serializer_class': rent.RentSerializer,
-            'filter_fn': name_content_with_letter
-        },
-        {
-            'queryset': AdvertCar.objects.filter(is_premium=False),
-            'serializer_class': car.CarSerializer,
-            'filter_fn': name_content_with_letter
-        },
-        {
-            'queryset': AdvertService.objects.filter(is_premium=False),
-            'serializer_class': service.ServiceSerializer,
-            'filter_fn': name_content_with_letter
-        },
-        {
-            'queryset': AdvertHome.objects.filter(is_premium=False),
-            'serializer_class': home.HomeSerializer,
-            'filter_fn': name_content_with_letter
-        },
-        {
-            'queryset': AdvertFood.objects.filter(is_premium=False),
-            'serializer_class': food.FoodSerializer,
-            'filter_fn': name_content_with_letter
-        },
-        {
-            'queryset': AdvertJobs.objects.filter(is_premium=False),
-            'serializer_class': jobs.JobsSerializer,
-            'filter_fn': name_content_with_letter
-        },
-    ]
 
 
 class formRentId(generics.GenericAPIView):

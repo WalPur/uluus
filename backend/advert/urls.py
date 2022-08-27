@@ -1,7 +1,6 @@
 from .views import (
     formRent,
     formCar,
-    formSearch,
     formService,
     formHome,
     formFood,
