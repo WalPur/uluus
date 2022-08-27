@@ -187,7 +187,7 @@ class formRentId(generics.GenericAPIView):
         query = Advert.objects.filter(id=id, slug='rent')
         query.update(views = F("views") + 1)
         
-        rent_serializer = advert.Serializer(
+        rent_serializer = rent.RentSerializer(
             query,
             many=True, 
             context=context
@@ -209,7 +209,7 @@ class formCarId(generics.GenericAPIView):
         query = Advert.objects.filter(id=id, slug='car')
         query.update(views = F("views") + 1)
         
-        car_serializer = advert.Serializer(
+        car_serializer = car.CarSerializer(
             query,
             many=True, 
             context=context
@@ -231,7 +231,7 @@ class formServiceId(generics.GenericAPIView):
         query = Advert.objects.filter(id=id, slug='service')
         query.update(views = F("views") + 1)
         
-        service_serializer = advert.Serializer(
+        service_serializer = service.ServiceSerializer(
             query,
             many=True, 
             context=context
@@ -253,7 +253,7 @@ class formHomeId(generics.GenericAPIView):
         query = Advert.objects.filter(id=id, slug='home')
         query.update(views = F("views") + 1)
         
-        home_serializer = advert.Serializer(
+        home_serializer = home.HomeSerializer(
             query,
             many=True, 
             context=context
@@ -275,7 +275,7 @@ class formFoodId(generics.GenericAPIView):
         query = Advert.objects.filter(id=id, slug='food')
         query.update(views = F("views") + 1)
         
-        home_serializer = advert.Serializer(
+        home_serializer = food.FoodSerializer(
             query,
             many=True, 
             context=context
@@ -297,7 +297,7 @@ class formJobsId(generics.GenericAPIView):
         query = Advert.objects.filter(id=id, slug='jobs')
         query.update(views = F("views") + 1)
         
-        jobs_serializer = advert.Serializer(
+        jobs_serializer = jobs.JobsSerializer(
             query,
             many=True, 
             context=context
@@ -319,7 +319,7 @@ class formRemontId(generics.GenericAPIView):
         query = Advert.objects.filter(id=id, slug='remont')
         query.update(views = F("views") + 1)
         
-        remont_serializer = advert.Serializer(
+        remont_serializer = remont.RemontSerializer(
             query,
             many=True, 
             context=context
