@@ -1,14 +1,5 @@
-User-agent: *
-disallow: /api
-disallow: /search
-disallow: /admin
-
-User-agent: Googlebot
-disallow: /api
-disallow: /search
-disallow: /admin
-
-User-agent: Googlebot-image
-disallow: /api
-disallow: /search
-disallow: /admin
+User-Agent: *
+Allow: /
+Allow: /search
+Disallow: /api
+Disallow: /admin
