@@ -1,152 +1,193 @@
-import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
-import { useSelector } from 'react-redux';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { useSelector } from "react-redux";
 
-import { Box, Container } from '@mui/material';
-import { styled } from '@mui/system';
+import { Box, Container } from "@mui/material";
+import { styled } from "@mui/system";
 
-import { Text20, Text16, Text14 } from '../../global-styles';
-import categories from '../../data/categories.json';
+import { Text20, Text16, Text14 } from "../../global-styles";
+import categories from "../../data/categories.json";
 
-import axios from 'axios';
+import axios from "axios";
 
-import {
-	AdDetailSlider
-} from '../';
+import { AdDetailSlider } from "../";
 
 const CustomBox = styled(Box)(({ theme }) => ({
-	background: '#FFFFFF',
-	padding: '20px 85px',
-	display: 'flex',
-	flexDirection: 'column',
-	gap: '10px',
-	[theme.breakpoints.down('sm')]: {
-		padding: '20px 40px',
-	}
+  background: "#FFFFFF",
+  padding: "20px 85px",
+  display: "flex",
+  flexDirection: "column",
+  gap: "10px",
+  [theme.breakpoints.down("sm")]: {
+    padding: "20px 40px",
+  },
+}));
+
+const ImageBox = styled(Box)(({ theme }) => ({
+  display: "flex",
+  gap: "15px",
+  [theme.breakpoints.down("sm")]: {
+    gap: "5px",
+    flexWrap: "wrap",
+  },
+}));
+
+const CustomImage = styled("img")(({ theme }) => ({
+  [theme.breakpoints.down("sm")]: {
+    height: "70%",
+  },
 }));
 
 const AdDetail = (props) => {
-	const category = props?.category;
-	const params = useParams();
-	const id = params.id;
-	const [data, setData] = useState();
-	const [uluus, setUluus] = useState();
-	const categoryInfo = categories.filter(item => item.category.value === category.toUpperCase())[0];
+  const category = props?.category;
+  const params = useParams();
+  const id = params.id;
+  const [data, setData] = useState();
+  const [uluus, setUluus] = useState();
+  const categoryInfo = categories.filter(
+    (item) => item.category.value === category.toUpperCase()
+  )[0];
 
-	useEffect(() => {
-		axios
-			.get('https://uluus.ru/api/' + category + '/' + id + '/')
-			.then((response) => {
-				const request = response.data[0];
-				setData(request);
-			})
-			.catch((error) => {
-				console.log('error', error);
-			});
-		axios
-			.get('https://uluus.ru/api/uluus/')
-			.then((response) => {
-				const request = response.data;
-				setUluus(request);
-			})
-			.catch((error) => {
-				console.log('error', error);
-			});
-	}, []);
+  useEffect(() => {
+    axios
+      .get("https://uluus.ru/api/" + category + "/" + id + "/")
+      .then((response) => {
+        const request = response.data[0];
+        setData(request);
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+    axios
+      .get("https://uluus.ru/api/uluus/")
+      .then((response) => {
+        const request = response.data;
+        setUluus(request);
+      })
+      .catch((error) => {
+        console.log("error", error);
+      });
+  }, []);
 
-	return (
-		<Box>
-			<Container maxWidth='lg'>
-				<CustomBox>
-					<Box sx={{
-						display: 'flex',
-						flexWrap: 'wrap',
-						gap: '10px',
-					}}>
-						<Text16>
-							{categoryInfo.category.label}
-						</Text16>
-						<Text16>
-							{categoryInfo.subcategory.filter(item => item.value === data?.subcategory)[0]?.label}
-						</Text16>
-					</Box>
-					<Box sx={{
-						display: 'flex',
-						flexWrap: 'wrap',
-						gap: '10px',
-					}}>
-						<Text20>
-							{categoryInfo.action.filter(item => item.value === data?.action)[0]?.label}
-						</Text20>
-						<Text20>
-							{data?.name}
-						</Text20>
-					</Box>
-					{data?.image.length ? <AdDetailSlider images={data?.image} /> : <></>}
-					<Text20>
-						{data?.price} руб.
-					</Text20>
-					<Box sx={{
-						display: 'flex',
-						flexDirection: 'column',
-						gap: '10px',
-					}}>
-						{data ? categoryInfo.add?.map((item, index) => (
-							<Box
-								key={index}
-								sx={{
-									display: 'flex',
-									flexWrap: 'wrap',
-									gap: '10px',
-								}}
-							>
-								<Text16>
-									{item.label + ':'}
-								</Text16>
-								<Text16>
-									{item.values.filter(value => value.value === data[item.register])[0].label}
-								</Text16>
-							</Box>
-						)) : <></>}
-					</Box>
-					<Box sx={{
-						display: 'flex',
-						flexDirection: 'column',
-						gap: '10px',
-					}}>
-						<Text16 sx={{
-							fontWeight: 700,
-						}}>
-							Описание
-						</Text16>
-						<Text14>
-							{data?.description}
-						</Text14>
-					</Box>
-					<Box sx={{
-						display: 'flex',
-						flexWrap: 'wrap',
-						gap: '10px',
-					}}>
-						<Text16 sx={{
-							fontWeight: 700,
-						}}>
-							Населенный пункт:
-						</Text16>
-						<Text16>
-							{data?.settlement}
-						</Text16>
-					</Box>
-					<Text20>
-						{data?.phone}
-					</Text20>
-					<Text20>
-						{data?.user_name}
-					</Text20>
-				</CustomBox>
-			</Container>
-		</Box>
-	)
-}
+  return (
+    <Box>
+      <Container maxWidth="lg">
+        <CustomBox>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "10px",
+            }}
+          >
+            <Text16>{categoryInfo.category.label}</Text16>
+            <Text16>
+              {
+                categoryInfo.subcategory.filter(
+                  (item) => item.value === data?.subcategory
+                )[0]?.label
+              }
+            </Text16>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "10px",
+            }}
+          >
+            <Text20>
+              {
+                categoryInfo.action.filter(
+                  (item) => item.value === data?.action
+                )[0]?.label
+              }
+            </Text20>
+            <Text20>{data?.name}</Text20>
+          </Box>
+          {data?.image.length ? <AdDetailSlider images={data?.image} /> : <></>}
+          <Text20>{data?.price} руб.</Text20>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+            }}
+          >
+            {data ? (
+              categoryInfo.add?.map((item, index) => (
+                <Box
+                  key={index}
+                  sx={{
+                    display: "flex",
+                    flexWrap: "wrap",
+                    gap: "10px",
+                  }}
+                >
+                  <Text16>{item.label + ":"}</Text16>
+                  <Text16>
+                    {
+                      item.values.filter(
+                        (value) => value.value === data[item.register]
+                      )[0].label
+                    }
+                  </Text16>
+                </Box>
+              ))
+            ) : (
+              <></>
+            )}
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexDirection: "column",
+              gap: "10px",
+            }}
+          >
+            <Text16
+              sx={{
+                fontWeight: 700,
+              }}
+            >
+              Описание
+            </Text16>
+            <Text14>{data?.description}</Text14>
+          </Box>
+          <Box
+            sx={{
+              display: "flex",
+              flexWrap: "wrap",
+              gap: "10px",
+            }}
+          >
+            <Text16
+              sx={{
+                fontWeight: 700,
+              }}
+            >
+              Населенный пункт:
+            </Text16>
+            <Text16>{data?.settlement}</Text16>
+          </Box>
+          <ImageBox>
+            <a target="_blank" href={"tel:" + data?.phone}>
+              <CustomImage src="/images/call_icon.svg" />
+            </a>
+            {data?.is_whatsapp ? (
+              <a target="_blank" href={"https://wa.me/" + data?.phone}>
+                <CustomImage src="/images/whatsapp_icon.svg" />
+              </a>
+            ) : (
+              <></>
+            )}
+            <Text20>{data?.phone}</Text20>
+          </ImageBox>
+          <Text20>{data?.user_name}</Text20>
+        </CustomBox>
+      </Container>
+    </Box>
+  );
+};
 
 export default AdDetail;
