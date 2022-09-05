@@ -175,7 +175,15 @@ const AdDetail = (props) => {
               <CustomImage src="/images/call_icon.svg" />
             </a>
             {data?.is_whatsapp ? (
-              <a target="_blank" href={"https://wa.me/" + data?.phone}>
+              <a
+                target="_blank"
+                href={
+                  "https://wa.me/" +
+                  (data?.phone?.charAt(0) === "8"
+                    ? data?.phone?.replace("8", "7")
+                    : data?.phone)
+                }
+              >
                 <CustomImage src="/images/whatsapp_icon.svg" />
               </a>
             ) : (
