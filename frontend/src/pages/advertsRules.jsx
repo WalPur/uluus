@@ -1,6 +1,7 @@
 import { Box, Container } from '@mui/material';
-
 import { Subtitle, Text14 } from '../global-styles';
+
+import {Helmet} from "react-helmet";
 
 function AdvertsRules() {
 	const data = [
@@ -108,6 +109,11 @@ function AdvertsRules() {
 			flexDirection: 'column',
 			gap: '33px',
 		}}>
+			<Helmet>
+                <meta charSet="utf-8" />
+                <title>Uluus.ru - правила подачи заявки</title>
+                <meta name="description" content="Приложение № 2 к Пользовательскому соглашению сайта Uluus.ru, размещенному в сети Интернет по адресу: https://uluus.ru/privacy-policy" />
+            </Helmet>
 			<Container maxWidth='lg'>
 				<Box sx={{
 					display: 'flex',

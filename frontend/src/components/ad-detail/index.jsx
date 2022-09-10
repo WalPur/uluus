@@ -1,16 +1,14 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router";
-import { useSelector } from "react-redux";
-
 import { Box, Container } from "@mui/material";
-import { styled } from "@mui/system";
-
-import { Text20, Text16, Text14 } from "../../global-styles";
-import categories from "../../data/categories.json";
-
-import axios from "axios";
+import { Text14, Text16, Text20 } from "../../global-styles";
+import { useEffect, useState } from "react";
 
 import { AdDetailSlider } from "../";
+import {Helmet} from "react-helmet";
+import axios from "axios";
+import categories from "../../data/categories.json";
+import { styled } from "@mui/system";
+import { useParams } from "react-router";
+import { useSelector } from "react-redux";
 
 const CustomBox = styled(Box)(({ theme }) => ({
   background: "#FFFFFF",
@@ -71,6 +69,11 @@ const AdDetail = (props) => {
 
   return (
     <Box>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Uluus.ru - {categoryInfo.category.label}</title>
+        <meta name="description" content={data?.description} />
+      </Helmet>
       <Container maxWidth="lg">
         <CustomBox>
           <Box

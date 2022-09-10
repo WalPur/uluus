@@ -1,6 +1,7 @@
 import { Box, Container } from '@mui/material';
-
 import { Subtitle, Text14 } from '../global-styles';
+
+import {Helmet} from "react-helmet";
 
 function PrivacyPolicy() {
 	const data = [
@@ -115,6 +116,11 @@ function PrivacyPolicy() {
 			flexDirection: 'column',
 			gap: '33px',
 		}}>
+			<Helmet>
+                <meta charSet="utf-8" />
+                <title>Uluus.ru - политика конфиденциальности</title>
+                <meta name="description" content="Настоящее Пользовательское соглашение (далее - «Соглашение») определяет права и обязанности между ООО «ЕИС» (далее – «Администрация») и Пользователем, возникающие при использовании Сайтом упомянутом в настоящем Соглашении с момента акцепта Пользователем настоящего Соглашения в соответствии условиями настоящего Соглашения." />
+            </Helmet>
 			<Container maxWidth='lg'>
 				<Box sx={{
 					display: 'flex',

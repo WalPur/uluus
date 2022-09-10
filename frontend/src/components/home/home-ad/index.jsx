@@ -1,28 +1,28 @@
-import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
-import { HashLink } from "react-router-hash-link";
-
-import axios from "axios";
-
 import {
   Box,
-  Container,
-  Input,
   Button,
-  Pagination,
-  Select,
-  MenuItem,
   Checkbox,
+  Container,
+  FormControl,
+  Input,
   InputLabel,
   ListItemIcon,
-  FormControl,
+  MenuItem,
+  Pagination,
+  Select,
 } from "@mui/material";
-import { styled } from "@mui/system";
-import SearchIcon from "@mui/icons-material/Search";
+import React, { useEffect, useState } from "react";
+import { Text16, Text20, Title } from "../../../global-styles";
 
 import { AdCard } from "../../";
-import { Title, Text20, Text16 } from "../../../global-styles";
+import { HashLink } from "react-router-hash-link";
+import {Helmet} from "react-helmet";
 import { HomeGold } from "../../";
+import SearchIcon from "@mui/icons-material/Search";
+import axios from "axios";
+import { categorySelect } from "../../contants/categorySelect";
+import { styled } from "@mui/system";
+import { useSelector } from "react-redux";
 
 const CustomHashLink = styled(HashLink)(({ theme }) => ({
   width: "15%",
@@ -208,6 +208,10 @@ const HomeAd = () => {
 
   return (
     <Box>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Uluus.ru - {categorySelect[category]}</title>
+      </Helmet>
       <Container maxWidth="lg">
         <Box
           sx={{

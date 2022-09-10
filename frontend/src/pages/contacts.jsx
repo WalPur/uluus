@@ -1,6 +1,7 @@
 import { Box, Container } from '@mui/material';
-
 import { Subtitle, Text20 } from '../global-styles';
+
+import {Helmet} from "react-helmet";
 
 function Contacts() {
 	const data = [
@@ -34,6 +35,11 @@ function Contacts() {
 			flexDirection: 'column',
 			gap: '33px',
 		}}>
+			<Helmet>
+                <meta charSet="utf-8" />
+                <title>Uluus.ru - контакты</title>
+                <meta name="description" content="Контакты" />
+            </Helmet>
 			<Container maxWidth='lg'>
 				<Box sx={{
 					display: 'flex',
