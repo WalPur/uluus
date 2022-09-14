@@ -165,6 +165,18 @@ const AutocompleteBox = styled(Box)(({ theme }) => ({
   alignItmes: "center",
   gap: "24px",
 }));
+const CustomMultipleSelect = styled(Select)(({ theme }) => ({
+  borderRadius: "4.8px",
+  background: "#FFF",
+  width: "280px",
+  border: "1px solid #CED4DA",
+  "&.MuiOutlinedInput-root .MuiSelect-select.MuiSelect-outlined": {
+    padding: "9px 32px 9px 17px",
+  },
+  [theme.breakpoints.down(400)]: {
+    width: "100%",
+  },
+}));
 
 const AdForm = () => {
   const [uluusOptions, setUluusOptions] = useState([]);
@@ -643,11 +655,15 @@ const AdForm = () => {
                 })}
               />
             </InputBox>
-            <AutocompleteBox>
+            <AutocompleteBox
+              sx={{
+                flexWrap: "wrap",
+              }}
+            >
               <Text20 sx={{ maxWidth: "300px" }}>
                 Опубликовать объявление на определенном(ых) улусе(ах):
               </Text20>
-              <CustomSelect
+              <CustomMultipleSelect
                 {...register("uluus", {
                   required: true,
                 })}
@@ -700,7 +716,7 @@ const AdForm = () => {
                     <Text20>{option.name}</Text20>
                   </MenuItem>
                 ))}
-              </CustomSelect>
+              </CustomMultipleSelect>
             </AutocompleteBox>
             {/* <AutocompleteBox
               sx={{
