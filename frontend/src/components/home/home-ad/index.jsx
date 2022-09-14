@@ -16,7 +16,7 @@ import { Text16, Text20, Title } from "../../../global-styles";
 
 import { AdCard } from "../../";
 import { HashLink } from "react-router-hash-link";
-import {Helmet} from "react-helmet";
+import { Helmet } from "react-helmet";
 import { HomeGold } from "../../";
 import SearchIcon from "@mui/icons-material/Search";
 import axios from "axios";
@@ -102,6 +102,7 @@ const HomeAd = () => {
   const [uluuses, setUluuses] = useState([]);
   const [selected, setSelected] = useState([]);
   const [count, setCount] = useState(1);
+  const [goldCount, setGoldCount] = useState();
   const scrollRef = React.createRef();
 
   const ITEM_HEIGHT = 48;
@@ -112,11 +113,6 @@ const HomeAd = () => {
         maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
         width: 300,
       },
-    },
-    getContentAnchorEl: null,
-    anchorOrigin: {
-      vertical: "bottom",
-      horizontal: "center",
     },
     transformOrigin: {
       vertical: "top",
@@ -148,6 +144,7 @@ const HomeAd = () => {
     const uluusId = uluus
       .filter((item) => selected.includes(item.name))
       .map((item) => (item = item.id));
+
     const api =
       input || uluusId.length
         ? `https://uluus.ru/${input === "" ? "api/" : "search/"}${category}/${
@@ -158,6 +155,7 @@ const HomeAd = () => {
         : `https://uluus.ru/api/${category}/?limit=${advertCount}&offset=${
             (page - 1) * advertCount
           }`;
+
     axios
       .get(api)
       .then((response) => {
@@ -176,6 +174,7 @@ const HomeAd = () => {
       .filter((item) => selected.includes(item.name))
       .map((item) => (item = item.id));
     setPage(1);
+
     const api =
       input || uluusId.length
         ? `https://uluus.ru/${input === "" ? "api/" : "search/"}${category}/${
@@ -184,6 +183,7 @@ const HomeAd = () => {
         : `https://uluus.ru/api/${category}/?limit=${advertCount}&offset=${
             (page - 1) * advertCount
           }`;
+
     axios
       .get(api)
       .then((response) => {
@@ -205,6 +205,8 @@ const HomeAd = () => {
     }
     setSelected(value);
   };
+
+  console.log(count);
 
   return (
     <Box>
@@ -293,7 +295,7 @@ const HomeAd = () => {
             </CustomButton>
           </CustomForm>
           <Title>Доска объявлений</Title>
-          <HomeGold />
+          {goldCount ? <HomeGold setGoldCount={setGoldCount} /> : <></>}
           <Box
             ref={scrollRef}
             sx={{
@@ -302,29 +304,38 @@ const HomeAd = () => {
               gap: 1,
             }}
           >
-            {adverts?.map((card, index) => (
-              <AdCard data={card} key={index} />
-            ))}
+            {count ? (
+              adverts?.map((card, index) => <AdCard data={card} key={index} />)
+            ) : (
+              <Text20>
+                "К сожалению по вашему запросу в данном районе(-ах) ничего не
+                найдено"
+              </Text20>
+            )}
           </Box>
-          <Pagination
-            count={count}
-            page={page}
-            onChange={(e, value) => setPage(value)}
-            variant="outlined"
-            shape="rounded"
-            sx={{
-              alignSelf: "end",
-              "&.MuiPagination-root ul li button": {
-                backgroundColor: "#FFF",
-              },
-              "&.MuiPagination-root ul li button:hover": {
-                backgroundColor: "#bbb7b7",
-              },
-              "&.MuiPagination-root ul li .Mui-selected": {
-                backgroundColor: "#cdcdcd",
-              },
-            }}
-          />
+          {count ? (
+            <Pagination
+              count={count}
+              page={page}
+              onChange={(e, value) => setPage(value)}
+              variant="outlined"
+              shape="rounded"
+              sx={{
+                alignSelf: "end",
+                "&.MuiPagination-root ul li button": {
+                  backgroundColor: "#FFF",
+                },
+                "&.MuiPagination-root ul li button:hover": {
+                  backgroundColor: "#bbb7b7",
+                },
+                "&.MuiPagination-root ul li .Mui-selected": {
+                  backgroundColor: "#cdcdcd",
+                },
+              }}
+            />
+          ) : (
+            <></>
+          )}
         </Box>
       </Container>
     </Box>

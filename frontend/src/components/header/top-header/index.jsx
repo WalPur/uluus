@@ -101,16 +101,6 @@ const TopHeader = (props) => {
           Подать объявление
         </Text20>
       </CustomLink>
-      <CustomLink to="/set-uluus" onClick={dispatch(setCategory("advert"))}>
-        <Text20
-          sx={{
-            fontSize: "18px",
-            color: "#FFF",
-          }}
-        >
-          Выбрать улус
-        </Text20>
-      </CustomLink>
     </CustomBox>
   );
 };

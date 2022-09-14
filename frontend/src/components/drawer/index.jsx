@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { HashLink } from "react-router-hash-link";
@@ -64,7 +64,13 @@ const CustomButton2 = styled("a")(({ theme }) => ({
 const Drawer = (props) => {
   const data = props.data;
   const dispatch = useDispatch();
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    if (window.innerWidth <= 600) {
+      setOpen(true);
+    }
+  }, []);
 
   const toggleDrawer = (open) => (event) => {
     if (
