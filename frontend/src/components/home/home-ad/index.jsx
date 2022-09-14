@@ -14,6 +14,8 @@ import {
 import React, { useEffect, useState } from "react";
 import { Text16, Text20, Title } from "../../../global-styles";
 
+import Cookies from "js-cookie";
+
 import { AdCard } from "../../";
 import { HashLink } from "react-router-hash-link";
 import { Helmet } from "react-helmet";
@@ -98,10 +100,13 @@ const HomeAd = () => {
   const [page, setPage] = useState(1);
   const [input, setInput] = useState("");
   const [adverts, setAdverts] = useState([]);
-  const [uluus, setUluus] = useState([]);
   const [uluuses, setUluuses] = useState([]);
-  const [selected, setSelected] = useState([]);
+  const [selected, setSelected] = useState(
+    JSON.parse(Cookies.get("selectedUluuses"))
+  );
+
   const [count, setCount] = useState(1);
+  const [showPag, setShowPag] = useState(0);
   const [goldCount, setGoldCount] = useState();
   const scrollRef = React.createRef();
 
@@ -132,8 +137,8 @@ const HomeAd = () => {
         const request = response.data.results.sort((a, b) => {
           return a.name.localeCompare(b.name);
         });
-        setUluuses(request.map((item) => (item = item.name)));
-        setUluus(request);
+        setUluuses(request);
+        //   setUluus(request);
       })
       .catch((error) => {
         console.log("error", error);
@@ -141,17 +146,13 @@ const HomeAd = () => {
   }, []);
 
   useEffect(() => {
-    const uluusId = uluus
-      .filter((item) => selected.includes(item.name))
-      .map((item) => (item = item.id));
-
     const api =
-      input || uluusId.length
+      input || selected.length
         ? `https://uluus.ru/${input === "" ? "api/" : "search/"}${category}/${
             input ? input + "/" : ""
           }?limit=${advertCount}&offset=${
             (page - 1) * advertCount
-          }&uluus=${uluusId.join(",")}`
+          }&uluus=${selected.join(",")}`
         : `https://uluus.ru/api/${category}/?limit=${advertCount}&offset=${
             (page - 1) * advertCount
           }`;
@@ -162,6 +163,7 @@ const HomeAd = () => {
         const request = response.data;
         setAdverts(request.results);
         setCount(Math.ceil(request.count / advertCount));
+        setShowPag(request.results.length);
       })
       .catch((error) => {
         console.log("error", error);
@@ -170,16 +172,12 @@ const HomeAd = () => {
 
   const handleSubmit = (event) => {
     window.scrollTo(0, scrollRef.current.offsetTop);
-    const uluusId = uluus
-      .filter((item) => selected.includes(item.name))
-      .map((item) => (item = item.id));
-    setPage(1);
 
     const api =
-      input || uluusId.length
+      input || selected.length
         ? `https://uluus.ru/${input === "" ? "api/" : "search/"}${category}/${
             input ? input + "/" : ""
-          }?uluus=${uluusId.join(",")}`
+          }?uluus=${selected.join(",")}`
         : `https://uluus.ru/api/${category}/?limit=${advertCount}&offset=${
             (page - 1) * advertCount
           }`;
@@ -190,6 +188,7 @@ const HomeAd = () => {
         const request = response.data;
         setAdverts(request.results);
         setCount(Math.ceil(request.count / advertCount));
+        setShowPag(request.results.length);
       })
       .catch((error) => {
         console.log("error", error);
@@ -200,13 +199,15 @@ const HomeAd = () => {
   const handleChange = (event) => {
     const value = event.target.value;
     if (value[value.length - 1] === "all") {
-      setSelected(selected.length === uluuses.length ? [] : uluuses);
+      setSelected(
+        selected.length === uluuses.length
+          ? []
+          : uluuses.map((item) => (item = item.id))
+      );
       return;
     }
     setSelected(value);
   };
-
-  console.log(count);
 
   return (
     <Box>
@@ -232,7 +233,7 @@ const HomeAd = () => {
                 if (selected.length === 0) {
                   return (
                     <Text20 sx={{ opacity: 0.5, color: "#6c757d" }}>
-                      Выбрать улус
+                      Выбрать район(-ы)
                     </Text20>
                   );
                 }
@@ -240,7 +241,10 @@ const HomeAd = () => {
                 return (
                   <Box sx={{ display: "flex", width: "100%" }}>
                     <Text20 sx={{ width: "100%", overflow: "hidden" }}>
-                      {selected.join(", ")}
+                      {uluuses
+                        .filter((item) => selected.includes(item.id))
+                        .map((item) => item.name)
+                        .join(", ")}
                     </Text20>
                   </Box>
                 );
@@ -262,11 +266,11 @@ const HomeAd = () => {
                 <Text20>Выбрать все</Text20>
               </MenuItem>
               {uluuses.map((option) => (
-                <MenuItem key={option} value={option}>
+                <MenuItem key={option.id} value={option.id}>
                   <ListItemIcon>
-                    <Checkbox checked={selected.indexOf(option) > -1} />
+                    <Checkbox checked={selected.indexOf(option.id) > -1} />
                   </ListItemIcon>
-                  <Text20>{option}</Text20>
+                  <Text20>{option.name}</Text20>
                 </MenuItem>
               ))}
             </CustomSelect>
@@ -304,16 +308,16 @@ const HomeAd = () => {
               gap: 1,
             }}
           >
-            {count ? (
+            {showPag ? (
               adverts?.map((card, index) => <AdCard data={card} key={index} />)
             ) : (
               <Text20>
-                "К сожалению по вашему запросу в данном районе(-ах) ничего не
-                найдено"
+                К сожалению по вашему запросу в данном районе(-ах) ничего не
+                найдено
               </Text20>
             )}
           </Box>
-          {count ? (
+          {showPag ? (
             <Pagination
               count={count}
               page={page}

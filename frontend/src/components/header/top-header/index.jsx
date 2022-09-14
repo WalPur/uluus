@@ -43,16 +43,20 @@ const CustomBox = styled(Box)(({ theme }) => ({
   gap: "60px",
 }));
 
-const TopHeader = (props) => {
-  const uluus = props.uluus;
+const TopHeader = () => {
   const dispatch = useDispatch();
 
   return (
     <CustomBox>
+      {/* <Box
+        
+      > */}
       <Link
         to="/"
         style={{ display: "flex", gap: "8px", textDecoration: "none" }}
-        onClick={dispatch(setCategory("advert"))}
+        onClick={() => {
+          dispatch(setCategory("advert"));
+        }}
       >
         <img src="/images/uluusru_logo.svg" />
         <Typography
@@ -65,6 +69,7 @@ const TopHeader = (props) => {
           Uluus.ru
         </Typography>
       </Link>
+      {/* </Box> */}
       <Box
         sx={{
           flexGrow: 1,
@@ -91,7 +96,12 @@ const TopHeader = (props) => {
           </Text20>
         </MenuItem>
       </Box>
-      <CustomLink to="/ad-post" onClick={dispatch(setCategory("advert"))}>
+      <CustomLink
+        to="/ad-post"
+        onClick={() => {
+          dispatch(setCategory("advert"));
+        }}
+      >
         <Text20
           sx={{
             fontSize: "18px",

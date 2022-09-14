@@ -1,6 +1,9 @@
 import "./App.css";
 import "./fonts/arciformsans.css";
+import { useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+import Cookies from "js-cookie";
 
 import {
   Home,
@@ -9,6 +12,7 @@ import {
   Contacts,
   PrivacyPolicy,
   AdvertsRules,
+  FirstEntry,
   // SetUluus,
 } from "./pages";
 import { Header, Footer } from "./components";
@@ -24,10 +28,20 @@ function App() {
       }}
     >
       <BrowserRouter>
-        <Header />
+        {Cookies.get("isFirstEntry") !== "false" ? <></> : <Header />}
         <div style={{ flexGrow: 1 }}>
           <Routes>
-            <Route path="" element={<Home />}></Route>
+            <Route
+              path="/"
+              element={
+                Cookies.get("isFirstEntry") !== "false" ? (
+                  <FirstEntry />
+                ) : (
+                  <Home />
+                )
+              }
+            ></Route>
+            {/* <Route path="/home" element={<Home />}></Route> */}
             <Route
               path="/ad-detail/rent/:id"
               element={<Detail category="rent" />}
@@ -63,7 +77,7 @@ function App() {
             {/* <Route path="/set-uluus" element={<SetUluus />}></Route> */}
           </Routes>
         </div>
-        <Footer />
+        {Cookies.get("isFirstEntry") !== "false" ? <></> : <Footer />}
       </BrowserRouter>
     </div>
   );

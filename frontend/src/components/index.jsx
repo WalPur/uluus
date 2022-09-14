@@ -1,33 +1,36 @@
-import Header from './header';
-import Drawer from './drawer';
+import Header from "./header";
+import Drawer from "./drawer";
 
-import HomeSlider from './home/home-slider';
-import HomeGold from './home/home-gold';
-import HomeAd from './home/home-ad';
+import FirstEntryComponent from "./fisrt-entry";
 
-import AdDetail from './ad-detail';
-import AdDetailSlider from './ad-detail/ad-detail-slider';
+import HomeSlider from "./home/home-slider";
+import HomeGold from "./home/home-gold";
+import HomeAd from "./home/home-ad";
 
-import AdForm from './ad-post/ad-form';
+import AdDetail from "./ad-detail";
+import AdDetailSlider from "./ad-detail/ad-detail-slider";
 
-import SetUluusComponent from './set-uluus';
+import AdForm from "./ad-post/ad-form";
 
-import Footer from './footer';
+import SetUluusComponent from "./set-uluus";
 
-import GoldCard from './cards/gold-card';
-import AdCard from './cards/ad-card';
+import Footer from "./footer";
+
+import GoldCard from "./cards/gold-card";
+import AdCard from "./cards/ad-card";
 
 export {
-	Header,
-	Drawer,
-	HomeSlider,
-	HomeGold,
-	HomeAd,
-	AdDetail,
-	AdDetailSlider,
-	AdForm,
-	SetUluusComponent,
-	Footer,
-	GoldCard,
-	AdCard,
+  Header,
+  Drawer,
+  FirstEntryComponent,
+  HomeSlider,
+  HomeGold,
+  HomeAd,
+  AdDetail,
+  AdDetailSlider,
+  AdForm,
+  SetUluusComponent,
+  Footer,
+  GoldCard,
+  AdCard,
 };

@@ -675,7 +675,7 @@ const AdForm = () => {
                   if (selected.length === 0) {
                     return (
                       <Text20 sx={{ opacity: 0.5, color: "#6c757d" }}>
-                        Выбрать улус(ы)
+                        Выбрать район(-ы)
                       </Text20>
                     );
                   }
@@ -694,7 +694,7 @@ const AdForm = () => {
                 MenuProps={MenuProps}
               >
                 <MenuItem disabled value="">
-                  <Text20>Выбрать улус(ы)</Text20>
+                  <Text20>Выбрать район(-ы)</Text20>
                 </MenuItem>
                 <MenuItem value="all">
                   <ListItemIcon>
