@@ -119,8 +119,10 @@ const FirstEntryComponent = () => {
 
   const handleClick = () => {
     if (selected.length) {
-      Cookies.set("isFirstEntry", false);
-      Cookies.set("selectedUluuses", JSON.stringify(selected));
+      Cookies.set("isFirstEntry", false, { expires: 365 });
+      Cookies.set("selectedUluuses", JSON.stringify(selected), {
+        expires: 365,
+      });
       document.location.reload();
     }
   };
