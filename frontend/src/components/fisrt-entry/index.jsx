@@ -27,8 +27,12 @@ const CustomBox = styled(Box)(({ theme }) => ({
   justifyContent: "center",
   alignItems: "center",
   flexDirection: "column",
-  [theme.breakpoints.down(750)]: {
+  [theme.breakpoints.down(800)]: {
+    width: "calc(100% - 40px)",
     margin: "0 20px",
+  },
+  [theme.breakpoints.down("sm")]: {
+    padding: "20px 20px",
   },
 }));
 const CustomTitle = styled(Title)(({ theme }) => ({
@@ -157,7 +161,13 @@ const FirstEntryComponent = () => {
 
             return (
               <Box sx={{ display: "flex", width: "100%" }}>
-                <Text20 sx={{ width: "100%", overflow: "hidden" }}>
+                <Text20
+                  sx={{
+                    width: "100%",
+                    textOverflow: "ellipsis",
+                    overflow: "hidden",
+                  }}
+                >
                   {uluusOptions
                     .filter((item) => selected.includes(item.id))
                     .map((item) => item.name)
