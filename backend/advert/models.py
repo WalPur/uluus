@@ -15,32 +15,32 @@ class Uluss(models.Model):
     )
     text = models.TextField(
         verbose_name="Описание улуса",
-        blank=False
+        blank=True
     )
     square = models.CharField(
         max_length=255,
         verbose_name="Площадь улуса",
-        blank=False
+        blank=True
     )
     population = models.CharField(
         max_length=255,
         verbose_name="Население улуса",
-        blank=False
+        blank=True
     )
     estab = models.CharField(
         max_length=255,
         verbose_name="Дата образования улуса",
-        blank=False
+        blank=True
     )
     capital = models.CharField(
         max_length=255,
         verbose_name="Центр улуса",
-        blank=False
+        blank=True
     )
     image = models.ImageField(
         upload_to='uluusImages/',
         verbose_name="Картинка улуса",
-        blank=False
+        blank=True
     )
 
     def __str__(self):
