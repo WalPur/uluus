@@ -3,3 +3,5 @@ Allow: /
 Disallow: /search
 Disallow: /api
 Disallow: /admin
+
+Sitemap: https://uluus.ru/sitemap.xml
