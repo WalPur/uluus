@@ -6,10 +6,12 @@ import {
   FormControl,
   Input,
   InputLabel,
+  Menu,
   ListItemIcon,
   MenuItem,
   Pagination,
   Select,
+  Divider,
 } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { Text16, Text20, Title } from "../../../global-styles";
@@ -108,6 +110,7 @@ const HomeAd = () => {
   const [count, setCount] = useState(1);
   const [showPag, setShowPag] = useState(0);
   const [goldCount, setGoldCount] = useState();
+  const [open, setOpen] = useState(false);
   const scrollRef = React.createRef();
 
   const ITEM_HEIGHT = 48;
@@ -229,6 +232,13 @@ const HomeAd = () => {
               displayEmpty
               value={selected}
               onChange={handleChange}
+              open={open}
+              onOpen={() => {
+                setOpen(true);
+              }}
+              onClose={() => {
+                setOpen(false);
+              }}
               renderValue={(selected) => {
                 if (selected.length === 0) {
                   return (
@@ -251,9 +261,29 @@ const HomeAd = () => {
               }}
               MenuProps={MenuProps}
             >
-              <MenuItem disabled value="">
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "space-between",
+                  padding: "0 10px 0 30px",
+                }}
+              >
+                <Text20 sx={{ opacity: "0.5" }}>Выбрать улус</Text20>
+                <Button
+                  sx={{
+                    marginRight: "5px",
+                  }}
+                  variant="contained"
+                  onClick={() => {
+                    setOpen(false);
+                  }}
+                >
+                  Ок
+                </Button>
+              </Box>
+              {/* <MenuItem disabled value="">
                 <Text20>Выбрать улус</Text20>
-              </MenuItem>
+              </MenuItem> */}
               <MenuItem value="all">
                 <ListItemIcon>
                   <Checkbox
@@ -273,6 +303,26 @@ const HomeAd = () => {
                   <Text20>{option.name}</Text20>
                 </MenuItem>
               ))}
+              <Divider />
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "end",
+                  alignItems: "center",
+                }}
+              >
+                <Button
+                  sx={{
+                    marginRight: "15px",
+                  }}
+                  variant="contained"
+                  onClick={() => {
+                    setOpen(false);
+                  }}
+                >
+                  Ок
+                </Button>
+              </Box>
             </CustomSelect>
             <CustomInput
               sx={{ flexGrow: 1 }}
