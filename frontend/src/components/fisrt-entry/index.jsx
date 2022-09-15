@@ -13,11 +13,18 @@ import {
   Checkbox,
   MenuItem,
   ListItemIcon,
+  Divider,
 } from "@mui/material";
 import { styled } from "@mui/system";
 
 import { Title, Text20, Text16 } from "../../global-styles";
 
+const CustomText20 = styled(Text20)(({ theme }) => ({
+  opacity: "0.5",
+  [theme.breakpoints.down(400)]: {
+    fontSize: "15px",
+  },
+}));
 const CustomBox = styled(Box)(({ theme }) => ({
   background: "rgba(255, 255, 255, 0.5)",
   width: 720,
@@ -74,6 +81,7 @@ const FirstEntryComponent = () => {
   const dispatch = useDispatch();
   const [uluusOptions, setUluusOptions] = useState([]);
   const [selected, setSelected] = useState([]);
+  const [open, setOpen] = useState(false);
 
   useEffect(() => {
     axios
@@ -150,6 +158,13 @@ const FirstEntryComponent = () => {
           displayEmpty
           value={selected}
           onChange={handleChange}
+          open={open}
+          onOpen={() => {
+            setOpen(true);
+          }}
+          onClose={() => {
+            setOpen(false);
+          }}
           renderValue={(selected) => {
             if (selected.length === 0) {
               return (
@@ -178,9 +193,31 @@ const FirstEntryComponent = () => {
           }}
           MenuProps={MenuProps}
         >
-          <MenuItem disabled value="">
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              padding: "0 10px 0 26px",
+            }}
+          >
+            <CustomText20>Выбрать район(-ы)</CustomText20>
+            <Button
+              sx={{
+                marginRight: "5px",
+              }}
+              //   size="small"
+              variant="contained"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              Ок
+            </Button>
+          </Box>
+          {/* <MenuItem disabled value="">
             <Text20>Выбрать улус(ы)</Text20>
-          </MenuItem>
+          </MenuItem> */}
           <MenuItem value="all">
             <ListItemIcon>
               <Checkbox
@@ -200,6 +237,25 @@ const FirstEntryComponent = () => {
               <Text20>{option.name}</Text20>
             </MenuItem>
           ))}
+          <Divider />
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "end",
+            }}
+          >
+            <Button
+              sx={{
+                marginRight: "15px",
+              }}
+              variant="contained"
+              onClick={() => {
+                setOpen(false);
+              }}
+            >
+              Ок
+            </Button>
+          </Box>
         </CustomMultipleSelect>
         <CustomButton onClick={handleClick}>
           <Text16 sx={{ color: "#FFFFFF" }}>Применить</Text16>

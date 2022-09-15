@@ -28,6 +28,12 @@ import { categorySelect } from "../../contants/categorySelect";
 import { styled } from "@mui/system";
 import { useSelector } from "react-redux";
 
+const CustomText20 = styled(Text20)(({ theme }) => ({
+  opacity: "0.5",
+  [theme.breakpoints.down(400)]: {
+    fontSize: "14px",
+  },
+}));
 const CustomHashLink = styled(HashLink)(({ theme }) => ({
   width: "15%",
   borderRadius: "4.8px",
@@ -265,15 +271,17 @@ const HomeAd = () => {
                 sx={{
                   display: "flex",
                   justifyContent: "space-between",
+                  alignItems: "center",
                   padding: "0 10px 0 30px",
                 }}
               >
-                <Text20 sx={{ opacity: "0.5" }}>Выбрать улус</Text20>
+                <CustomText20>Выбрать улус</CustomText20>
                 <Button
                   sx={{
                     marginRight: "5px",
                   }}
                   variant="contained"
+                  size="small"
                   onClick={() => {
                     setOpen(false);
                   }}
