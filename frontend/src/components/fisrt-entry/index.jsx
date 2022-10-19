@@ -142,10 +142,6 @@ const FirstEntryComponent = () => {
   return (
     <Box
       sx={{
-        background: "url('/images/firstEntry_bg.svg')",
-        backgroundRepeat: "no-repeat",
-        backgroundSize: "cover",
-        height: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
@@ -206,7 +202,6 @@ const FirstEntryComponent = () => {
               sx={{
                 marginRight: "5px",
               }}
-              //   size="small"
               variant="contained"
               onClick={() => {
                 setOpen(false);
@@ -215,9 +210,6 @@ const FirstEntryComponent = () => {
               Ок
             </Button>
           </Box>
-          {/* <MenuItem disabled value="">
-            <Text20>Выбрать улус(ы)</Text20>
-          </MenuItem> */}
           <MenuItem value="all">
             <ListItemIcon>
               <Checkbox
