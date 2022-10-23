@@ -25,6 +25,15 @@ const CustomText20 = styled(Text20)(({ theme }) => ({
     fontSize: "15px",
   },
 }));
+const ParentBox = styled(Box)(({ theme }) => ({
+  marginTop: "50vh",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  [theme.breakpoints.down(400)]: {
+    marginTop: "-80%",
+  },
+}));
 const CustomBox = styled(Box)(({ theme }) => ({
   background: "rgba(255, 255, 255, 0.5)",
   width: 720,
@@ -140,13 +149,7 @@ const FirstEntryComponent = () => {
   };
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
+    <ParentBox>
       <CustomBox>
         <CustomTitle>Пожалуйста, выберите ваш район(-ы)</CustomTitle>
         <CustomMultipleSelect
@@ -253,7 +256,7 @@ const FirstEntryComponent = () => {
           <Text16 sx={{ color: "#FFFFFF" }}>Применить</Text16>
         </CustomButton>
       </CustomBox>
-    </Box>
+    </ParentBox>
   );
 };
 
